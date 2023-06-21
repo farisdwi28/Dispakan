@@ -1,8 +1,10 @@
 import React from "react";
-import Footer from "./Footer";
-import Header from "./Header";
 
-const MainLayout = (props) => {
+// import section
+import Header from "./Header";
+import Footer from "./Footer";
+
+const MainLayout = props => {
   const { children, active } = props;
   return (
     <div>
