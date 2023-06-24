@@ -27,7 +27,7 @@ const HomePage = () => {
                 <img
                   src={images.category1}
                   alt="kategori-makanan"
-                  class="absolute inset-y-0 right-0 w-70"
+                  class="absolute inset-y-0 right-0 w-80"
                 />
               </div>
             </div>
@@ -47,7 +47,7 @@ const HomePage = () => {
                 <img
                   src={images.category2}
                   alt="kategori-minuman"
-                  class="absolute inset-y-0 right-0 w-70"
+                  class="absolute inset-y-0 right-0 w-80"
                 />
               </div>
             </div>
@@ -67,7 +67,7 @@ const HomePage = () => {
                 <img
                   src={images.category3}
                   alt="kategori-bahan-pangan"
-                  class="absolute inset-y-0 right-0 w-70"
+                  class="absolute inset-y-0 right-0 w-80"
                 />
               </div>
             </div>
