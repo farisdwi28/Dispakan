@@ -1,4 +1,5 @@
 import search from "../assets/search.svg";
+import google from "../assets/google.svg";
 
 // import  images banner
 import banner1 from "../assets/images/banner-1.jpg";
@@ -17,6 +18,7 @@ import category3 from "../assets/images/kategori-produk-3.png";
 
 const images = {
   search,
+  google,
   // images for carousel banner
   banner1,
   banner2,
