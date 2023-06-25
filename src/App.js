@@ -1,3 +1,5 @@
+import { Routes, Route } from "react-router-dom";
+
 import "./App.css";
 import React from "react";
 import HomePage from "./pages/HomePage";
@@ -7,7 +9,12 @@ import RegisterPage from "./pages/Register/RegisterPage";
 export default function App() {
   return (
     <div className="App">
-      <HomePage />
+      <Routes>
+        <Route index path="/" element={<HomePage />} />
+        <Route path="/Register" element={<RegisterPage />} />
+        <Route path="/Login" element={<LoginPage />} />
+      </Routes>
+      {/* <HomePage /> */}
       {/* <LoginPage /> */}
       {/* <RegisterPage /> */}
     </div>
