@@ -7,9 +7,9 @@ import RegisterPage from "./pages/Register/RegisterPage";
 export default function App() {
   return (
     <div className="App">
-      <HomePage />
+      {/* <HomePage /> */}
       {/* <LoginPage /> */}
-      {/* <RegisterPage /> */}
+      <RegisterPage />
     </div>
   );
 }
