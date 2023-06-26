@@ -1,5 +1,6 @@
 import * as React from "react";
 import { images } from "../constans";
+import { Link } from "react-router-dom";
 
 export default function FormLogin() {
   return (
@@ -39,9 +40,11 @@ export default function FormLogin() {
         </div>
 
         <div className="mt-6 md:mt-8 flex flex-col gap-y-4">
+          <Link to="/Dashboard" className="mt-6 md:mt-8 flex flex-col gap-y-4">
           <button className="active:scale-[.98] active:duration-75 transition-all hover:scale-[1.01] ease-in-out py-3 rounded-xl bg-primary1 text-white text-lg font-bold md:text-xl">
             Masuk
           </button>
+          </Link>
           <button className="flex items-center justify-center gap-2 active:scale-[.98] active:duration-75 transition-all hover:scale-[1.01] ease-in-out">
             <img src={images.google} className="w-6 h-6 md:w-8 md:h-8" />
             <span className="align-middle text-base">Masuk dengan Google</span>
