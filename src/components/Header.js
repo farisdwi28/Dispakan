@@ -1,41 +1,36 @@
 import React from "react";
 import { images } from "../constans";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
     <section>
       <nav class="bg-white border-gray-200 dark:bg-gray-900">
-        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-          <a href="#" class="flex items-center">
+        <div class="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto p-3">
+          <Link to="/" class="flex items-center">
             <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white text-[#D36B16]">
               Dispakan.
             </span>
-          </a>
+          </Link>
           <div class="relative md:order-3 item-center">
+            <Link to="/Login">
             <button
               type="button"
               class="text-white bg-[#D36B16] hover:bg-[#D36B16] focus:outline-none focus:ring-4 focus:ring-[#D36B16] font-medium rounded-full text-sm px-10 py-2.5 text-center ml-10 mr-5 mb-2 dark:bg-[#D36B16] dark:hover:bg-[#D36B16] dark:focus:ring-[#D36B16]"
             >
               Masuk
             </button>
+            </Link>
+            <Link to="/Register">
             <button
               type="button"
               class="text-[#D36B16] border border-[#D36B16]  font-medium rounded-full text-sm px-10 py-2.5 text-center mr-5 mb-2"
             >
               Daftar
             </button>
+            </Link>
           </div>
           <div class="flex md:order-2">
-            <button
-              type="button"
-              data-collapse-toggle="navbar-search"
-              aria-controls="navbar-search"
-              aria-expanded="false"
-              class="md:hidden text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-full text-sm p-2.5 mr-1"
-            >
-              <img src={images.search} />
-              <span class="sr-only">Cari produk, umkm, ....</span>
-            </button>
             <div class="relative hidden md:block">
               <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                 <img src={images.search} />
@@ -48,28 +43,6 @@ const Header = () => {
                 placeholder="Cari produk, umkm, ...."
               />
             </div>
-            <button
-              data-collapse-toggle="navbar-search"
-              type="button"
-              class="inline-flex items-center p-2 text-sm text-gray-500 rounded-full md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-              aria-controls="navbar-search"
-              aria-expanded="false"
-            >
-              <span class="sr-only">Open menu</span>
-              <svg
-                class="w-6 h-6"
-                aria-hidden="true"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
-            </button>
           </div>
 
           <div
@@ -112,7 +85,7 @@ const Header = () => {
               <li>
                 <a
                   href="#"
-                  class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                  class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#D36B16] hover:underline md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                 >
                   Promo
                 </a>
@@ -120,7 +93,7 @@ const Header = () => {
               <li>
                 <a
                   href="#"
-                  class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                  class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#D36B16] hover:underline md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                 >
                   Berita
                 </a>
@@ -128,7 +101,7 @@ const Header = () => {
               <li>
                 <a
                   href="#"
-                  class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                  class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#D36B16] hover:underline md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                 >
                   Produk
                 </a>
@@ -136,7 +109,7 @@ const Header = () => {
               <li>
                 <a
                   href="#"
-                  class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                  class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#D36B16] hover:underline md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                 >
                   UMKM
                 </a>
@@ -144,7 +117,7 @@ const Header = () => {
               <li>
                 <a
                   href="#"
-                  class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                  class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#D36B16] hover:underline md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                 >
                   Kontak
                 </a>
@@ -158,3 +131,7 @@ const Header = () => {
 };
 
 export default Header;
+
+
+
+
