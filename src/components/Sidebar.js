@@ -29,10 +29,10 @@ export default function Sidebar() {
         <NavLink
           to="/Dashboard"
           className={({ isActive }) =>
-            isActive ? "bg-primary1 text-white" : ""
+            isActive ? "bg-primary1 text-white rounded-2xl" : ""
           }
         >
-          <ListItem className="hover:bg-primary1 focus:bg-transparent">
+          <ListItem className="hover:bg-primary1 rounded-2xl focus:bg-transparent">
             <ListItemPrefix>
               <PresentationChartBarIcon className="h-5 w-5" />
             </ListItemPrefix>
@@ -42,10 +42,10 @@ export default function Sidebar() {
         <NavLink
           to="/TambahUMKM"
           className={({ isActive }) =>
-            isActive ? "bg-primary1 text-white" : ""
+            isActive ? "bg-primary1 text-white rounded-2xl" : ""
           }
         >
-          <ListItem className="hover:bg-primary1 focus:bg-transparent">
+          <ListItem className="hover:bg-primary1 rounded-2xl focus:bg-transparent">
             <ListItemPrefix>
               <UserPlusIcon className="h-5 w-5" />
             </ListItemPrefix>
@@ -55,10 +55,10 @@ export default function Sidebar() {
         <NavLink
           to="/UMKM"
           className={({ isActive }) =>
-            isActive ? "bg-primary1 text-white" : ""
+            isActive ? "bg-primary1 text-white rounded-2xl" : ""
           }
         >
-          <ListItem className="hover:bg-primary1 focus:bg-transparent">
+          <ListItem className="hover:bg-primary1 rounded-2xl focus:bg-transparent">
             <ListItemPrefix>
               <UserGroupIcon className="h-5 w-5" />
             </ListItemPrefix>
@@ -68,10 +68,10 @@ export default function Sidebar() {
         <NavLink
           to="/DaftarProduk"
           className={({ isActive }) =>
-            isActive ? "bg-primary1 text-white" : ""
+            isActive ? "bg-primary1 text-white rounded-2xl" : ""
           }
         >
-          <ListItem className="hover:bg-primary1 focus:bg-transparent">
+          <ListItem className="hover:bg-primary1 rounded-2xl focus:bg-transparent">
             <ListItemPrefix>
               <ShoppingBagIcon className="h-5 w-5" />
             </ListItemPrefix>
@@ -81,10 +81,10 @@ export default function Sidebar() {
         <NavLink
           to="/KelolaBerita"
           className={({ isActive }) =>
-            isActive ? "bg-primary1 text-white" : ""
+            isActive ? "bg-primary1 text-white rounded-2xl" : ""
           }
         >
-          <ListItem className="hover:bg-primary1 focus:bg-transparent">
+          <ListItem className="hover:bg-primary1 rounded-2xl focus:bg-transparent">
             <ListItemPrefix>
               <GlobeAsiaAustraliaIcon className="h-5 w-5" />
             </ListItemPrefix>
@@ -94,10 +94,10 @@ export default function Sidebar() {
         <NavLink
           to="/PengaturanProfil"
           className={({ isActive }) =>
-            isActive ? "bg-primary1 text-white" : ""
+            isActive ? "bg-primary1 text-white rounded-2xl" : ""
           }
         >
-          <ListItem className="hover:bg-primary1 focus:bg-transparent">
+          <ListItem className="hover:bg-primary1 rounded-2xl focus:bg-transparent">
             <ListItemPrefix>
               <Cog6ToothIcon className="h-5 w-5" />
             </ListItemPrefix>
@@ -105,20 +105,20 @@ export default function Sidebar() {
           </ListItem>
         </NavLink>
         <div className="absolute inset-x-7 bottom-0">
-        <NavLink
-          to="/Notifikasi"
-          className={({ isActive }) =>
-            isActive ? "bg-primary1" : ""
-          }
-        >
-          <ListItem className="hover:bg-primary1 focus:bg-transparent">
-            <ListItemPrefix>
-              <BellIcon className="h-5 w-5" />
-            </ListItemPrefix>
-            Notifikasi
-          </ListItem>
-        </NavLink>
-          <ListItem className="hover:bg-primary1 focus:bg-transparent">
+          <NavLink
+            to="/Notifikasi"
+            className={({ isActive }) =>
+              isActive ? "bg-primary1 rounded-2xl" : ""
+            }
+          >
+            <ListItem className="hover:bg-primary1 rounded-2xl focus:bg-primary1">
+              <ListItemPrefix>
+                <BellIcon className="h-5 w-5" />
+              </ListItemPrefix>
+              Notifikasi
+            </ListItem>
+          </NavLink>
+          <ListItem className="hover:bg-primary1 rounded-2xl focus:bg-transparent">
             <ListItemPrefix>
               <ArrowLeftOnRectangleIcon className="h-5 w-5" />
             </ListItemPrefix>
