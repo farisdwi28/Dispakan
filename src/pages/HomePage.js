@@ -2,15 +2,179 @@ import React from "react";
 
 import MainLayout from "../components/MainLayout";
 import Carou from "../components/Carou";
+import ProductCard from "../components/ProductCard";
+import NewsCard from "../components/NewsCard";
 
 import images from "../constans/images";
 
+// dummy card diskon
+const DummyData1 = [
+  {
+    id: 1,
+    img: `${images.product1}`,
+    title: "Kue Kembang Jahe",
+    price: 23000,
+    owner: "Ainun Cake",
+    address: "Desa Sukapura",
+    like: 20,
+    value: 5
+  },
+  {
+    id: 2,
+    img: `${images.product2}`,
+    title: "Kue Kembang Buah",
+    price: 23000,
+    owner: "Makpingah",
+    address: "Desa Sukapura",
+    like: 20,
+    value: 5
+  },
+  {
+    id: 3,
+    img: `${images.product3}`,
+    title: "Boboko Snack",
+    price: 17500,
+    owner: "Boboko Sundase Snack",
+    address: "Desa Sukapura",
+    like: 20,
+    value: 2
+  },
+  {
+    id: 4,
+    img: `${images.product3}`,
+    title: "Boboko Snack",
+    price: 27500,
+    owner: "Boboko Sundase Snack",
+    address: "Desa Sukapura",
+    like: 20,
+    value: 5
+  },
+  {
+    id: 5,
+    img: `${images.product2}`,
+    title: "Boboko",
+    price: 27500,
+    owner: "Boboko Sundase Snack",
+    address: "Desa Sukapura",
+    like: 20,
+    value: 5
+  }
+];
+// datadummy card tidak diskon
+const DummyData2 = [
+  {
+    id: 1,
+    img: `${images.product1}`,
+    title: "Kue Kembang Jahe",
+    price: 23000,
+    owner: "Ainun Cake",
+    address: "Desa Sukapura",
+    like: 20,
+    value: 0
+  },
+  {
+    id: 2,
+    img: `${images.product2}`,
+    title: "Kue Kembang Buah",
+    price: 23000,
+    owner: "Makpingah",
+    address: "Desa Sukapura",
+    like: 20,
+    value: 0
+  },
+  {
+    id: 3,
+    img: `${images.product3}`,
+    title: "Boboko Snack",
+    price: 17500,
+    owner: "Boboko Sundase Snack",
+    address: "Desa Sukapura",
+    like: 20,
+    value: 0
+  },
+  {
+    id: 4,
+    img: `${images.product3}`,
+    title: "Boboko Snack",
+    price: 27500,
+    owner: "Boboko Sundase Snack",
+    address: "Desa Sukapura",
+    like: 20,
+    value: 0
+  },
+  {
+    id: 5,
+    img: `${images.product2}`,
+    title: "Boboko",
+    price: 27500,
+    owner: "Boboko Sundase Snack",
+    address: "Desa Sukapura",
+    like: 20,
+    value: 0
+  }
+];
+//datadummy card UMKM All
+const DummyData3 = [
+  {
+    id: 1,
+    img: `${images.product1}`,
+    title: "Kue Kembang Jahe",
+    price: 23000,
+    owner: "Ainun Cake",
+    address: "Desa Sukapura",
+    like: 20,
+    value: 5
+  },
+  {
+    id: 2,
+    img: `${images.product2}`,
+    title: "Kue Kembang Buah",
+    price: 23000,
+    owner: "Makpingah",
+    address: "Desa Sukapura",
+    like: 20,
+    value: 0
+  },
+  {
+    id: 3,
+    img: `${images.product3}`,
+    title: "Boboko Snack",
+    price: 17500,
+    owner: "Boboko Sundase Snack",
+    address: "Desa Sukapura",
+    like: 20,
+    value: 2
+  },
+  {
+    id: 4,
+    img: `${images.product3}`,
+    title: "Boboko Snack",
+    price: 27500,
+    owner: "Boboko Sundase Snack",
+    address: "Desa Sukapura",
+    like: 20,
+    value: 0
+  },
+  {
+    id: 5,
+    img: `${images.product2}`,
+    title: "Boboko",
+    price: 27500,
+    owner: "Boboko Sundase Snack",
+    address: "Desa Sukapura",
+    like: 20,
+    value: 10
+  }
+];
 
 const HomePage = () => {
+  const limitedData = DummyData1.slice(0, 4);
+  const limitedData1 = DummyData2.slice(0, 4);
+  const limitedData2 = DummyData3.slice(0, 4);
   return (
     <MainLayout>
       <section>
-      <div class="container mx-auto mb-8">
+        <div class="container mx-auto mb-8">
           <Carou />
           <div class="mt-6 container mx-auto grid grid-cols-1 md:grid-cols-3 gap-5">
             <div class="relative bg-primary1 p-5 rounded-3xl flex justify-between">
@@ -73,7 +237,7 @@ const HomePage = () => {
               </div>
             </div>
           </div>
-
+          {/* Diskon */}
           <div class="flex justify-between pt-8">
             <div class="w-1/2">
               <h1 class="text-3xl font-bold dark:text-white py-4">
@@ -86,161 +250,14 @@ const HomePage = () => {
               </p>
             </div>
           </div>
-
-        <div className="flex items-center space-x-20 md:w-xl">
-          <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <a href="#">
-              <img
-                class="p-8 rounded-t-lg"
-                src={images.product1}
-                alt="product image"
-              />
-            </a>
-            <div class="px-5 pb-5">
-              <a href="#">
-                <h5 class="text-xl tracking-tight text-gray-900 dark:text-white">
-                  Kue Kembang Jahe
-                </h5>
-                <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
-                  Rp 23.000
-                </h5>
-              </a>
-              <div class="flex items-center mt-2.5 mb-1">
-                <p className="text-slate-400/25">Ainun Cake</p>
-                <span class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">
-                  5.0
-                </span>
-              </div>
-              <div class="flex items-center mt-2.5 mb-1">
-                <p className="text-slate-400/25">Desa Sukapura</p>
-                <span class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">
-                  5.0
-                </span>
-              </div>
-              <div class="flex items-center mt-2.5 mb-1">
-                <p className="text-slate-400/25">65 Suka</p>
-                <span class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">
-                  5.0
-                </span>
-              </div>
-            </div>
+          {/* Promo Semetara */}
+          <div className="flex gap-3">
+            {limitedData.map(data => (
+              <ProductCard key={data.id} {...data} />
+            ))}
           </div>
-          
-          <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <a href="#">
-              <img
-                class="p-8 rounded-t-lg"
-                src={images.product1}
-                alt="product image"
-              />
-            </a>
-            <div class="px-5 pb-5">
-              <a href="#">
-                <h5 class="text-xl tracking-tight text-gray-900 dark:text-white">
-                  Kue Kembang Jahe
-                </h5>
-                <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
-                  Rp 23.000
-                </h5>
-              </a>
-              <div class="flex items-center mt-2.5 mb-1">
-                <p className="text-slate-400/25">Ainun Cake</p>
-                <span class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">
-                  5.0
-                </span>
-              </div>
-              <div class="flex items-center mt-2.5 mb-1">
-                <p className="text-slate-400/25">Desa Sukapura</p>
-                <span class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">
-                  5.0
-                </span>
-              </div>
-              <div class="flex items-center mt-2.5 mb-1">
-                <p className="text-slate-400/25">65 Suka</p>
-                <span class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">
-                  5.0
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <a href="#">
-              <img
-                class="p-8 rounded-t-lg"
-                src={images.product1}
-                alt="product image"
-              />
-            </a>
-            <div class="px-5 pb-5">
-              <a href="#">
-                <h5 class="text-xl tracking-tight text-gray-900 dark:text-white">
-                  Kue Kembang Jahe
-                </h5>
-                <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
-                  Rp 23.000
-                </h5>
-              </a>
-              <div class="flex items-center mt-2.5 mb-1">
-                <p className="text-slate-400/25">Ainun Cake</p>
-                <span class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">
-                  5.0
-                </span>
-              </div>
-              <div class="flex items-center mt-2.5 mb-1">
-                <p className="text-slate-400/25">Desa Sukapura</p>
-                <span class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">
-                  5.0
-                </span>
-              </div>
-              <div class="flex items-center mt-2.5 mb-1">
-                <p className="text-slate-400/25">65 Suka</p>
-                <span class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">
-                  5.0
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <a href="#">
-              <img
-                class="p-8 rounded-t-lg"
-                src={images.product1}
-                alt="product image"
-              />
-            </a>
-            <div class="px-5 pb-5">
-              <a href="#">
-                <h5 class="text-xl tracking-tight text-gray-900 dark:text-white">
-                  Kue Kembang Jahe
-                </h5>
-                <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
-                  Rp 23.000
-                </h5>
-              </a>
-              <div class="flex items-center mt-2.5 mb-1">
-                <p className="text-slate-400/25">Ainun Cake</p>
-                <span class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">
-                  5.0
-                </span>
-              </div>
-              <div class="flex items-center mt-2.5 mb-1">
-                <p className="text-slate-400/25">Desa Sukapura</p>
-                <span class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">
-                  5.0
-                </span>
-              </div>
-              <div class="flex items-center mt-2.5 mb-1">
-                <p className="text-slate-400/25">65 Suka</p>
-                <span class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">
-                  5.0
-                </span>
-              </div>
-            </div>
-          </div>
-          </div>
-
+          {/* Akhir Promo */}
+          {/* Terlaris */}
           <div class="flex justify-between pt-8">
             <div class="w-1/2">
               <h1 class="text-3xl font-bold dark:text-white py-4">
@@ -253,90 +270,14 @@ const HomePage = () => {
               </p>
             </div>
           </div>
-
-          <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <a href="#">
-              <img
-                class="p-8 rounded-t-lg"
-                src={images.product2}
-                alt="product image"
-              />
-            </a>
-            <div class="px-5 pb-5">
-              <a href="#">
-                <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
-                  Apple Watch Series 7 GPS, Aluminium Case, Starlight Sport
-                </h5>
-              </a>
-              <div class="flex items-center mt-2.5 mb-5">
-                <svg
-                  aria-hidden="true"
-                  class="w-5 h-5 text-yellow-300"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <title>First star</title>
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                </svg>
-                <svg
-                  aria-hidden="true"
-                  class="w-5 h-5 text-yellow-300"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <title>Second star</title>
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                </svg>
-                <svg
-                  aria-hidden="true"
-                  class="w-5 h-5 text-yellow-300"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <title>Third star</title>
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                </svg>
-                <svg
-                  aria-hidden="true"
-                  class="w-5 h-5 text-yellow-300"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <title>Fourth star</title>
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                </svg>
-                <svg
-                  aria-hidden="true"
-                  class="w-5 h-5 text-yellow-300"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <title>Fifth star</title>
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                </svg>
-                <span class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">
-                  5.0
-                </span>
-              </div>
-              <div class="flex items-center justify-between">
-                <span class="text-3xl font-bold text-gray-900 dark:text-white">
-                  $599
-                </span>
-                <a
-                  href="#"
-                  class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                >
-                  Add to cart
-                </a>
-              </div>
-            </div>
+          {/* Produk terlaris sementara */}
+          <div className="flex gap-3">
+            {limitedData1.map(data => (
+              <ProductCard key={data.id} {...data} />
+            ))}
           </div>
-
+          {/* Akhir Produk Terlaris */}
+          {/* UMKM */}
           <div class="flex justify-between pt-8">
             <div class="w-1/2">
               <h1 class="text-3xl font-bold dark:text-white py-4">
@@ -349,90 +290,14 @@ const HomePage = () => {
               </p>
             </div>
           </div>
-
-          <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <a href="#">
-              <img
-                class="p-8 rounded-t-lg"
-                src={images.product3}
-                alt="product image"
-              />
-            </a>
-            <div class="px-5 pb-5">
-              <a href="#">
-                <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
-                  Apple Watch Series 7 GPS, Aluminium Case, Starlight Sport
-                </h5>
-              </a>
-              <div class="flex items-center mt-2.5 mb-5">
-                <svg
-                  aria-hidden="true"
-                  class="w-5 h-5 text-yellow-300"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <title>First star</title>
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                </svg>
-                <svg
-                  aria-hidden="true"
-                  class="w-5 h-5 text-yellow-300"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <title>Second star</title>
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                </svg>
-                <svg
-                  aria-hidden="true"
-                  class="w-5 h-5 text-yellow-300"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <title>Third star</title>
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                </svg>
-                <svg
-                  aria-hidden="true"
-                  class="w-5 h-5 text-yellow-300"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <title>Fourth star</title>
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                </svg>
-                <svg
-                  aria-hidden="true"
-                  class="w-5 h-5 text-yellow-300"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <title>Fifth star</title>
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                </svg>
-                <span class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">
-                  5.0
-                </span>
-              </div>
-              <div class="flex items-center justify-between">
-                <span class="text-3xl font-bold text-gray-900 dark:text-white">
-                  $599
-                </span>
-                <a
-                  href="#"
-                  class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                >
-                  Add to cart
-                </a>
-              </div>
-            </div>
+          {/* Produk UMKM Sementara */}
+          <div className="flex gap-3">
+            {limitedData2.map(data => (
+              <ProductCard key={data.id} {...data} />
+            ))}
           </div>
-
+          {/* Akhir Produk UMKM */}
+          {/* Berita Desa */}
           <div class="flex justify-between pt-8">
             <div class="w-1/2">
               <h1 class="text-3xl font-bold dark:text-white py-4">
@@ -445,6 +310,21 @@ const HomePage = () => {
               </p>
             </div>
           </div>
+          {/* Berita Desa Sementara */}
+          <div className="flex gap-3">
+            <NewsCard
+              img={images.news1}
+              title="Penilaian Evaluasi Perkemangan Desa/Lomba Desa Tingkat Kabupaten Bandung T.A 2022"
+              description="Desa Sekarpura"
+            />
+
+            <NewsCard
+              img={images.news2}
+              title="Penilaian Evaluasi Perkemangan Desa/Lomba Desa Tingkat Kabupaten Bandung T.A 2022"
+              description="Desa Sekarpura"
+            />
+          </div>
+          {/* Berita Desa End */}
         </div>
       </section>
     </MainLayout>

@@ -16,6 +16,10 @@ import category1 from "../assets/images/kategori-produk-1.png";
 import category2 from "../assets/images/kategori-produk-2.png";
 import category3 from "../assets/images/kategori-produk-3.png";
 
+//import news image
+import news1 from "../assets/images/Berita1.jpg";
+import news2 from "../assets/images/Berita2.jpg";
+
 const images = {
   search,
   google,
@@ -30,7 +34,10 @@ const images = {
   // images for category
   category1,
   category2,
-  category3
+  category3,
+  // images for News
+  news1,
+  news2
 };
 
 export default images;
