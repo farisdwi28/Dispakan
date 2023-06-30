@@ -14,20 +14,20 @@ const Header = () => {
           </Link>
           <div class="relative md:order-3 item-center">
             <Link to="/Login">
-            <button
-              type="button"
-              class="text-white bg-[#D36B16] hover:bg-[#D36B16] focus:outline-none focus:ring-4 focus:ring-[#D36B16] font-medium rounded-full text-sm px-10 py-2.5 text-center ml-10 mr-5 mb-2 dark:bg-[#D36B16] dark:hover:bg-[#D36B16] dark:focus:ring-[#D36B16]"
-            >
-              Masuk
-            </button>
+              <button
+                type="button"
+                class="text-white bg-[#D36B16] hover:bg-[#D36B16] focus:outline-none focus:ring-4 focus:ring-[#D36B16] font-medium rounded-full text-sm px-10 py-2.5 text-center ml-10 mr-5 mb-2 dark:bg-[#D36B16] dark:hover:bg-[#D36B16] dark:focus:ring-[#D36B16]"
+              >
+                Masuk
+              </button>
             </Link>
             <Link to="/Register">
-            <button
-              type="button"
-              class="text-[#D36B16] border border-[#D36B16]  font-medium rounded-full text-sm px-10 py-2.5 text-center mr-5 mb-2"
-            >
-              Daftar
-            </button>
+              <button
+                type="button"
+                class="text-[#D36B16] border border-[#D36B16]  font-medium rounded-full text-sm px-10 py-2.5 text-center mr-5 mb-2"
+              >
+                Daftar
+              </button>
             </Link>
           </div>
           <div class="flex md:order-2">
@@ -131,7 +131,3 @@ const Header = () => {
 };
 
 export default Header;
-
-
-
-
