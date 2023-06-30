@@ -1,5 +1,5 @@
-import React from 'react'
-import Sidebar from '../../../components/Sidebar'
+import React from "react";
+import Sidebar from "../../../components/Sidebar";
 
 const Produk = () => {
   return (
@@ -11,7 +11,7 @@ const Produk = () => {
         </div>
       </main>
     </div>
-  )
-}
+  );
+};
 
-export default Produk
+export default Produk;

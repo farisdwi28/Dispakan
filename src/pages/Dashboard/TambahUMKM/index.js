@@ -1,5 +1,6 @@
-import React from 'react'
-import Sidebar from '../../../components/Sidebar'
+import React from "react";
+import Sidebar from "../../../components/Sidebar";
+import FormAddMitra from "../../../components/Mitra/FormAddMitra";
 
 const AddUMKM = () => {
   return (
@@ -7,11 +8,11 @@ const AddUMKM = () => {
       <Sidebar />
       <main className="flex-grow">
         <div className="flex justify">
-          <p>Tambah UMKM</p>
+          <FormAddMitra />
         </div>
       </main>
     </div>
-  )
-}
+  );
+};
 
-export default AddUMKM
+export default AddUMKM;
