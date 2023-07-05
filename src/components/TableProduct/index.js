@@ -7,58 +7,63 @@ import {
   IconButton,
   Tooltip
 } from "@material-tailwind/react";
+import { images } from "../../constans";
 
 const TABLE_HEAD = [
-  "ID UMKM",
-  "Nama",
-  "Alamat",
-  "No Telp",
-  "Email",
+  "ID Produk",
+  "Gambar Produk",
+  "Nama Produk",
+  "Harga",
+  "Deskripsi",
   "Kategori",
-  "Status",
+  "Sales",
+  "Link",
+  "ID Store",
+  "Values",
   "Action"
 ];
 
+//data dummy
 const TABLE_ROWS = [
   {
-    ID: 123123,
-    Name: "Firstki Aditya",
-    Address: "Nganjuk",
-    Telp: "08123123123",
-    Email: "adit@gmail.com",
-    Catagory: "Kuliner",
-    status: 1
+    Id_Product: 1,
+    Image: images.product1,
+    Name_product: "Kue Kembang Jahe",
+    Price: 15000,
+    Description: "Produk Kue Olehan Lokal dengan bahan dasar Jahe",
+    Category: "Makanan Instant",
+    Sales: 12,
+    Link: "https://yanto.group.com",
+    Values: 0,
+    Id_Store: 1
   },
   {
-    ID: 123321,
-    Name: "Faris Dwi Ramadhan",
-    Address: "Malang",
-    Telp: "081231312312",
-    Email: "Faris@gmail.com",
-    Catagory: "Desert",
-    status: 0
+    Id_Product: 2,
+    Image: images.product2,
+    Name_product: "Kue Kembang Buah",
+    Price: 15000,
+    Description: "Produk Kue Olahan Lokal dengan kembang buah",
+    Category: "Makanan Instant",
+    Sales: 12,
+    Link: "https://yanto.group.com",
+    Values: 1,
+    Id_Store: 1
   },
   {
-    ID: 321123,
-    Name: "Saputra Ari Wijaya",
-    Address: "Bali",
-    Telp: "081231123",
-    Email: "ari@gmail.com",
-    Catagory: "Kuliner",
-    status: 1
-  },
-  {
-    ID: 231132,
-    Name: "Naura Yasmin",
-    Address: "Tulungagung",
-    Telp: "08123112332",
-    Email: "naura@gmail.com",
-    Catagory: "Kuliner",
-    status: 0
+    Id_Product: 3,
+    Image: images.product3,
+    Name_product: "Boboko Snack",
+    Price: 15000,
+    Description: "Bakso Aci Tulang Rangu",
+    Category: "Makanan Instant",
+    Sales: 12,
+    Link: "https://yanto.group.com",
+    Values: 1,
+    Id_Store: 1
   }
 ];
 
-export default function TableUMKM() {
+export default function TableProdct() {
   return (
     <Card className="h-full w-full">
       <CardBody className="overflow-scroll">
@@ -83,21 +88,47 @@ export default function TableUMKM() {
           </thead>
           <tbody>
             {TABLE_ROWS.map(
-              ({ ID, Name, Address, Telp, Email, Catagory, status }, index) => {
+              (
+                {
+                  Id_Product,
+                  Image,
+                  Name_product,
+                  Price,
+                  Description,
+                  Category,
+                  Sales,
+                  Link,
+                  Values,
+                  Id_Store
+                },
+                index
+              ) => {
                 const isLast = index === TABLE_ROWS.length - 1;
                 const classes = isLast
                   ? "p-4"
                   : "p-4 border-b border-blue-gray-50";
 
                 return (
-                  <tr key={ID}>
+                  <tr key={Id_Product}>
                     <td className={classes}>
                       <Typography
                         variant="small"
                         color="blue-gray"
                         className="font-bold"
                       >
-                        {ID}
+                        {Id_Product}
+                      </Typography>
+                    </td>
+                    <td className={classes}>
+                      <img src={Image} className="w-25 h-25 rounded-xl" />
+                    </td>
+                    <td className={classes}>
+                      <Typography
+                        variant="small"
+                        color="blue-gray"
+                        className="font-normal"
+                      >
+                        {Name_product}
                       </Typography>
                     </td>
                     <td className={classes}>
@@ -106,7 +137,7 @@ export default function TableUMKM() {
                         color="blue-gray"
                         className="font-normal"
                       >
-                        {Name}
+                        {Price}
                       </Typography>
                     </td>
                     <td className={classes}>
@@ -115,7 +146,7 @@ export default function TableUMKM() {
                         color="blue-gray"
                         className="font-normal"
                       >
-                        {Address}
+                        {Description}
                       </Typography>
                     </td>
                     <td className={classes}>
@@ -124,7 +155,7 @@ export default function TableUMKM() {
                         color="blue-gray"
                         className="font-normal"
                       >
-                        {Telp}
+                        {Category}
                       </Typography>
                     </td>
                     <td className={classes}>
@@ -133,7 +164,7 @@ export default function TableUMKM() {
                         color="blue-gray"
                         className="font-normal"
                       >
-                        {Email}
+                        {Sales}
                       </Typography>
                     </td>
                     <td className={classes}>
@@ -142,7 +173,16 @@ export default function TableUMKM() {
                         color="blue-gray"
                         className="font-normal"
                       >
-                        {Catagory}
+                        {Link}
+                      </Typography>
+                    </td>
+                    <td className={classes}>
+                      <Typography
+                        variant="small"
+                        color="blue-gray"
+                        className="font-normal"
+                      >
+                        {Id_Store}
                       </Typography>
                     </td>
                     <td className={classes}>
@@ -151,16 +191,16 @@ export default function TableUMKM() {
                           size="sm"
                           variant="ghost"
                           value={
-                            status === 1
+                            Values === 1
                               ? "Active"
-                              : status === 0
+                              : Values === 0
                               ? "Inactive"
                               : "Inactive"
                           }
                           color={
-                            status === 1
+                            Values === 1
                               ? "green"
-                              : status === 0
+                              : Values === 0
                               ? "amber"
                               : "red"
                           }
