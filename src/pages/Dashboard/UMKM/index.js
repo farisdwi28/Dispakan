@@ -4,6 +4,7 @@ import { images } from "../../../constans";
 import InputSearch from "../../../components/InputSearch";
 import ButtonExcel from "../../../components/ButtonExel";
 import ButtonInput from "../../../components/ButtonInput";
+import TableUMKM from "../../../components/TableUMKM";
 
 
 
@@ -66,8 +67,11 @@ const UMKM = () => {
             <ButtonInput 
             text = "Tambah UMKM"/>
             <div className="">
-              
+              {/* Show Entries */}
             </div>
+          </div>
+          <div className="absolute py-20 w-[80rem]">
+            <TableUMKM/>
           </div>
       </main>
     </div>
