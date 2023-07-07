@@ -13,7 +13,7 @@ import { HeartIcon, MapPinIcon } from "@heroicons/react/24/solid";
 const ProductCard = props => {
   const { img, title, price, owner, address, like, value } = props;
   return (
-    <Card className="w-96">
+    <Card className="w-96 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-500">
       <CardHeader shadow={false} floated={false} className="relative h-96">
         {value !== 0 && (
           <Chip

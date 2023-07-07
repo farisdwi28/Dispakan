@@ -12,6 +12,7 @@ import Produk from "./pages/Dashboard/DaftarProduk";
 import Berita from "./pages/Dashboard/KelolaBerita";
 import Profil from "./pages/Dashboard/PengaturanProfil";
 import Notifikasi from "./pages/Dashboard/Notifikasi";
+import DetailProduct from "./pages/DetailProduct";
 
 
 export default function App() {
@@ -28,6 +29,7 @@ export default function App() {
         <Route path="/KelolaBerita" element={<Berita />} />
         <Route path="/PengaturanProfil" element={<Profil />} />
         <Route path="/Notifikasi" element={<Notifikasi />} />
+        <Route path="/DetailProduct" element={<DetailProduct />} />
       </Routes>
     </div>
   );
