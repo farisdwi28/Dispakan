@@ -6,6 +6,7 @@ import ProductCard from "../components/ProductCard";
 import NewsCard from "../components/NewsCard";
 
 import images from "../constans/images";
+import { Link } from "react-router-dom";
 
 // dummy card diskon
 const DummyData1 = [
@@ -251,11 +252,13 @@ const HomePage = () => {
             </div>
           </div>
           {/* Promo Semetara */}
-          <div className="flex gap-3">
+          <Link to="/DetailProduct">
+          <div className="flex gap-3 ">
             {limitedData.map(data => (
-              <ProductCard key={data.id} {...data} />
+              <ProductCard key={data.id} {...data}/>
             ))}
           </div>
+          </Link>
           {/* Akhir Promo */}
           {/* Terlaris */}
           <div class="flex justify-between pt-8">
@@ -271,11 +274,13 @@ const HomePage = () => {
             </div>
           </div>
           {/* Produk terlaris sementara */}
+          <Link to="/DetailProduct">
           <div className="flex gap-3">
             {limitedData1.map(data => (
               <ProductCard key={data.id} {...data} />
             ))}
           </div>
+          </Link>
           {/* Akhir Produk Terlaris */}
           {/* UMKM */}
           <div class="flex justify-between pt-8">
@@ -291,11 +296,13 @@ const HomePage = () => {
             </div>
           </div>
           {/* Produk UMKM Sementara */}
+          <Link to="/DetailProduct">
           <div className="flex gap-3">
             {limitedData2.map(data => (
               <ProductCard key={data.id} {...data} />
             ))}
           </div>
+          </Link>
           {/* Akhir Produk UMKM */}
           {/* Berita Desa */}
           <div class="flex justify-between pt-8">
