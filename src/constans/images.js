@@ -1,5 +1,12 @@
 import search from "../assets/search.svg";
 import google from "../assets/google.svg";
+import fb from "../assets/facebook.svg";
+import ig from "../assets/IG.svg";
+import line from "../assets/Line.svg";
+import wa from "../assets/WA.svg";
+import tt from "../assets/tiktok.svg";
+import tokped from "../assets/Tokped.svg";
+import shopee from "../assets/shopee.svg";
 
 // import  images banner
 import banner1 from "../assets/images/banner-1.jpg";
@@ -26,6 +33,13 @@ import profil1 from "../assets/images/Profil.jpg";
 const images = {
   search,
   google,
+  shopee,
+  tokped,
+  tt,
+  wa,
+  line,
+  ig,
+  fb,
   // images for carousel banner
   banner1,
   banner2,
