@@ -3,7 +3,7 @@ import SearchInput from "../../components/Search";
 import BreadcrumbsComponent from "../../components/Breadcumbs";
 import ImageComponent from "../../components/ImageComponent";
 import { images } from "../../constans";
-import { Checkbox, Typography, IconButton } from "@material-tailwind/react";
+import { Checkbox, Typography } from "@material-tailwind/react";
 import { MapPinIcon } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
 import Footer from "../../components/Footer";
@@ -32,7 +32,7 @@ const DummyData3 = [
     owner: "Ainun Cake",
     address: "Desa Sukapura",
     like: 20,
-    value: 5
+    value: 5,
   },
   {
     id: 2,
@@ -42,7 +42,7 @@ const DummyData3 = [
     owner: "Makpingah",
     address: "Desa Sukapura",
     like: 20,
-    value: 0
+    value: 0,
   },
   {
     id: 3,
@@ -52,7 +52,7 @@ const DummyData3 = [
     owner: "Boboko Sundase Snack",
     address: "Desa Sukapura",
     like: 20,
-    value: 2
+    value: 2,
   },
   {
     id: 4,
@@ -62,7 +62,7 @@ const DummyData3 = [
     owner: "Boboko Sundase Snack",
     address: "Desa Sukapura",
     like: 20,
-    value: 0
+    value: 0,
   },
   {
     id: 5,
@@ -72,8 +72,8 @@ const DummyData3 = [
     owner: "Boboko Sundase Snack",
     address: "Desa Sukapura",
     like: 20,
-    value: 10
-  }
+    value: 10,
+  },
 ];
 
 const DetailProduct = () => {
@@ -98,8 +98,9 @@ const DetailProduct = () => {
         </div>
         {/* Body */}
         <div className="py-5">
-          <div className="flex gap-20">
-            <div className="w-[500px] h-[500px] py-[59px] bg-white rounded-2xl border border-stone-300 justify-center items-center gap-[53px] inline-flex">
+          <div className="flex flex-col lg:flex-row gap-10">
+            <div className="flex-col">
+            <div className="w-full lg:w-[500px] h-[500px] py-[59px] bg-white rounded-2xl border border-stone-300 justify-center items-center gap-[53px] inline-flex">
               <ImageComponent
                 src={images.product1}
                 className="w-[415px] h-[382px]"
@@ -107,139 +108,141 @@ const DetailProduct = () => {
                 onClick={() => handleImageClick(images.product1)}
               />
             </div>
-            <div className="flex flex-col">
-              <div className="flex text-black text-[24px] font-semibold leading-normal tracking-wider">
-                <h1>Kue Kembang Jahe</h1>
-                <div className="ml-20">
-                  <Checkbox
-                    icon={
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-3 w-3"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    }
-                    defaultChecked
+            <div className="grid grid-cols-4 md:grid-cols-4 gap-2 w-[500px]">
+                {dummyImages.map((image, index) => (
+                  <ImageComponent
+                    key={index}
+                    src={image.src}
+                    alt={image.alt}
+                    onClick={() => handleImageClick(image.src)}
+                    className="w-full h-full"
                   />
-                </div>
-              </div>
+                ))}
+            </div>
+            </div>
+            <div className="flex flex-col w-full max-w-[400px] ml-14">
               <div className="flex flex-col">
-                <div className="w-[228px] h-[29px] text-[16px] ">
-                  <p className="py-2 opacity-75">Kue Kembang Jahe</p>
+                <div className="flex text-black text-[24px] font-semibold leading-normal tracking-wider">
+                  <h1>Kue Kembang Jahe</h1>
+                  <div className="ml-20">
+                    <Checkbox
+                      icon={
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-3 w-3"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                      }
+                      defaultChecked
+                    />
+                  </div>
                 </div>
-                <div className="pt-1">
-                  <Typography
-                    variant="small"
-                    color="gray"
-                    className="flex items-center gap-1.5 font-normal opacity-75"
-                  >
-                    <MapPinIcon className="-mt-0.5 h-5 w-5 text-red-700" />
-                    Desa Sukapura
-                  </Typography>
-                </div>
-                <div className="flex pt-1">
-                  <div className="flex gap-2">
-                    <div className="text-black text-[14px] font-normal opacity-50">
-                      64 Disukai
+                <div className="flex flex-col">
+                  <div className="w-[228px] h-[29px] text-[16px] ">
+                    <p className="py-2 opacity-75">Kue Kembang Jahe</p>
+                  </div>
+                  <div className="pt-1">
+                    <Typography
+                      variant="small"
+                      color="gray"
+                      className="flex items-center gap-1.5 font-normal opacity-75"
+                    >
+                      <MapPinIcon className="-mt-0.5 h-5 w-5 text-red-700" />
+                      Desa Sukapura
+                    </Typography>
+                  </div>
+                  <div className="flex pt-1">
+                    <div className="flex gap-2">
+                      <div className="text-black text-[14px] font-normal opacity-50">
+                        64 Disukai
+                      </div>
+                      <div className="w-4 h-[0px] mt-2 rotate-90 opacity-50 border border-black"></div>
+                      <div className="text-black text-[14px] font-normal opacity-50">
+                        15 Komentar
+                      </div>
+                      <div className="w-4 h-[0px] mt-2 rotate-90 opacity-50 border border-black"></div>
+                      <div className="text-lime-600 text-[14px] font-normal opacity-60">
+                        Tersedia
+                      </div>
                     </div>
-                    <div className="w-4 h-[0px] mt-2 rotate-90 opacity-50 border border-black"></div>
-                    <div className="text-black text-[14px] font-normal opacity-50">
-                      15 Komentar
-                    </div>
-                    <div className="w-4 h-[0px] mt-2 rotate-90 opacity-50 border border-black"></div>
-                    <div className="text-lime-600 text-[14px] font-normal opacity-60">
-                      Tersedia
+                  </div>
+                  <div className="pt-1">
+                    <div className="text-black text-[24px] font-normal leading-normal tracking-wider">
+                      Rp 17.500
                     </div>
                   </div>
-                </div>
-                <div className="pt-1">
-                  <div className="text-black text-[24px] font-normal leading-normal tracking-wider">
-                    Rp 17.500
+                  <div className="pt-1">
+                    <div className="w-[373px] text-black text-[14px] font-normal leading-tight">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua.
+                    </div>
                   </div>
-                </div>
-                <div className="pt-1">
-                  <div className="w-[373px] text-black text-[14px] font-normal leading-tight">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua.{" "}
+                  <div className="py-5">
+                    <div className="w-[400px] h-[0px] border border-black"></div>
                   </div>
-                </div>
-                <div className="py-5">
-                  <div className="w-[400px] h-[0px] border border-black"></div>
-                </div>
-                <div className="flex flex-row gap-4">
-                  <div className="text-black text-[18px]">
-                    <p>Varian</p>
+                  <div className="flex flex-row gap-4">
+                    <div className="text-black text-[18px]">
+                      <p>Varian</p>
+                    </div>
+                    <div className="grid gap-4 grid-cols-2 grid-rows-2">
+                      {flavors.map((flavor) => (
+                        <span
+                          key={flavor}
+                          className="px-4 py-2 border-2 rounded-lg bg-white text-black text-center font-semibold"
+                        >
+                          {flavor}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                  <div className="grid gap-4 grid-cols-2 grid-rows-2">
-                    {flavors.map((flavor) => (
-                      <span
-                        key={flavor}
-                        className="px-4 py-2 border-2 rounded-lg bg-white text-black text-center font-semibold"
-                      >
-                        {flavor}
-                      </span>
-                    ))}
+                  <div className="flex flex-row gap-4 py-2">
+                    <div className="text-black text-[18px]">
+                      <p>Lakukan Pemesanan</p>
+                    </div>
+                    <div className="flex gap-4">
+                      <Link to="#">
+                        <img src={images.shopee} alt="Shopee" />
+                      </Link>
+                      <Link to="#">
+                        <img src={images.tokped} alt="Tokopedia" />
+                      </Link>
+                      <Link to="#">
+                        <img src={images.tt} alt="Toko Tani" />
+                      </Link>
+                    </div>
                   </div>
-                </div>
-                <div className="flex flex-row gap-4 py-2">
-                  <div className="text-black text-[18px]">
-                    <p>Lakukan Pemesanan</p>
-                  </div>
-                  <div className="flex gap-4">
-                    <Link to="#">
-                      <img src={images.shopee} />
-                    </Link>
-                    <Link to="#">
-                      <img src={images.tokped} />
-                    </Link>
-                    <Link to="#">
-                      <img src={images.tt} />
-                    </Link>
-                  </div>
-                </div>
-                <div className="flex flex-row gap-4 pt-2">
-                  <div className="text-black text-[18px]">
-                    <p>Hubungi Kami</p>
-                  </div>
-                  <div className="flex gap-4">
-                    <Link to="#">
-                      <img src={images.wa} />
-                    </Link>
-                    <Link to="#">
-                      <img src={images.line} />
-                    </Link>
-                    <Link to="#">
-                      <img src={images.ig} />
-                    </Link>
-                    <Link to="#">
-                      <img src={images.fb} />
-                    </Link>
+                  <div className="flex flex-row gap-4 pt-2">
+                    <div className="text-black text-[18px]">
+                      <p>Hubungi Kami</p>
+                    </div>
+                    <div className="flex gap-4">
+                      <Link to="#">
+                        <img src={images.wa} alt="WhatsApp" />
+                      </Link>
+                      <Link to="#">
+                        <img src={images.line} alt="Line" />
+                      </Link>
+                      <Link to="#">
+                        <img src={images.ig} alt="Instagram" />
+                      </Link>
+                      <Link to="#">
+                        <img src={images.fb} alt="Facebook" />
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div className="flex flex-row gap-2 w-full max-w-[400px] ml-12 ">
-            <div className="grid grid-cols-4 gap-2">
-              {dummyImages.map((image, index) => (
-                <ImageComponent
-                  key={index}
-                  src={image.src}
-                  alt={image.alt}
-                  onClick={() => handleImageClick(image.src)}
-                  className="w-full h-full"
-                />
-              ))}
-            </div>
-          </div>
+
           {previewImage && (
             <div
               className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center"
@@ -265,11 +268,11 @@ const DetailProduct = () => {
             </p>
           </div>
         </div>
-        <div className="flex gap-3 py-10">
-            {limitedData2.map(data => (
-              <ProductCard key={data.id} {...data} />
-            ))}
-          </div>
+        <div className="flex gap-3 py-10 overflow-x-auto">
+          {limitedData2.map((data) => (
+            <ProductCard key={data.id} {...data} />
+          ))}
+        </div>
       </div>
       <Footer />
     </div>

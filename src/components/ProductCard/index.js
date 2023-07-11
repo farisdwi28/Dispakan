@@ -1,20 +1,23 @@
 import React from "react";
-
 import {
   Card,
   CardHeader,
   CardBody,
   Typography,
-  Chip
+  Chip,
 } from "@material-tailwind/react";
-
 import { HeartIcon, MapPinIcon } from "@heroicons/react/24/solid";
 
-const ProductCard = props => {
+const ProductCard = (props) => {
   const { img, title, price, owner, address, like, value } = props;
+
   return (
-    <Card className="w-96 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-500">
-      <CardHeader shadow={false} floated={false} className="relative h-96">
+    <Card className="w-full md:w-96 lg:w-[calc(25%-1rem)] transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-500">
+      <CardHeader
+        shadow={false}
+        floated={false}
+        className="relative h-[24rem] md:h-96"
+      >
         {value !== 0 && (
           <Chip
             color="red"
@@ -22,7 +25,7 @@ const ProductCard = props => {
             className="text-base absolute w-17 rounded-full mt-3 ml-3"
           />
         )}
-        <img src={img} className="w-full h-full object-cover" />
+        <img src={img} className="w-full h-full object-cover" alt="Product" />
       </CardHeader>
       <CardBody>
         <div className="flex items-center justify-between mb-2">
