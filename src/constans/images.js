@@ -30,6 +30,14 @@ import news2 from "../assets/images/Berita2.jpg";
 //import profil
 import profil1 from "../assets/images/Profil.jpg";
 
+// import icon
+import boxIcon from "../assets/boxIcon.png";
+import groupIcon from "../assets/groupIcon.png";
+import viewsIcon from "../assets/viewsIcon.png";
+import pinkline from "../assets/pinkline.svg";
+import blueline from "../assets/blueline.svg";
+import orangeline from "../assets/orangeline.svg";
+
 const images = {
   search,
   google,
@@ -56,7 +64,14 @@ const images = {
   news1,
   news2,
   // image for profiles
-  profil1
+  profil1,
+  // icon
+  boxIcon,
+  groupIcon,
+  viewsIcon,
+  pinkline,
+  blueline,
+  orangeline
 };
 
 export default images;

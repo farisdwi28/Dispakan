@@ -1,7 +1,7 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import React, { useState } from "react";
 
-const InputSearch = (props) => {
+const InputSearch = props => {
   const [keyword, setKeyword] = useState("");
   const { onClickValue, width, placeholder } = props;
 
@@ -11,11 +11,11 @@ const InputSearch = (props) => {
         className={`h-full bg-white ${
           width ? width : "w-28"
         } border-r border-gray-300 outline-none px-3`}
-        onChange={(e) => setKeyword(e.target.value)}
-        placeholder= {placeholder}
+        onChange={e => setKeyword(e.target.value)}
+        placeholder={placeholder}
       />
       <button
-        onClick={(e) => {
+        onClick={e => {
           e.preventDefault();
           onClickValue(keyword);
         }}
