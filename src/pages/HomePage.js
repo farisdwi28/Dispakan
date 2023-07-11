@@ -18,7 +18,7 @@ const DummyData1 = [
     owner: "Ainun Cake",
     address: "Desa Sukapura",
     like: 20,
-    value: 5
+    value: 5,
   },
   {
     id: 2,
@@ -28,7 +28,7 @@ const DummyData1 = [
     owner: "Makpingah",
     address: "Desa Sukapura",
     like: 20,
-    value: 5
+    value: 5,
   },
   {
     id: 3,
@@ -38,7 +38,7 @@ const DummyData1 = [
     owner: "Boboko Sundase Snack",
     address: "Desa Sukapura",
     like: 20,
-    value: 2
+    value: 2,
   },
   {
     id: 4,
@@ -48,7 +48,7 @@ const DummyData1 = [
     owner: "Boboko Sundase Snack",
     address: "Desa Sukapura",
     like: 20,
-    value: 5
+    value: 5,
   },
   {
     id: 5,
@@ -58,8 +58,8 @@ const DummyData1 = [
     owner: "Boboko Sundase Snack",
     address: "Desa Sukapura",
     like: 20,
-    value: 5
-  }
+    value: 5,
+  },
 ];
 // datadummy card tidak diskon
 const DummyData2 = [
@@ -71,7 +71,7 @@ const DummyData2 = [
     owner: "Ainun Cake",
     address: "Desa Sukapura",
     like: 20,
-    value: 0
+    value: 0,
   },
   {
     id: 2,
@@ -81,7 +81,7 @@ const DummyData2 = [
     owner: "Makpingah",
     address: "Desa Sukapura",
     like: 20,
-    value: 0
+    value: 0,
   },
   {
     id: 3,
@@ -91,7 +91,7 @@ const DummyData2 = [
     owner: "Boboko Sundase Snack",
     address: "Desa Sukapura",
     like: 20,
-    value: 0
+    value: 0,
   },
   {
     id: 4,
@@ -101,7 +101,7 @@ const DummyData2 = [
     owner: "Boboko Sundase Snack",
     address: "Desa Sukapura",
     like: 20,
-    value: 0
+    value: 0,
   },
   {
     id: 5,
@@ -111,8 +111,8 @@ const DummyData2 = [
     owner: "Boboko Sundase Snack",
     address: "Desa Sukapura",
     like: 20,
-    value: 0
-  }
+    value: 0,
+  },
 ];
 //datadummy card UMKM All
 const DummyData3 = [
@@ -124,7 +124,7 @@ const DummyData3 = [
     owner: "Ainun Cake",
     address: "Desa Sukapura",
     like: 20,
-    value: 5
+    value: 5,
   },
   {
     id: 2,
@@ -134,7 +134,7 @@ const DummyData3 = [
     owner: "Makpingah",
     address: "Desa Sukapura",
     like: 20,
-    value: 0
+    value: 0,
   },
   {
     id: 3,
@@ -144,7 +144,7 @@ const DummyData3 = [
     owner: "Boboko Sundase Snack",
     address: "Desa Sukapura",
     like: 20,
-    value: 2
+    value: 2,
   },
   {
     id: 4,
@@ -154,7 +154,7 @@ const DummyData3 = [
     owner: "Boboko Sundase Snack",
     address: "Desa Sukapura",
     like: 20,
-    value: 0
+    value: 0,
   },
   {
     id: 5,
@@ -164,8 +164,8 @@ const DummyData3 = [
     owner: "Boboko Sundase Snack",
     address: "Desa Sukapura",
     like: 20,
-    value: 10
-  }
+    value: 10,
+  },
 ];
 
 const HomePage = () => {
@@ -175,156 +175,121 @@ const HomePage = () => {
   return (
     <MainLayout>
       <section>
-        <div class="container mx-auto mb-8">
+        <div className="container mx-auto mb-8">
           <Carou />
-          <div class="mt-6 container mx-auto grid grid-cols-1 md:grid-cols-3 gap-5">
-            <div class="relative bg-primary1 p-5 rounded-3xl flex justify-between">
-              <div>
-                <p class="font-light text-xl text-white">Kategori</p>
-                <p class="font-black text-3xl text-white">Makanan</p>
-                <button
-                  type="button"
-                  class="mt-3 text-primary1 bg-white border border-grey-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-4 py-2 mr-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-                >
-                  Lihat Lainnya
-                </button>
-              </div>
-              <div class="relative h-32 w-32">
-                <img
-                  src={images.category1}
-                  alt="kategori-makanan"
-                  class="absolute inset-y-0 right-0 w-80"
-                />
-              </div>
+          <div className="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-6 justify-between pt-10 gap-3">
+            <div className="border-2 w-full md:w-auto h-auto px-4 md:px-8 py-4 flex flex-col items-center hover:bg-primary1 ">
+              <img src={images.MM} alt="Makanan & Minuman"/>
+              <p className="pt-4 text-center">Makanan & Minuman</p>
             </div>
-
-            <div class="relative bg-primary3 p-5 rounded-3xl flex justify-between">
-              <div>
-                <p class="font-light text-xl text-white">Kategori</p>
-                <p class="font-black text-3xl text-white">Minuman</p>
-                <button
-                  type="button"
-                  class="mt-3 text-primary1 bg-white border border-grey-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-4 py-2 mr-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-                >
-                  Lihat Lainnya
-                </button>
-              </div>
-              <div class="relative h-32 w-32">
-                <img
-                  src={images.category2}
-                  alt="kategori-minuman"
-                  class="absolute inset-y-0 right-0 w-80"
-                />
-              </div>
+            <div className="border-2 w-full md:w-auto h-auto px-4 md:px-8 py-4 flex flex-col items-center hover:bg-primary1">
+              <img src={images.Kue} alt="Kue" />
+              <p className="pt-4">Kue</p>
             </div>
-
-            <div class="relative bg-primary2 p-5 rounded-3xl flex justify-between">
-              <div>
-                <p class="font-light text-xl text-white">Kategori</p>
-                <p class="font-black text-3xl text-white">Bahan Pangan</p>
-                <button
-                  type="button"
-                  class="mt-3 text-primary1 bg-white border border-grey-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-4 py-2 mr-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-                >
-                  Lihat Lainnya
-                </button>
-              </div>
-              <div class="relative h-32 w-32">
-                <img
-                  src={images.category3}
-                  alt="kategori-bahan-pangan"
-                  class="absolute inset-y-0 right-0 w-80"
-                />
-              </div>
+            <div className="border-2 w-full md:w-auto h-auto px-4 md:px-8 py-4 flex flex-col items-center hover:bg-primary1">
+              <img src={images.Hangar} alt="Fashion" />
+              <p className="pt-4">Fashion</p>
+            </div>
+            <div className="border-2 w-full md:w-auto h-auto px-4 md:px-8 py-4 flex flex-col items-center hover:bg-primary1">
+              <img src={images.KT} alt="Kerajinan Tangan" />
+              <p className="pt-4">Kerajinan Tangan</p>
+            </div>
+            <div className="border-2 w-full md:w-auto h-auto px-4 md:px-8 py-4 flex flex-col items-center hover:bg-primary1">
+              <img src={images.Daun} alt="Tanaman" />
+              <p className="pt-4">Tanaman</p>
+            </div>
+            <div className="border-2 w-full md:w-auto h-auto px-4 md:px-8 py-4 flex flex-col items-center hover:bg-primary1">
+              <img src={images.Otomotif} alt="Otomotif" />
+              <p className="pt-4">Otomotif</p>
             </div>
           </div>
+
           {/* Diskon */}
-          <div class="flex justify-between pt-8">
-            <div class="w-1/2">
-              <h1 class="text-3xl font-bold dark:text-white py-4">
+          <div className="flex justify-between pt-8">
+            <div className="w-1/2">
+              <h1 className="text-3xl font-bold dark:text-white py-4">
                 Promo Menarik
               </h1>
             </div>
-            <div class="w-1/2 flex justify-end">
-              <p class="text-right text-primary1 text-lg font-medium py-4">
+            <div className="w-1/2 flex justify-end">
+              <p className="text-right text-primary1 text-lg font-medium py-4">
                 Lihat lainnya
               </p>
             </div>
           </div>
-          {/* Promo Semetara */}
+          {/* Promo Sementara */}
           <Link to="/DetailProduct">
-          <div className="flex gap-3 ">
-            {limitedData.map(data => (
-              <ProductCard key={data.id} {...data}/>
-            ))}
-          </div>
+            <div className="flex gap-3 overflow-x-auto">
+              {limitedData.map((data) => (
+                <ProductCard key={data.id} {...data} />
+              ))}
+            </div>
           </Link>
           {/* Akhir Promo */}
           {/* Terlaris */}
-          <div class="flex justify-between pt-8">
-            <div class="w-1/2">
-              <h1 class="text-3xl font-bold dark:text-white py-4">
+          <div className="flex justify-between pt-8">
+            <div className="w-1/2">
+              <h1 className="text-3xl font-bold dark:text-white py-4">
                 Produk Terlaris
               </h1>
             </div>
-            <div class="w-1/2 flex justify-end">
-              <p class="text-right text-primary1 text-lg font-medium py-4">
+            <div className="w-1/2 flex justify-end">
+              <p className="text-right text-primary1 text-lg font-medium py-4">
                 Lihat lainnya
               </p>
             </div>
           </div>
-          {/* Produk terlaris sementara */}
+          {/* Produk Terlaris Sementara */}
           <Link to="/DetailProduct">
-          <div className="flex gap-3">
-            {limitedData1.map(data => (
-              <ProductCard key={data.id} {...data} />
-            ))}
-          </div>
+            <div className="flex gap-3 overflow-x-auto">
+              {limitedData1.map((data) => (
+                <ProductCard key={data.id} {...data} />
+              ))}
+            </div>
           </Link>
           {/* Akhir Produk Terlaris */}
           {/* UMKM */}
-          <div class="flex justify-between pt-8">
-            <div class="w-1/2">
-              <h1 class="text-3xl font-bold dark:text-white py-4">
+          <div className="flex justify-between pt-8">
+            <div className="w-1/2">
+              <h1 className="text-3xl font-bold dark:text-white py-4">
                 Produk UMKM
               </h1>
             </div>
-            <div class="w-1/2 flex justify-end">
-              <p class="text-right text-primary1 text-lg font-medium py-4">
+            <div className="w-1/2 flex justify-end">
+              <p className="text-right text-primary1 text-lg font-medium py-4">
                 Lihat lainnya
               </p>
             </div>
           </div>
           {/* Produk UMKM Sementara */}
           <Link to="/DetailProduct">
-          <div className="flex gap-3">
-            {limitedData2.map(data => (
-              <ProductCard key={data.id} {...data} />
-            ))}
-          </div>
+            <div className="flex gap-3 overflow-x-auto">
+              {limitedData2.map((data) => (
+                <ProductCard key={data.id} {...data} />
+              ))}
+            </div>
           </Link>
           {/* Akhir Produk UMKM */}
           {/* Berita Desa */}
-          <div class="flex justify-between pt-8">
-            <div class="w-1/2">
-              <h1 class="text-3xl font-bold dark:text-white py-4">
+          <div className="flex justify-between pt-8">
+            <div className="w-1/2">
+              <h1 className="text-3xl font-bold dark:text-white py-4">
                 Berita Desa
               </h1>
             </div>
-            <div class="w-1/2 flex justify-end">
-              <p class="text-right text-primary1 text-lg font-medium py-4">
+            <div className="w-1/2 flex justify-end">
+              <p className="text-right text-primary1 text-lg font-medium py-4">
                 Lihat lainnya
               </p>
             </div>
           </div>
           {/* Berita Desa Sementara */}
-          <div className="flex gap-3">
+          <div className="flex gap-3 overflow-x-auto">
             <NewsCard
               img={images.news1}
               title="Penilaian Evaluasi Perkemangan Desa/Lomba Desa Tingkat Kabupaten Bandung T.A 2022"
               description="Desa Sekarpura"
             />
-
             <NewsCard
               img={images.news2}
               title="Penilaian Evaluasi Perkemangan Desa/Lomba Desa Tingkat Kabupaten Bandung T.A 2022"

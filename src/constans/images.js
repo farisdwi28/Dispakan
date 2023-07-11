@@ -1,3 +1,4 @@
+// import icons
 import search from "../assets/search.svg";
 import google from "../assets/google.svg";
 import fb from "../assets/facebook.svg";
@@ -7,6 +8,12 @@ import wa from "../assets/WA.svg";
 import tt from "../assets/tiktok.svg";
 import tokped from "../assets/Tokped.svg";
 import shopee from "../assets/shopee.svg";
+import MM from "../assets/MM.svg";
+import Kue from "../assets/Kue.svg";
+import Hangar from "../assets/Hangar.svg";
+import KT from "../assets/Kerajinan Tangan.svg";
+import Daun from "../assets/Daun.svg";
+import Otomotif from "../assets/Otomotif.svg";
 
 // import  images banner
 import banner1 from "../assets/images/banner-1.jpg";
@@ -39,6 +46,7 @@ import blueline from "../assets/blueline.svg";
 import orangeline from "../assets/orangeline.svg";
 
 const images = {
+  // icons
   search,
   google,
   shopee,
@@ -48,6 +56,12 @@ const images = {
   line,
   ig,
   fb,
+  MM,
+  Kue,
+  Hangar,
+  KT,
+  Daun,
+  Otomotif,
   // images for carousel banner
   banner1,
   banner2,
