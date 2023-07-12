@@ -65,7 +65,7 @@ const Produk = () => {
           <ButtonInput text="Tambah Produk" />
           <div className="">{/* Show Entries */}</div>
         </div>
-        <div className="absolute py-20 w-[80rem]">
+        <div className="py-20 w-[80rem]">
           <TableProduct />
         </div>
       </main>

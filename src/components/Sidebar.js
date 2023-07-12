@@ -11,7 +11,6 @@ import {
   UserGroupIcon,
   ShoppingBagIcon,
   GlobeAsiaAustraliaIcon,
-  BellIcon,
   Cog6ToothIcon,
   ArrowLeftOnRectangleIcon,
 } from "@heroicons/react/24/solid";
@@ -104,27 +103,6 @@ export default function Sidebar() {
             Pengaturan Profil
           </ListItem>
         </NavLink>
-        <div className="absolute inset-x-7 bottom-0">
-          <NavLink
-            to="/Notifikasi"
-            className={({ isActive }) =>
-              isActive ? "bg-primary1 rounded-2xl" : ""
-            }
-          >
-            <ListItem className="hover:bg-primary1 rounded-2xl focus:bg-primary1">
-              <ListItemPrefix>
-                <BellIcon className="h-5 w-5" />
-              </ListItemPrefix>
-              Notifikasi
-            </ListItem>
-          </NavLink>
-          <ListItem className="hover:bg-primary1 rounded-2xl focus:bg-transparent">
-            <ListItemPrefix>
-              <ArrowLeftOnRectangleIcon className="h-5 w-5" />
-            </ListItemPrefix>
-            Keluar
-          </ListItem>
-        </div>
       </List>
     </Card>
   );

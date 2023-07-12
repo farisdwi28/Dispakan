@@ -4,6 +4,7 @@ import { images } from "../../../constans";
 import InputSearch from "../../../components/InputSearch";
 import ButtonInput from "../../../components/ButtonInput";
 import TableNews from "../../../components/TableNews";
+import FormAddMitra from "../../../components/Mitra/FormAddMitra";
 
 const Berita = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -60,10 +61,13 @@ const Berita = () => {
         </div>
         <div className="absolute flex gap-2 pt-4">
           <InputSearch placeholder="Cari Berita" width="10" />
-          <ButtonInput text="Buat Berita" />
+          <ButtonInput 
+          text="Buat Berita"
+          Header= "Buat Berita"
+          Body= {<FormAddMitra/>} />
           <div className="">{/* Show Entries */}</div>
         </div>
-        <div className="absolute py-20 w-[80rem]">
+        <div className="py-20 w-[80rem]">
           <TableNews />
         </div>
       </main>
