@@ -84,7 +84,7 @@ const Dashboard = () => {
                 right: "0px",
                 bottom: "0px",
                 left: "0px",
-                overflow: "hidden"
+                overflow: "hidden",
               }}
             >
               <Productchart />
@@ -109,7 +109,7 @@ const Dashboard = () => {
                 right: "0px",
                 bottom: "0px",
                 left: "0px",
-                overflow: "hidden"
+                overflow: "hidden",
               }}
             >
               <Umkmchart />
@@ -134,7 +134,7 @@ const Dashboard = () => {
                 right: "0px",
                 bottom: "0px",
                 left: "0px",
-                overflow: "hidden"
+                overflow: "hidden",
               }}
             >
               <Blogchart />
@@ -143,7 +143,7 @@ const Dashboard = () => {
         </div>
         <div className="flex gap-3">
           {/* statistik top kategori */}
-          <div className="w-[350px] h-[500px] mt-10 p-8 bg-white rounded-lg drop-shadow-2xl flex flex-col justify-between items-center mb-4">
+          <div className="w-[350px] h-[450px] mt-10 p-8 bg-white rounded-lg drop-shadow-2xl flex flex-col justify-between items-center mb-4">
             <div className="flex">
               <div className="items-left mb-4 mr-10">
                 <h2 className="text-xl font-semibold text-left">
@@ -163,11 +163,11 @@ const Dashboard = () => {
             <Categorychart />
           </div>
           {/* statistik link */}
-          <div className="w-[350px] h-[500px] mt-10 p-8 bg-primary1 rounded-lg drop-shadow-xl">
+          <div className="w-[350px] h-[450px] mt-10 p-8 bg-primary1 rounded-lg drop-shadow-xl">
             link Statistik
           </div>
           {/* statistik rank umkm */}
-          <div className="w-[350px] h-[500px] mt-10 p-8 bg-white rounded-lg drop-shadow-2xl flex flex-col justify-between items-center mb-4">
+          <div className="w-[350px] h-[450px] mt-10 p-8 bg-white rounded-lg drop-shadow-2xl flex flex-col justify-between items-center mb-4">
             <div className="flex">
               <div className="items-left mb-4 mr-10">
                 <h2 className="text-xl font-semibold text-left">
