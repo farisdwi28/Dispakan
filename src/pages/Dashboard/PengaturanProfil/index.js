@@ -1,5 +1,5 @@
-import React from 'react'
-import Sidebar from '../../../components/Sidebar'
+import React from "react";
+import Sidebar from "../../../components/Sidebar";
 
 const Profil = () => {
   return (
@@ -11,7 +11,7 @@ const Profil = () => {
         </div>
       </main>
     </div>
-  )
-}
+  );
+};
 
-export default Profil
+export default Profil;

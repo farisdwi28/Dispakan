@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Sidebar from "../../../components/Sidebar";
 import { images } from "../../../constans";
 import InputSearch from "../../../components/InputSearch";
-import ButtonInput from "../../../components/ButtonInput";
+import ButtonInputNews from "../../../components/ButtonInputNews";
 import TableNews from "../../../components/TableNews";
 import FormAddMitra from "../../../components/Mitra/FormAddMitra";
 
@@ -61,10 +61,11 @@ const Berita = () => {
         </div>
         <div className="absolute flex gap-2 pt-4">
           <InputSearch placeholder="Cari Berita" width="10" />
-          <ButtonInput 
-          text="Buat Berita"
-          Header= "Buat Berita"
-          Body= {<FormAddMitra/>} />
+          <ButtonInputNews
+            text="Buat Berita"
+            Header="Buat Berita"
+            Body={<FormAddMitra />}
+          />
           <div className="">{/* Show Entries */}</div>
         </div>
         <div className="py-20 w-[80rem]">

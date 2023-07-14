@@ -3,7 +3,7 @@ import {
   Typography,
   List,
   ListItem,
-  ListItemPrefix,
+  ListItemPrefix
 } from "@material-tailwind/react";
 import {
   PresentationChartBarIcon,
@@ -12,7 +12,7 @@ import {
   ShoppingBagIcon,
   GlobeAsiaAustraliaIcon,
   Cog6ToothIcon,
-  ArrowLeftOnRectangleIcon,
+  ArrowLeftOnRectangleIcon
 } from "@heroicons/react/24/solid";
 import { NavLink } from "react-router-dom";
 
@@ -48,7 +48,7 @@ export default function Sidebar() {
             <ListItemPrefix>
               <UserPlusIcon className="h-5 w-5" />
             </ListItemPrefix>
-            Tambah UMKM
+            Tambah Mitra
           </ListItem>
         </NavLink>
         <NavLink
@@ -61,7 +61,7 @@ export default function Sidebar() {
             <ListItemPrefix>
               <UserGroupIcon className="h-5 w-5" />
             </ListItemPrefix>
-            UMKM
+            Daftar Mitra
           </ListItem>
         </NavLink>
         <NavLink

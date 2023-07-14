@@ -3,7 +3,6 @@ import Sidebar from "../../../components/Sidebar";
 import { images } from "../../../constans";
 import InputSearch from "../../../components/InputSearch";
 import ButtonExcel from "../../../components/ButtonExel";
-import ButtonInput from "../../../components/ButtonInput";
 import TableProduct from "../../../components/TableProduct";
 
 const Produk = () => {
@@ -62,7 +61,6 @@ const Produk = () => {
         <div className="absolute flex gap-2 pt-4">
           <InputSearch placeholder="Cari Produk" width="10" />
           <ButtonExcel />
-          <ButtonInput text="Tambah Produk" />
           <div className="">{/* Show Entries */}</div>
         </div>
         <div className="py-20 w-[80rem]">
