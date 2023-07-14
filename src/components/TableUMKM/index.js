@@ -1,4 +1,4 @@
-import { PencilIcon, TrashIcon } from "@heroicons/react/24/solid";
+import { PencilIcon, TrashIcon, EyeIcon } from "@heroicons/react/24/solid";
 import {
   Card,
   Typography,
@@ -169,6 +169,11 @@ export default function TableUMKM() {
                     </td>
                     <td className={classes}>
                       <div className="flex gap-2">
+                        <Tooltip content="Edit ">
+                          <IconButton variant="text" color="blue-gray">
+                            <EyeIcon className="h-4 w-4" />
+                          </IconButton>
+                        </Tooltip>
                         <Tooltip content="Edit ">
                           <IconButton variant="text" color="blue-gray">
                             <PencilIcon className="h-4 w-4" />

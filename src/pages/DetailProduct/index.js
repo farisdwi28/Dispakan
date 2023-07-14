@@ -11,14 +11,14 @@ import ProductCard from "../../components/ProductCard";
 
 const links = [
   { href: "/", label: "Home" },
-  { href: "/DetailProduct", label: "Detail Product" },
+  { href: "/DetailProduct", label: "Detail Product" }
 ];
 
 const dummyImages = [
   { src: images.product1, alt: "Product1" },
   { src: images.product2, alt: "Product1" },
   { src: images.product3, alt: "Product1" },
-  { src: images.product3, alt: "Product1" },
+  { src: images.product3, alt: "Product1" }
 ];
 
 const flavors = ["Batagor", "Kicimpring", "Emplod", "Cireng"];
@@ -32,7 +32,7 @@ const DummyData3 = [
     owner: "Ainun Cake",
     address: "Desa Sukapura",
     like: 20,
-    value: 5,
+    value: 5
   },
   {
     id: 2,
@@ -42,7 +42,7 @@ const DummyData3 = [
     owner: "Makpingah",
     address: "Desa Sukapura",
     like: 20,
-    value: 0,
+    value: 0
   },
   {
     id: 3,
@@ -52,7 +52,7 @@ const DummyData3 = [
     owner: "Boboko Sundase Snack",
     address: "Desa Sukapura",
     like: 20,
-    value: 2,
+    value: 2
   },
   {
     id: 4,
@@ -62,7 +62,7 @@ const DummyData3 = [
     owner: "Boboko Sundase Snack",
     address: "Desa Sukapura",
     like: 20,
-    value: 0,
+    value: 0
   },
   {
     id: 5,
@@ -72,14 +72,14 @@ const DummyData3 = [
     owner: "Boboko Sundase Snack",
     address: "Desa Sukapura",
     like: 20,
-    value: 10,
-  },
+    value: 10
+  }
 ];
 
 const DetailProduct = () => {
   const [previewImage, setPreviewImage] = useState(null);
 
-  const handleImageClick = (src) => {
+  const handleImageClick = src => {
     setPreviewImage(src);
   };
 
@@ -100,15 +100,15 @@ const DetailProduct = () => {
         <div className="py-5">
           <div className="flex flex-col lg:flex-row gap-10">
             <div className="flex-col">
-            <div className="w-full lg:w-[500px] h-[500px] py-[59px] bg-white rounded-2xl border border-stone-300 justify-center items-center gap-[53px] inline-flex">
-              <ImageComponent
-                src={images.product1}
-                className="w-[415px] h-[382px]"
-                alt="Product1"
-                onClick={() => handleImageClick(images.product1)}
-              />
-            </div>
-            <div className="grid grid-cols-4 md:grid-cols-4 gap-2 w-[500px]">
+              <div className="w-full lg:w-[500px] h-[500px] py-[59px] bg-white rounded-2xl border border-stone-300 justify-center items-center gap-[53px] inline-flex">
+                <ImageComponent
+                  src={images.product1}
+                  className="w-[415px] h-[382px]"
+                  alt="Product1"
+                  onClick={() => handleImageClick(images.product1)}
+                />
+              </div>
+              <div className="grid grid-cols-4 md:grid-cols-4 gap-2 w-[500px]">
                 {dummyImages.map((image, index) => (
                   <ImageComponent
                     key={index}
@@ -118,7 +118,7 @@ const DetailProduct = () => {
                     className="w-full h-full"
                   />
                 ))}
-            </div>
+              </div>
             </div>
             <div className="flex flex-col w-full max-w-[400px] ml-14">
               <div className="flex flex-col">
@@ -193,7 +193,7 @@ const DetailProduct = () => {
                       <p>Varian</p>
                     </div>
                     <div className="grid gap-4 grid-cols-2 grid-rows-2">
-                      {flavors.map((flavor) => (
+                      {flavors.map(flavor => (
                         <span
                           key={flavor}
                           className="px-4 py-2 border-2 rounded-lg bg-white text-black text-center font-semibold"
@@ -269,7 +269,7 @@ const DetailProduct = () => {
           </div>
         </div>
         <div className="flex gap-3 py-10 overflow-x-auto">
-          {limitedData2.map((data) => (
+          {limitedData2.map(data => (
             <ProductCard key={data.id} {...data} />
           ))}
         </div>

@@ -62,9 +62,7 @@ const UMKM = () => {
         <div className="absolute flex gap-2 pt-4">
           <InputSearch placeholder="Cari UMKM" width="10" />
           <ButtonExcel />
-          <ButtonInput 
-          text="Tambah Usaha"
-          Header="Tambah Usaha" />
+          <ButtonInput text="Tambah Usaha" Header="Tambah Usaha" />
           <div className="">{/* Show Entries */}</div>
         </div>
         <div className="py-20 w-[80rem]">
