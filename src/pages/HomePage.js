@@ -7,6 +7,7 @@ import NewsCard from "../components/NewsCard";
 
 import images from "../constans/images";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 // dummy card diskon
 const DummyData1 = [
@@ -178,27 +179,27 @@ const HomePage = () => {
         <div className="container mx-auto mb-8">
           <Carou />
           <div className="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-6 justify-between pt-10 gap-3">
-            <div className="border-2 w-full md:w-auto h-auto px-4 md:px-8 py-4 flex flex-col items-center hover:bg-primary1 ">
+            <div className="border-2 rounded-lg w-full md:w-auto h-auto px-4 md:px-8 py-4 flex flex-col items-center hover:bg-primary1 ">
               <img src={images.MM} alt="Makanan & Minuman"/>
               <p className="pt-4 text-center">Makanan & Minuman</p>
             </div>
-            <div className="border-2 w-full md:w-auto h-auto px-4 md:px-8 py-4 flex flex-col items-center hover:bg-primary1">
+            <div className="border-2 rounded-lg w-full md:w-auto h-auto px-4 md:px-8 py-4 flex flex-col items-center hover:bg-primary1">
               <img src={images.Kue} alt="Kue" />
               <p className="pt-4">Kue</p>
             </div>
-            <div className="border-2 w-full md:w-auto h-auto px-4 md:px-8 py-4 flex flex-col items-center hover:bg-primary1">
+            <div className="border-2 rounded-lg w-full md:w-auto h-auto px-4 md:px-8 py-4 flex flex-col items-center hover:bg-primary1">
               <img src={images.Hangar} alt="Fashion" />
               <p className="pt-4">Fashion</p>
             </div>
-            <div className="border-2 w-full md:w-auto h-auto px-4 md:px-8 py-4 flex flex-col items-center hover:bg-primary1">
+            <div className="border-2 rounded-lg w-full md:w-auto h-auto px-4 md:px-8 py-4 flex flex-col items-center hover:bg-primary1">
               <img src={images.KT} alt="Kerajinan Tangan" />
               <p className="pt-4">Kerajinan Tangan</p>
             </div>
-            <div className="border-2 w-full md:w-auto h-auto px-4 md:px-8 py-4 flex flex-col items-center hover:bg-primary1">
+            <div className="border-2 rounded-lg w-full md:w-auto h-auto px-4 md:px-8 py-4 flex flex-col items-center hover:bg-primary1">
               <img src={images.Daun} alt="Tanaman" />
               <p className="pt-4">Tanaman</p>
             </div>
-            <div className="border-2 w-full md:w-auto h-auto px-4 md:px-8 py-4 flex flex-col items-center hover:bg-primary1">
+            <div className="border-2 rounded-lg w-full md:w-auto h-auto px-4 md:px-8 py-4 flex flex-col items-center hover:bg-primary1">
               <img src={images.Otomotif} alt="Otomotif" />
               <p className="pt-4">Otomotif</p>
             </div>

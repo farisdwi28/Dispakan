@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import Sidebar from "../../components/Sidebar";
-import { clearDataLogin, getUserData } from "../../utils/storage";
+import React, { useState } from "react";
+import SidebarUMKM from "../../components/SidebarUMKM";
 import { images } from "../../constans";
 // import icon
 
@@ -11,30 +9,16 @@ import Umkmchart from "../../components/GraphicChart/UmkmChart";
 import Blogchart from "../../components/GraphicChart/BlogChart";
 import Categorychart from "../../components/GraphicChart/CategoryChart";
 
-const Dashboard = () => {
+const DashboardUMKM = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const userdata = getUserData()
-    if(!userdata) {
-      clearDataLogin();
-      navigate("/login");
-    }
-  }, [])
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleLogout = () => {
-    clearDataLogin();
-    navigate("/"); 
-  };
-
   return (
     <div className="flex page-container">
-      <Sidebar />
+      <SidebarUMKM />
       <main className="flex-grow container mx-auto p-6">
         <div className="absolute right-32 inline-block text-left ">
           <div>
@@ -48,7 +32,7 @@ const Dashboard = () => {
                 src={images.profil1}
                 alt="Profile"
               />
-              <span className="ml-2">Desa Sukapura</span>
+              <span className="ml-2">Makpingah</span>
               <svg
                 className={`w-4 h-4 ml-2 transition-transform ${
                   isOpen ? "transform rotate-180" : ""
@@ -65,7 +49,7 @@ const Dashboard = () => {
             <div className="absolute right-0 w-48 mt-2 origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg">
               <div className="py-1">
                 <a
-                  onClick={handleLogout}
+                  href="/"
                   className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                 >
                   Logout
@@ -76,7 +60,7 @@ const Dashboard = () => {
         </div>
         <div className="Title">
           <h1 className="font-semibold text-primary1 mt-20 text-3xl">
-            Analisa Statistik Desa Sukapura
+            Analisa Statistik
           </h1>
         </div>
         {/* container 3 dashboard statistik */}
@@ -113,7 +97,7 @@ const Dashboard = () => {
               className="w-20 h-20 left-5 top-5 relative bg-pink-400 bg-opacity-10 rounded-full"
             />
             <p className="w-[149.33px] left-28 top-8 absolute text-normal text-slate-500 text-[20px] font-normal">
-              Total UMKM
+              Total 
             </p>
             <p className="w-[149.33px] left-28 top-16 absolute text-normal text-slate-500 text-[20px] font-bold">
               46
@@ -137,8 +121,8 @@ const Dashboard = () => {
               src={images.viewsIcon}
               className="w-20 h-20 left-5 top-5 relative bg-pink-400 bg-opacity-10 rounded-full"
             />
-            <p className="w-[149.33px] left-28 top-8 absolute text-normal text-slate-500 text-[20px] font-normal">
-              Total Blog
+            <p className="w-auto left-28 top-8 absolute text-normal text-slate-500 text-[20px] font-normal">
+              Total Pengunjung
             </p>
             <p className="w-[149.33px] left-28 top-16 absolute text-normal text-slate-500 text-[20px] font-bold">
               62
@@ -204,4 +188,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default DashboardUMKM;
