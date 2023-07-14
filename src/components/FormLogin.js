@@ -1,8 +1,41 @@
-import * as React from "react";
-import { images } from "../constans";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { setUserData } from "../utils/storage";
+import InputBasic from "../elements/InputBasic";
+import InputPassword from "../elements/InputPassword";
+import ButtonSubmit from "./ButtonSubmit";
 
 export default function FormLogin() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [loginMessage, setLoginMessage] = useState("");
+  const navigate = useNavigate();
+
+  const submitLogin = async () => {
+    try {
+      setLoginMessage("");
+
+      const response = await axios.post("http://168.220.83.84/auth/signin", {
+        username: username,
+        password: password,
+      });
+
+      const userData = response.data.data.user;
+      const level = userData.level;
+      setUserData(userData)
+
+      if (level === "BUMDES") {
+        navigate("/Dashboard");
+      } else if (level === "UMKM") {
+        navigate("/DashboardUMKM");
+      }
+    } catch (error) {
+      // Failed login
+      setLoginMessage("Email or password is incorrect.");
+    }
+  };
+
   return (
     <div className="bg-white object-center rounded-3xl border-2 border-primary3-100 p-4 md:p-8">
       <h2 className="text-3xl font-semibold text-center items-center text-primary1 mb-4">
@@ -17,15 +50,29 @@ export default function FormLogin() {
           <label className="text-base text-lg font-medium px-2 mb-1">
             Email atau username
           </label>
-          <input className="w-full border-2 border-gray-100 rounded-xl p-3 md:p-4 mb-4 bg-transparent" />
+          <InputBasic
+            placeholder="Masukkan Email atau Username"
+            onChangeValue={(value) => {
+              setUsername(value);
+            }}
+          />
         </div>
 
         <div>
           <label className="text-base text-lg font-medium px-2 mb-1">
             Password
           </label>
-          <input className="w-full border-2 border-gray-100 rounded-xl p-3 md:p-4 mb-4 bg-transparent" />
+          <InputPassword
+            placeholder = "Masukkan Password"
+            onChange={(value) => {
+              setPassword(value.target.value);
+            }}
+          />
         </div>
+
+        {loginMessage && (
+          <p className="text-red-500 text-sm mt-2">{loginMessage}</p>
+        )}
 
         <div className="mt-4 md:mt-8 flex justify-between items-center">
           <div>
@@ -40,15 +87,7 @@ export default function FormLogin() {
         </div>
 
         <div className="mt-6 md:mt-8 flex flex-col gap-y-4">
-          <Link to="/Dashboard" className="mt-6 md:mt-8 flex flex-col gap-y-4">
-          <button className="active:scale-[.98] active:duration-75 transition-all hover:scale-[1.01] ease-in-out py-3 rounded-xl bg-primary1 text-white text-lg font-bold md:text-xl">
-            Masuk
-          </button>
-          </Link>
-          <button className="flex items-center justify-center gap-2 active:scale-[.98] active:duration-75 transition-all hover:scale-[1.01] ease-in-out">
-            <img src={images.google} className="w-6 h-6 md:w-8 md:h-8" />
-            <span className="align-middle text-base">Masuk dengan Google</span>
-          </button>
+          <ButtonSubmit label="Masuk" onClick={submitLogin} />
         </div>
       </div>
     </div>

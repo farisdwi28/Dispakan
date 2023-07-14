@@ -59,6 +59,7 @@ const TABLE_ROWS = [
 ];
 
 export default function TableUMKM() {
+
   return (
     <Card className="h-full w-full">
       <CardBody className="overflow-scroll">

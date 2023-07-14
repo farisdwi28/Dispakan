@@ -21,14 +21,6 @@ const Header = () => {
                 Masuk
               </button>
             </Link>
-            <Link to="/Register">
-              <button
-                type="button"
-                class="text-[#D36B16] border border-[#D36B16]  font-medium rounded-full text-sm px-10 py-2.5 text-center mr-5 mb-2"
-              >
-                Daftar
-              </button>
-            </Link>
           </div>
           <div class="flex md:order-2">
             <div class="relative hidden md:block">
