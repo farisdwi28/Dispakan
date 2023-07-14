@@ -7,6 +7,9 @@ import {
   IconButton,
   Tooltip
 } from "@material-tailwind/react";
+import { useEffect, useState } from "react";
+import { getToken } from "../../utils/storage";
+import fetch from "../../utils/fetch";
 
 const TABLE_HEAD = [
   "ID UMKM",
@@ -14,51 +17,70 @@ const TABLE_HEAD = [
   "Alamat",
   "No Telp",
   "Email",
-  "Kategori",
   "Status",
   "Action"
 ];
 
 const TABLE_ROWS = [
   {
-    ID: 123123,
-    Name: "Firstki Aditya",
-    Address: "Nganjuk",
-    Telp: "08123123123",
-    Email: "adit@gmail.com",
-    Catagory: "Kuliner",
-    status: 1
+    id: 123123,
+    name: "Firstki Aditya",
+    address: "Nganjuk",
+    phone: "08123123123",
+    email: "adit@gmail.com",
+    status: 1,
   },
   {
-    ID: 123321,
-    Name: "Faris Dwi Ramadhan",
-    Address: "Malang",
-    Telp: "081231312312",
-    Email: "Faris@gmail.com",
-    Catagory: "Desert",
-    status: 0
+    id: 123321,
+    name: "Faris Dwi Ramadhan",
+    address: "Malang",
+    phone: "081231312312",
+    email: "Faris@gmail.com",
+    status:1,
   },
   {
-    ID: 321123,
-    Name: "Saputra Ari Wijaya",
-    Address: "Bali",
-    Telp: "081231123",
-    Email: "ari@gmail.com",
-    Catagory: "Kuliner",
-    status: 1
+    id: 321123,
+    name: "Saputra Ari Wijaya",
+    address: "Bali",
+    phone: "081231123",
+    email: "ari@gmail.com",
+    status: 1,
   },
   {
-    ID: 231132,
-    Name: "Naura Yasmin",
-    Address: "Tulungagung",
-    Telp: "08123112332",
-    Email: "naura@gmail.com",
-    Catagory: "Kuliner",
-    status: 0
+    id: 231132,
+    name: "Naura Yasmin",
+    address: "Tulungagung",
+    phone: "08123112332",
+    email: "naura@gmail.com",
+    status: 1,
   }
 ];
 
 export default function TableUMKM() {
+
+  const [tableRows, setTableRows] = useState(TABLE_ROWS);
+
+  const getData = async () => {
+    const token = getToken()
+    const options = {
+      method: "GET",
+      url: "http://168.220.83.84/user/umkm",
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
+    }
+    try {
+      const response = await fetch(options);
+      setTableRows(response.data)
+    } catch (err) {
+      alert(JSON.stringify(err))
+    }
+  }
+
+  useEffect(() => {
+    getData()
+  }, [])
+  
 
   return (
     <Card className="h-full w-full">
@@ -83,22 +105,22 @@ export default function TableUMKM() {
             </tr>
           </thead>
           <tbody>
-            {TABLE_ROWS.map(
-              ({ ID, Name, Address, Telp, Email, Catagory, status }, index) => {
+            {tableRows.map(
+              ({ id, name, address, phone, email, status }, index) => {
                 const isLast = index === TABLE_ROWS.length - 1;
                 const classes = isLast
                   ? "p-4"
                   : "p-4 border-b border-blue-gray-50";
 
                 return (
-                  <tr key={ID}>
+                  <tr key={id}>
                     <td className={classes}>
                       <Typography
                         variant="small"
                         color="blue-gray"
                         className="font-bold"
                       >
-                        {ID}
+                        {id}
                       </Typography>
                     </td>
                     <td className={classes}>
@@ -107,7 +129,7 @@ export default function TableUMKM() {
                         color="blue-gray"
                         className="font-normal"
                       >
-                        {Name}
+                        {name}
                       </Typography>
                     </td>
                     <td className={classes}>
@@ -116,7 +138,7 @@ export default function TableUMKM() {
                         color="blue-gray"
                         className="font-normal"
                       >
-                        {Address}
+                        {address}
                       </Typography>
                     </td>
                     <td className={classes}>
@@ -125,7 +147,7 @@ export default function TableUMKM() {
                         color="blue-gray"
                         className="font-normal"
                       >
-                        {Telp}
+                        {phone}
                       </Typography>
                     </td>
                     <td className={classes}>
@@ -134,16 +156,7 @@ export default function TableUMKM() {
                         color="blue-gray"
                         className="font-normal"
                       >
-                        {Email}
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal"
-                      >
-                        {Catagory}
+                        {email}
                       </Typography>
                     </td>
                     <td className={classes}>
@@ -152,16 +165,16 @@ export default function TableUMKM() {
                           size="sm"
                           variant="ghost"
                           value={
-                            status === 1
+                            status === true
                               ? "Active"
-                              : status === 0
+                              : status === false
                               ? "Inactive"
                               : "Inactive"
                           }
                           color={
-                            status === 1
+                            status === true
                               ? "green"
-                              : status === 0
+                              : status === false
                               ? "amber"
                               : "red"
                           }
