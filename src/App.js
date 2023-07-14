@@ -92,14 +92,7 @@ export default function App() {
             </UMKMRoute>
           }
         />
-        <Route
-          path="/DetailProduct"
-          element={
-            <UMKMRoute>
-              <DetailProduct />
-            </UMKMRoute>
-          }
-        />
+        <Route path="/DetailProduct" element={<DetailProduct />} />
         <Route
           path="/TambahProdukUMKM"
           element={

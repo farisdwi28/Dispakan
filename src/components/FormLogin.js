@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { setUserData } from "../utils/storage";
+import { setUserData, setToken } from "../utils/storage";
 import InputBasic from "../elements/InputBasic";
 import InputPassword from "../elements/InputPassword";
 import ButtonSubmit from "./ButtonSubmit";
@@ -24,6 +24,7 @@ export default function FormLogin() {
       const userData = response.data.data.user;
       const level = userData.level;
       setUserData(userData)
+      setToken(response.data.data.access_token)
 
       if (level === "BUMDES") {
         navigate("/Dashboard");
