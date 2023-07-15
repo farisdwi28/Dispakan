@@ -1,49 +1,50 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import ButtonSubmit from "../ButtonSubmit";
 import { getToken } from "../../utils/storage";
+import FormBasic from "../../elements/FormBasic";
+import InputPassword from "../../elements/InputPassword";
+import fetch from "../../utils/fetch";
 
 const FormAddMitra = () => {
-  const [isLoading, setIsLoading] = useState(false)
-  const [buttonContent, setButtonContent] = useState("Simpan")
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    console.log("Submitted");
-  };
+  const [buttonContent, setButtonContent] = useState("Simpan");
 
   const [umkmData, setUmkmData] = useState({
     name: "",
     address: "",
     phone: "",
     email: "",
-    password: ""
+    password: "",
+    passwordConfirmation: "",
   });
+  console.log(umkmData);
 
-  const addData = async () => {
-    const token = getToken()
+  const addData = async (e) => {
+    e.preventDefault();
+    if (umkmData.password !== umkmData.passwordConfirmation) {
+      console.log("Password and confirmation do not match");
+      return;
+    }
+
+    const token = getToken();
     const options = {
       method: "POST",
-      url: "http://168.220.83.84/auth/signup/owner-umkm",
+      url: `${process.env.REACT_APP_API_URL}/auth/signup/owner-umkm`,
       headers: {
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${token}`,
       },
-      data:{
+      data: {
         name: umkmData.name,
         address: umkmData.address,
         phone: umkmData.phone,
         email: umkmData.email,
-        password: umkmData.password
+        password: umkmData.password,
       },
-    }
-
-    const fetchResult = await fetch(options)
+    };
+    const fetchResult = await fetch(options);
     if (fetchResult.success) {
-      setButtonContent("Simpan")
+      setButtonContent("Simpan");
     }
-
-    setIsLoading(false)
-  }
-
+  };
 
   return (
     <div className="absolute inset-x-72 top-10 container align-center max-w-[100rem] pl-20">
@@ -51,59 +52,57 @@ const FormAddMitra = () => {
         <h2 className="text-3xl font-semibold text-primary1 my-4 text-center">
           Tambah Mitra UMKM
         </h2>
-        <form className="w-90" onSubmit={handleSubmit}>
+        <form className="w-90">
           {/* Nama Pemilik */}
-          <div className="my-4 flex justify-between items-center">
-            <label
-              htmlFor="name"
-              className="block font-medium text-lg  mr-10 w-64"
-            >
-              Nama Pemilik
-            </label>
-            <input className="w-full border-2 border-gray-300 rounded-md px-4 py-2 mt-2 focus:outline-none focus:border-primary1" />
-          </div>
+          <FormBasic
+            label="Nama Pemilik"
+            placeholder="Name"
+            type="text"
+            onChangeValue={(value) => setUmkmData({ ...umkmData, name: value })}
+          />
           {/* Alamat Mitra*/}
-          <div className="my-4 flex justify-between items-center">
-            <label
-              htmlFor="name"
-              className="block font-medium text-lg  mr-10 w-64"
-            >
-              Alamat Mitra
-            </label>
-            <input className="w-full border-2 border-gray-300 rounded-md px-4 py-2 mt-2 focus:outline-none focus:border-primary1" />
-          </div>
+          <FormBasic
+            label="Alamat Mitra"
+            placeholder="Address"
+            type="text"
+            onChangeValue={(value) =>
+              setUmkmData({ ...umkmData, address: value })
+            }
+          />
           {/* No Telepon */}
-          <div className="my-4 flex justify-between items-center">
-            <label
-              htmlFor="name"
-              className="block font-medium text-lg  mr-10 w-64"
-            >
-              No Telepon
-            </label>
-            <input className="w-full border-2 border-gray-300 rounded-md px-4 py-2 mt-2 focus:outline-none focus:border-primary1" />
-          </div>
+          <FormBasic
+            label="No Telepon"
+            placeholder="Phone"
+            type="text"
+            onChangeValue={(value) =>
+              setUmkmData({ ...umkmData, phone: value })
+            }
+          />
           {/* Email */}
-          <div className="my-4 flex justify-between items-center">
-            <label
-              htmlFor="name"
-              className="block font-medium text-lg  mr-10 w-64"
-            >
-              Email
-            </label>
-            <input className="w-full border-2 border-gray-300 rounded-md px-4 py-2 mt-2 focus:outline-none focus:border-primary1" />
-          </div>
+          <FormBasic
+            label="Email"
+            placeholder="Email"
+            type="text"
+            onChangeValue={(value) =>
+              setUmkmData({ ...umkmData, email: value })
+            }
+          />
           {/* kata Sandi */}
-          <div className="my-4 flex justify-between items-center">
+          <div className="my-4 flex items-center">
             <label
               htmlFor="name"
-              className="block font-medium text-lg  mr-10 w-64"
+              className="block font-medium text-lg mr-10 w-64"
             >
               Kata Sandi
             </label>
-            <input
-              className="w-full  border-2 border-gray-300 rounded-md px-4 py-2 mt-2 focus:outline-none focus:border-primary1"
-              type="password"
-            />
+            <div className="w-full">
+              <InputPassword
+                placeholder="Password"
+                onChange={(event) =>
+                  setUmkmData({ ...umkmData, password: event.target.value })
+                }
+              />
+            </div>
           </div>
           {/* Re-Type Kata Sandi */}
           <div className="my-4 flex justify-between items-center">
@@ -113,13 +112,20 @@ const FormAddMitra = () => {
             >
               Konfirmasi Kata Sandi
             </label>
-            <input
-              className="w-full  border-2 border-gray-300 rounded-md px-4 py-2 mt-2 focus:outline-none focus:border-primary1"
-              type="password"
-            />
+            <div className="w-full">
+              <InputPassword
+                placeholder="Konfirmasi Password"
+                onChange={(event) =>
+                  setUmkmData({
+                    ...umkmData,
+                    passwordConfirmation: event.target.value,
+                  })
+                }
+              />
+            </div>
           </div>
           <div className="text-right py-10">
-            <ButtonSubmit label="Simpan" />
+            <ButtonSubmit label="Simpan" onClick={addData} />
           </div>
         </form>
       </div>

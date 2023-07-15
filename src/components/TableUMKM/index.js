@@ -57,6 +57,30 @@ const TABLE_ROWS = [
 ];
 
 export default function TableUMKM() {
+
+  const [tableRows, setTableRows] = useState(TABLE_ROWS);
+
+  const getData = async () => {
+    const token = getToken()
+    const options = {
+      method: "GET",
+      url: `${process.env.REACT_APP_API_URL}/user/umkm`,
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
+    }
+    try {
+      const response = await fetch(options);
+      setTableRows(response.data)
+    } catch (err) {
+      alert(JSON.stringify(err))
+    }
+  }
+
+  useEffect(() => {
+    getData()
+  }, [])
+  
   return (
     <Card className="h-full w-full">
       <CardBody className="overflow-scroll">
