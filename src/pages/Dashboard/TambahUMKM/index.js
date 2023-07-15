@@ -6,7 +6,7 @@ const AddUMKM = () => {
   return (
     <div className="flex page-container">
       <Sidebar />
-      <main className="flex-grow justify-items-center">
+      <main className="flex-grow justify items-center">
         <div className="flex justify">
           <FormAddMitra />
         </div>

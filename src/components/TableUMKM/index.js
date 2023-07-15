@@ -57,31 +57,6 @@ const TABLE_ROWS = [
 ];
 
 export default function TableUMKM() {
-
-  const [tableRows, setTableRows] = useState(TABLE_ROWS);
-
-  const getData = async () => {
-    const token = getToken()
-    const options = {
-      method: "GET",
-      url: "http://168.220.83.84/user/umkm",
-      headers: {
-        Authorization: `Bearer ${token}`
-      },
-    }
-    try {
-      const response = await fetch(options);
-      setTableRows(response.data)
-    } catch (err) {
-      alert(JSON.stringify(err))
-    }
-  }
-
-  useEffect(() => {
-    getData()
-  }, [])
-  
-
   return (
     <Card className="h-full w-full">
       <CardBody className="overflow-scroll">
@@ -183,7 +158,7 @@ export default function TableUMKM() {
                     </td>
                     <td className={classes}>
                       <div className="flex gap-2">
-                        <Tooltip content="Edit ">
+                        <Tooltip content="View ">
                           <IconButton variant="text" color="blue-gray">
                             <EyeIcon className="h-4 w-4" />
                           </IconButton>
