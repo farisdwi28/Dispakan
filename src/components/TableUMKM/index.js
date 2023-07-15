@@ -64,7 +64,7 @@ export default function TableUMKM() {
     const token = getToken()
     const options = {
       method: "GET",
-      url: "http://168.220.83.84/user/umkm",
+      url: `${process.env.REACT_APP_API_URL}/user/umkm`,
       headers: {
         Authorization: `Bearer ${token}`
       },

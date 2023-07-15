@@ -16,7 +16,7 @@ export default function FormLogin() {
     try {
       setLoginMessage("");
 
-      const response = await axios.post("http://168.220.83.84/auth/signin", {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/auth/signin`, {
         username: username,
         password: password,
       });
@@ -33,6 +33,7 @@ export default function FormLogin() {
       }
     } catch (error) {
       // Failed login
+      console.log(error)
       setLoginMessage("Email or password is incorrect.");
     }
   };
