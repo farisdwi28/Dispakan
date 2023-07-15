@@ -81,7 +81,6 @@ export default function TableUMKM() {
     getData()
   }, [])
   
-
   return (
     <Card className="h-full w-full">
       <CardBody className="overflow-scroll">
@@ -183,7 +182,7 @@ export default function TableUMKM() {
                     </td>
                     <td className={classes}>
                       <div className="flex gap-2">
-                        <Tooltip content="Edit ">
+                        <Tooltip content="View ">
                           <IconButton variant="text" color="blue-gray">
                             <EyeIcon className="h-4 w-4" />
                           </IconButton>
