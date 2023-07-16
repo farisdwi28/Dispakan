@@ -12,7 +12,7 @@ const Produk = () => {
     setIsOpen(!isOpen);
   };
   return (
-    <div className="flex page-container">
+    <div className="flex page-container ">
       <Sidebar />
       <main className="flex-grow container mx-auto">
         <div className="Title">
