@@ -2,6 +2,8 @@ import { Route, Routes } from "react-router-dom";
 
 import "./App.css";
 import React from "react";
+
+// import pages
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/Login/LoginPage";
 import RegisterPage from "./pages/Register/RegisterPage";
@@ -17,6 +19,17 @@ import DetailProduct from "./pages/DetailProduct";
 import TambahProduk from "./pages/DashboardUMKM/TambahProduk";
 import PengaturanProfilUMKM from "./pages/DashboardUMKM/PengaturanProfile";
 import DaftarProdukUMKM from "./pages/DashboardUMKM/DaftarProduk";
+import FoodCategory from "./pages/Category/FoodDrinkCategory";
+import KueCategory from "./pages/Category/KueCategory";
+import FashionCategory from "./pages/Category/FashionCategory";
+import KertaCategory from "./pages/Category/KertaCategory";
+import TanamanCategory from "./pages/Category/TanamanCategory";
+import OtomotifCategory from "./pages/Category/OtomotifCategory";
+import PromoPage from "./pages/Category/PromoPage";
+import NewsPage from "./pages/Category/NewsPage";
+import ProductPage from "./pages/Category/ProductPage";
+
+// import component
 import UMKMRoute from "./components/UmkmRoute";
 import BumdesRoute from "./components/BumdesRoute";
 
@@ -27,6 +40,15 @@ export default function App() {
         <Route index path="/" element={<HomePage />} />
         <Route path="/Register" element={<RegisterPage />} />
         <Route path="/Login" element={<LoginPage />} />
+        <Route path="/FoodDrinkCategory" element={<FoodCategory />} />
+        <Route path="/KueCategory" element={<KueCategory />} />
+        <Route path="/FashionCategory" element={<FashionCategory />} />
+        <Route path="/KerajinanCategory" element={<KertaCategory />} />
+        <Route path="/TanamanCategory" element={<TanamanCategory />} />
+        <Route path="/OtomotifCategory" element={<OtomotifCategory />} />
+        <Route path="/PromoPage" element={<PromoPage />} />
+        <Route path="/NewsPage" element={<NewsPage />} />
+        <Route path="/ProductPage" element={<ProductPage />} />
         <Route
           path="/Dashboard"
           element={
