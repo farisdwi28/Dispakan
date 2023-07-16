@@ -16,12 +16,12 @@ const Dashboard = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const userdata = getUserData()
-    if(!userdata) {
+    const userdata = getUserData();
+    if (!userdata) {
       clearDataLogin();
       navigate("/login");
     }
-  }, [])
+  }, []);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -29,11 +29,11 @@ const Dashboard = () => {
 
   const handleLogout = () => {
     clearDataLogin();
-    navigate("/"); 
+    navigate("/");
   };
 
   return (
-    <div className="flex page-container">
+    <div className="flex page-container bg-gray-300">
       <Sidebar />
       <main className="flex-grow container mx-auto p-6">
         <div className="absolute right-32 inline-block text-left ">
@@ -80,7 +80,7 @@ const Dashboard = () => {
           </h1>
         </div>
         {/* container 3 dashboard statistik */}
-        <div className="w-full h-[260px] bg-white rounded-lg drop-shadow-2xl flex">
+        <div className="w-full h-[260px] bg-white rounded-lg drop-shadow-2xl flex mt-5">
           {/* statistik 1 */}
           <div class="w-full h-[212px] bg-slate-300 rounded-lg border border border border border-pink-50 m-5 drop-shadow-xl">
             <img
@@ -100,7 +100,7 @@ const Dashboard = () => {
                 right: "0px",
                 bottom: "0px",
                 left: "0px",
-                overflow: "hidden",
+                overflow: "hidden"
               }}
             >
               <Productchart />
@@ -125,7 +125,7 @@ const Dashboard = () => {
                 right: "0px",
                 bottom: "0px",
                 left: "0px",
-                overflow: "hidden",
+                overflow: "hidden"
               }}
             >
               <Umkmchart />
@@ -150,7 +150,7 @@ const Dashboard = () => {
                 right: "0px",
                 bottom: "0px",
                 left: "0px",
-                overflow: "hidden",
+                overflow: "hidden"
               }}
             >
               <Blogchart />
