@@ -1,4 +1,4 @@
-import { PencilIcon, TrashIcon, EyeIcon } from "@heroicons/react/24/solid";
+import { TrashIcon, EyeIcon } from "@heroicons/react/24/solid";
 import {
   Card,
   Typography,
@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { getToken } from "../../utils/storage";
 import fetch from "../../utils/fetch";
 import Loading from "../../elements/Spinner";
+import ButtonEdit from "../ButtonListMitra/ButtonEdit";
 
 const TABLE_HEAD = [
   "No",
@@ -25,6 +26,7 @@ const TABLE_HEAD = [
 export default function TableUMKM() {
   const [isLoading, setIsLoading] = useState(false);
   const [tableRows, setTableRows] = useState([]);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const getData = async () => {
     const token = getToken();
@@ -49,6 +51,30 @@ export default function TableUMKM() {
     getData();
   }, []);
 
+  const deleteUMKM = async (id) => {
+    if (window.confirm("Apakah yakin ingin menghapus data mitra ini?")) {
+      const token = getToken();
+      const options = {
+        method: "GET",
+        url: `${process.env.REACT_APP_API_URL}/user/delete-umkm/${id}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      try {
+        await fetch(options);
+        getData();
+        setIsSuccess(true);
+        setTimeout(() => {
+          setIsSuccess(false);
+        }, 2000);
+      } catch (err) {
+        alert("GAGAL DELETE: " + err.message);
+      }
+    }
+  };
+
   return (
     <Card className="h-full w-full">
       <CardBody className="overflow-scroll">
@@ -58,7 +84,7 @@ export default function TableUMKM() {
           <table className="w-full table-auto text-left">
             <thead>
               <tr>
-                {TABLE_HEAD.map((head, index) => (
+                {TABLE_HEAD.map((head) => (
                   <th
                     key={head}
                     className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4"
@@ -76,7 +102,7 @@ export default function TableUMKM() {
             </thead>
             <tbody>
               {tableRows.map(
-                ({ name, address, phone, email, status }, index) => {
+                ({ id, name, address, phone, email, status }, index) => {
                   const rowNumber = index + 1;
                   const isLast = index === tableRows.length - 1;
                   const classes = isLast
@@ -159,13 +185,13 @@ export default function TableUMKM() {
                               <EyeIcon className="h-4 w-4" />
                             </IconButton>
                           </Tooltip>
-                          <Tooltip content="Edit ">
-                            <IconButton variant="text" color="blue-gray">
-                              <PencilIcon className="h-4 w-4" />
-                            </IconButton>
-                          </Tooltip>
+                          <ButtonEdit />
                           <Tooltip content="Delete">
-                            <IconButton variant="text" color="blue-gray">
+                            <IconButton
+                              variant="text"
+                              color="blue-gray"
+                              onClick={() => deleteUMKM(id)}
+                            >
                               <TrashIcon className="h-4 w-4" />
                             </IconButton>
                           </Tooltip>
@@ -177,6 +203,14 @@ export default function TableUMKM() {
               )}
             </tbody>
           </table>
+        )}
+        {isSuccess && (
+          <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mt-4">
+            <strong className="font-bold">Success:</strong>
+            <span className="block sm:inline">
+              Data successfully deleted!
+            </span>
+          </div>
         )}
       </CardBody>
     </Card>

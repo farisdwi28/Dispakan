@@ -1,62 +1,85 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
+import { getToken } from "../../utils/storage";
+import fetch from "../../utils/fetch";
 
 const UmkmChart = () => {
-  const data = {
+  const [umkmData, setUmkmData] = useState([]);
+
+  useEffect(() => {
+    fetchUmkmData();
+  }, []);
+
+  const fetchUmkmData = async () => {
+    const token = getToken();
+    const options = {
+      method: "GET",
+      url: `${process.env.REACT_APP_API_URL}/user/umkm`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+  
+    try {
+      const response = await fetch(options);
+      const umkmList = response.data;
+      const umkmSeries = umkmList.map((umkm, index) => {
+        return umkm.status ? index + 1 : -index - 1;
+      });
+
+      setUmkmData(prevData => [...prevData, ...umkmSeries]);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  const chartData = {
     series: [
       {
         name: "Total UMKM",
-        data: [10, 50, 30, 90, 40, 120, 100]
-      }
+        data: umkmData,
+      },
     ],
     options: {
       chart: {
         type: "area",
         height: "auto",
         toolbar: {
-          show: false
-        }
+          show: false,
+        },
       },
       fill: {
         colors: ["#5F63F2"],
-        type: "gradient"
+        type: "gradient",
       },
       dataLabels: {
-        enabled: false
+        enabled: false,
       },
       stroke: {
         curve: "smooth",
-        colors: ["#5F63F2"]
+        colors: ["#5F63F2"],
       },
       tooltip: {
-        x: {
-          format: "dd/MM/yy HH:mm"
-        }
+        enabled: true,
       },
       grid: {
-        show: false
+        show: false,
       },
       xaxis: {
-        type: "datetime",
-        categories: [
-          "2018-09-19T00:00:00.000Z",
-          "2018-09-19T01:30:00.000Z",
-          "2018-09-19T02:30:00.000Z",
-          "2018-09-19T03:30:00.000Z",
-          "2018-09-19T04:30:00.000Z",
-          "2018-09-19T05:30:00.000Z",
-          "2018-09-19T06:30:00.000Z"
-        ]
+        categories: umkmData.map((_, index) => `Day ${index + 1}`),
       },
       yaxis: {
-        show: false
-      }
-    }
+        show: false,
+      },
+    },
   };
+
+  if (umkmData.length === 0) {
+    return null; 
+  }
 
   return (
     <div className="UmkmChart">
-      <Chart options={data.options} series={data.series} type="area" />
+      <Chart options={chartData.options} series={chartData.series} type="area" />
     </div>
   );
 };
