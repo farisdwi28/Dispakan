@@ -5,14 +5,18 @@ import { setUserData, setToken } from "../utils/storage";
 import InputBasic from "../elements/InputBasic";
 import InputPassword from "../elements/InputPassword";
 import ButtonSubmit from "./ButtonSubmit";
+import Loading from "../elements/Spinner";
 
 export default function FormLogin() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginMessage, setLoginMessage] = useState("");
+  const [buttonContent, setButtonContent] = useState("Masuk");
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const submitLogin = async () => {
+    setIsLoading(true);
     try {
       setLoginMessage("");
 
@@ -30,15 +34,16 @@ export default function FormLogin() {
       setToken(response.data.data.access_token);
 
       if (level === "BUMDES") {
+        setButtonContent("Selamat Datang!");
         navigate("/Dashboard");
       } else if (level === "UMKM") {
+        setButtonContent("Selamat Datang!");
         navigate("/DashboardUMKM");
       }
     } catch (error) {
-      // Failed login
-      console.log(error);
       setLoginMessage("Email or password is incorrect.");
     }
+    setIsLoading(false);
   };
 
   return (
@@ -92,7 +97,7 @@ export default function FormLogin() {
         </div>
 
         <div className="mt-6 md:mt-8 flex flex-col gap-y-4">
-          <ButtonSubmit label="Masuk" onClick={submitLogin} />
+          <ButtonSubmit label={isLoading ? <Loading /> : buttonContent} onClick={submitLogin} />
         </div>
       </div>
     </div>
