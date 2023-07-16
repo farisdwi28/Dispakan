@@ -13,7 +13,7 @@ const Profil = () => {
   };
 
   return (
-    <div className="flex page-container">
+    <div className="flex page-container bg-gray-300 max-h-full">
       <Sidebar />
       <div className="flex-grow flex flex-col justify-center mt-32 m-32">
         {/* pengaturan profile */}
@@ -24,7 +24,7 @@ const Profil = () => {
             checked={isOpen}
             onChange={handleDropdownToggle}
           />
-          <div className="bg-white-500 h-20 w-full pl-5 flex items-center">
+          <div className="bg-white h-20 w-full pl-5 flex items-center">
             <h1 className="text-lg font-semibold text-black">Profile</h1>
           </div>
           <div className="absolute top-7 right-8 text-black transition-transform duration-500 rotate-0 peer-checked:rotate-180">
@@ -116,7 +116,7 @@ const Profil = () => {
             type="checkbox"
             className="peer absolute top-0 insert-x-0 w-full h-20 opacity-0 z-10 cursor-pointer"
           />
-          <div className="bg-white-500 h-20 w-full pl-5 flex items-center">
+          <div className="bg-white h-20 w-full pl-5 flex items-center">
             <h1 className="text-lg font-semibold text-black">Password</h1>
           </div>
           <div className="absolute top-7 right-8 text-black transition-transform duration-500 rotate-0 peer-checked:rotate-180">

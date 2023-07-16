@@ -14,11 +14,11 @@ const FormAddMitra = () => {
     phone: "",
     email: "",
     password: "",
-    passwordConfirmation: "",
+    passwordConfirmation: ""
   });
   console.log(umkmData);
 
-  const addData = async (e) => {
+  const addData = async e => {
     e.preventDefault();
     if (umkmData.password !== umkmData.passwordConfirmation) {
       console.log("Password and confirmation do not match");
@@ -30,15 +30,15 @@ const FormAddMitra = () => {
       method: "POST",
       url: `${process.env.REACT_APP_API_URL}/auth/signup/owner-umkm`,
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`
       },
       data: {
         name: umkmData.name,
         address: umkmData.address,
         phone: umkmData.phone,
         email: umkmData.email,
-        password: umkmData.password,
-      },
+        password: umkmData.password
+      }
     };
     const fetchResult = await fetch(options);
     if (fetchResult.success) {
@@ -58,14 +58,14 @@ const FormAddMitra = () => {
             label="Nama Pemilik"
             placeholder="Name"
             type="text"
-            onChangeValue={(value) => setUmkmData({ ...umkmData, name: value })}
+            onChangeValue={value => setUmkmData({ ...umkmData, name: value })}
           />
           {/* Alamat Mitra*/}
           <FormBasic
             label="Alamat Mitra"
             placeholder="Address"
             type="text"
-            onChangeValue={(value) =>
+            onChangeValue={value =>
               setUmkmData({ ...umkmData, address: value })
             }
           />
@@ -74,18 +74,14 @@ const FormAddMitra = () => {
             label="No Telepon"
             placeholder="Phone"
             type="text"
-            onChangeValue={(value) =>
-              setUmkmData({ ...umkmData, phone: value })
-            }
+            onChangeValue={value => setUmkmData({ ...umkmData, phone: value })}
           />
           {/* Email */}
           <FormBasic
             label="Email"
             placeholder="Email"
             type="text"
-            onChangeValue={(value) =>
-              setUmkmData({ ...umkmData, email: value })
-            }
+            onChangeValue={value => setUmkmData({ ...umkmData, email: value })}
           />
           {/* kata Sandi */}
           <div className="my-4 flex items-center">
@@ -98,7 +94,7 @@ const FormAddMitra = () => {
             <div className="w-full">
               <InputPassword
                 placeholder="Password"
-                onChange={(event) =>
+                onChange={event =>
                   setUmkmData({ ...umkmData, password: event.target.value })
                 }
               />
@@ -115,10 +111,10 @@ const FormAddMitra = () => {
             <div className="w-full">
               <InputPassword
                 placeholder="Konfirmasi Password"
-                onChange={(event) =>
+                onChange={event =>
                   setUmkmData({
                     ...umkmData,
-                    passwordConfirmation: event.target.value,
+                    passwordConfirmation: event.target.value
                   })
                 }
               />

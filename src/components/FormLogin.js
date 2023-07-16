@@ -16,15 +16,18 @@ export default function FormLogin() {
     try {
       setLoginMessage("");
 
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/auth/signin`, {
-        username: username,
-        password: password,
-      });
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_URL}/auth/signin`,
+        {
+          username: username,
+          password: password
+        }
+      );
 
       const userData = response.data.data.user;
       const level = userData.level;
-      setUserData(userData)
-      setToken(response.data.data.access_token)
+      setUserData(userData);
+      setToken(response.data.data.access_token);
 
       if (level === "BUMDES") {
         navigate("/Dashboard");
@@ -33,7 +36,7 @@ export default function FormLogin() {
       }
     } catch (error) {
       // Failed login
-      console.log(error)
+      console.log(error);
       setLoginMessage("Email or password is incorrect.");
     }
   };
@@ -54,7 +57,7 @@ export default function FormLogin() {
           </label>
           <InputBasic
             placeholder="Masukkan Email atau Username"
-            onChangeValue={(value) => {
+            onChangeValue={value => {
               setUsername(value);
             }}
           />
@@ -65,8 +68,8 @@ export default function FormLogin() {
             Password
           </label>
           <InputPassword
-            placeholder = "Masukkan Password"
-            onChange={(value) => {
+            placeholder="Masukkan Password"
+            onChange={value => {
               setPassword(value.target.value);
             }}
           />

@@ -17,7 +17,7 @@ const DashboardUMKM = () => {
   };
 
   return (
-    <div className="flex page-container">
+    <div className="flex page-container bg-gray-300">
       <SidebarUMKM />
       <main className="flex-grow container mx-auto p-6">
         <div className="absolute right-32 inline-block text-left ">
@@ -64,7 +64,7 @@ const DashboardUMKM = () => {
           </h1>
         </div>
         {/* container 3 dashboard statistik */}
-        <div className="w-full h-[260px] bg-white rounded-lg drop-shadow-2xl flex">
+        <div className="w-full h-[260px] bg-white rounded-lg drop-shadow-2xl flex mt-5">
           {/* statistik 1 */}
           <div class="w-full h-[212px] bg-slate-300 rounded-lg border border border border border-pink-50 m-5 drop-shadow-xl">
             <img
@@ -84,7 +84,7 @@ const DashboardUMKM = () => {
                 right: "0px",
                 bottom: "0px",
                 left: "0px",
-                overflow: "hidden",
+                overflow: "hidden"
               }}
             >
               <Productchart />
@@ -97,7 +97,7 @@ const DashboardUMKM = () => {
               className="w-20 h-20 left-5 top-5 relative bg-pink-400 bg-opacity-10 rounded-full"
             />
             <p className="w-[149.33px] left-28 top-8 absolute text-normal text-slate-500 text-[20px] font-normal">
-              Total 
+              Total
             </p>
             <p className="w-[149.33px] left-28 top-16 absolute text-normal text-slate-500 text-[20px] font-bold">
               46
@@ -109,7 +109,7 @@ const DashboardUMKM = () => {
                 right: "0px",
                 bottom: "0px",
                 left: "0px",
-                overflow: "hidden",
+                overflow: "hidden"
               }}
             >
               <Umkmchart />
@@ -134,7 +134,7 @@ const DashboardUMKM = () => {
                 right: "0px",
                 bottom: "0px",
                 left: "0px",
-                overflow: "hidden",
+                overflow: "hidden"
               }}
             >
               <Blogchart />
