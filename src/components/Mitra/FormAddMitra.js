@@ -21,8 +21,6 @@ const FormAddMitra = () => {
   });
   const addData = async (e) => {
     e.preventDefault();
-
-    // Validate form fields
     if (
       !umkmData.name ||
       !umkmData.address ||
@@ -83,8 +81,9 @@ const FormAddMitra = () => {
   };
 
   return (
-    <div className="absolute inset-x-72 top-10 container align-center max-w-[100rem] pl-20">
-      <div className="bg-white m-10 p-6 border shadow-2xl rounded-xl">
+    <div className="container mx-auto">
+    <div  className="m-20">
+      <div className="bg-white p-6 md:p-8 border shadow-2xl rounded-xl">
         <h2 className="text-3xl font-semibold text-primary1 my-4 text-center">
           Tambah Mitra UMKM
         </h2>
@@ -106,7 +105,7 @@ const FormAddMitra = () => {
             <span className="block sm:inline">Data successfully saved!</span>
           </div>
         )}
-        <form className="w-90">
+        <form className="w-full">
           {/* Nama Pemilik */}
           <FormBasic
             label="Nama Pemilik"
@@ -192,6 +191,7 @@ const FormAddMitra = () => {
           </div>
         </form>
       </div>
+    </div>
     </div>
   );
 };

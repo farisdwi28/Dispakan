@@ -4,6 +4,7 @@ import Sidebar from "../../components/Sidebar";
 import { clearDataLogin, getUserData, getToken } from "../../utils/storage";
 import fetch from "../../utils/fetch";
 import { images } from "../../constans";
+import { Button } from "@material-tailwind/react";
 // import icon
 
 // import graphic chart
@@ -54,11 +55,12 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="flex">
+    <div className="bg-gray-300 min-h-screen">
+      <div className="flex flex-col md:flex-row">
       <Sidebar />
-      <main className="flex-grow container mx-auto p-6">
+      <main className="flex-grow container mx-auto p-6 py-20">
         <div className="Title">
-          <div className="flex justify-between items-center h-auto pb-10">
+          <div className="flex justify-between items-center h-auto pb-20">
             <h1 className="font-semibold text-primary1 text-3xl">
               Analisa Statistik
             </h1>
@@ -101,126 +103,105 @@ const Dashboard = () => {
           </div>
         </div>
         {/* container 3 dashboard statistik */}
-        <div className="w-full h-[260px] bg-white rounded-lg drop-shadow-2xl flex mt-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
           {/* statistik 1 */}
-          <div class="w-full h-[212px] bg-slate-300 rounded-lg border border border border border-pink-50 m-5 drop-shadow-xl">
+          <div className="bg-white rounded-lg p-6 md:p-8 drop-shadow-xl md:relative">
             <img
               src={images.boxIcon}
-              className="w-20 h-20 left-5 top-5 relative bg-pink-400 bg-opacity-10 rounded-full"
+              className="w-14 h-auto absolute left-10 top-10 bg-pink-400 bg-opacity-10 rounded-full md:static md:left-auto md:top-auto md:bg-transparent"
             />
-            <p className="w-[149.33px] left-28 top-8 absolute text-normal text-slate-500 text-[20px] font-normal">
+            <p className="text-lg text-center font-normal text-slate-500 mb-2">
               Total Produk
             </p>
-            <p className="w-[149.33px] left-28 top-16 absolute text-normal text-slate-500 text-[20px] font-bold">
+            <p className="text-2xl text-center font-bold text-slate-500 mb-4">
               215
             </p>
-            <div
-              style={{
-                position: "absolute",
-                top: "40px",
-                right: "0px",
-                bottom: "0px",
-                left: "0px",
-                overflow: "hidden",
-              }}
-            >
+            <div className="overflow-hidden">
               <Productchart />
             </div>
           </div>
           {/* statistik 2 */}
-          <div class="w-full h-[212px] bg-slate-300 rounded-lg border border border border border-indigo-50 m-5 drop-shadow-xl">
+          <div className="bg-white rounded-lg p-6 md:p-8 drop-shadow-xl md:relative">
             <img
               src={images.groupIcon}
-              className="w-20 h-20 left-5 top-5 relative bg-pink-400 bg-opacity-10 rounded-full"
+              className="w-14 h-auto absolute left-10 top-10 md:static md:left-auto md:top-auto bg-pink-400 bg-opacity-10 rounded-full"
             />
-            <p className="w-[149.33px] left-28 top-8 absolute text-normal text-slate-500 text-[20px] font-normal">
+            <p className="text-lg text-center font-normal text-slate-500 mb-2">
               Total UMKM
             </p>
-            <p className="w-[149.33px] left-28 top-16 absolute text-normal text-slate-500 text-[20px] font-bold">
-            {totalActiveAccounts || '-'}
+            <p className="text-2xl text-center font-bold text-slate-500 mb-4">
+              {totalActiveAccounts || "-"}
             </p>
-            <div
-              style={{
-                position: "absolute",
-                top: "40px",
-                right: "0px",
-                bottom: "0px",
-                left: "0px",
-                overflow: "hidden",
-              }}
-            >
+            <div className="overflow-hidden">
               <Umkmchart />
             </div>
           </div>
           {/* statistik 3 */}
-          <div class="w-full h-[212px] bg-slate-300 rounded-lg border border border border border-orange-50 m-5 drop-shadow-xl">
+          <div className="bg-white rounded-lg p-6 md:p-8 drop-shadow-xl md:relative">
             <img
               src={images.viewsIcon}
-              className="w-20 h-20 left-5 top-5 relative bg-pink-400 bg-opacity-10 rounded-full"
+              className="w-14 h-auto absolute left-10 top-10 md:static md:left-auto md:top-auto bg-pink-400 bg-opacity-10 rounded-full"
             />
-            <p className="w-[149.33px] left-28 top-8 absolute text-normal text-slate-500 text-[20px] font-normal">
+            <p className="text-lg text-center font-normal text-slate-500 mb-2">
               Total Blog
             </p>
-            <p className="w-[149.33px] left-28 top-16 absolute text-normal text-slate-500 text-[20px] font-bold">
+            <p className="text-2xl text-center font-bold text-slate-500 mb-4">
               62
             </p>
-            <div
-              style={{
-                position: "absolute",
-                top: "40px",
-                right: "0px",
-                bottom: "0px",
-                left: "0px",
-                overflow: "hidden",
-              }}
-            >
+            <div className="overflow-hidden">
               <Blogchart />
             </div>
           </div>
         </div>
-        <div className="flex gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
           {/* statistik top kategori */}
-          <div className="w-full h-[450px] mt-10 p-8 bg-white rounded-lg drop-shadow-2xl flex flex-col justify-between items-center mb-4">
-            <div className="flex">
-              <div className="items-left mb-4 mr-10">
-                <h2 className="text-xl font-semibold text-left">
-                  Kategori UMKM
-                </h2>
-                <p className="text-gray-500 text-sm text-left">
-                  Terhitung dari 24 Juni 2023
-                </p>
-              </div>
-              <a
-                href="#"
-                className="text-indigo-500 font-bold text-sm text-right"
-              >
-                View Report
-              </a>
+          <div className="bg-white rounded-lg p-6 md:p-8 shadow-xl">
+            <div className="text-center mb-4">
+              <h2 className="text-xl font-semibold">Kategori UMKM</h2>
+              <p className="text-gray-500 text-sm">
+                Terhitung dari 24 Juni 2023
+              </p>
             </div>
-            <Categorychart />
-          </div>
-          {/* statistik link */}
-          {/* statistik rank umkm */}
-          <div className="w-full h-[450px] mt-10 p-8 bg-white rounded-lg drop-shadow-2xl flex flex-col justify-between items-center mb-4">
-            <div className="flex">
-              <div className="items-left mb-4 mr-10">
-                <h2 className="text-xl font-semibold text-left">
-                  Rank Like Terbanyak
-                </h2>
-                <p className="text-gray-500 text-sm text-left">
-                  Terhitung dari 24 Juni 2023
-                </p>
+            <div className="flex justify-center">
+              <div className="flex justify-center">
+                <Categorychart />
               </div>
-              <a
-                href="#"
-                className="text-indigo-500 font-bold text-sm text-right"
+            </div>
+            <div className="text-center mt-4">
+              <Button
+                variant="outlined"
+                className="text-indigo-500 border-indigo-500"
               >
                 View Report
-              </a>
+              </Button>
+            </div>
+          </div>
+
+          {/* statistik rank umkm */}
+          <div className="bg-white rounded-lg p-6 md:p-8 shadow-xl">
+            <div className="text-center mb-4">
+              <h2 className="text-xl font-semibold">Rank Like Terbanyak</h2>
+              <p className="text-gray-500 text-sm">
+                Terhitung dari 24 Juni 2023
+              </p>
+            </div>
+            <div className="flex justify-center">
+              <div className="flex justify-center">
+                <Categorychart />
+              </div>
+            </div>
+            <div className="text-center mt-4">
+              <Button
+                variant="outlined"
+                className="text-indigo-500 border-indigo-500"
+              >
+                View Report
+              </Button>
             </div>
           </div>
         </div>
       </main>
+    </div>
     </div>
   );
 };
