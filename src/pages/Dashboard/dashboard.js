@@ -19,13 +19,7 @@ const Dashboard = () => {
   const [totalActiveAccounts, setTotalActiveAccounts] = useState(0);
 
   useEffect(() => {
-    const userdata = getUserData();
-    if (!userdata) {
-      clearDataLogin();
-      navigate("/login");
-    } else {
       getData();
-    }
   }, []);
 
   const toggleDropdown = () => {

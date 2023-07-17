@@ -1,16 +1,151 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Sidebar from "../../../components/Sidebar";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import { Tooltip } from "@material-tailwind/react";
 import { images } from "../../../constans";
 import ButtonSubmit from "../../../components/ButtonSubmit";
+import { getToken } from "../../../utils/storage";
+import fetch from "../../../utils/fetch";
 
 const Profil = () => {
   const [isOpen, setIsOpen] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+  const [buttonContent, setButtonContent] = useState("Simpan");
+  const [akunData, setAkunData] = useState({
+    email: "",
+    password: ""
+  });
 
   const handleDropdownToggle = () => {
     setIsOpen(!isOpen);
   };
+
+  const [adminData, setAdminData] = useState({
+    id_bumdes_umkm: "",
+    name: "",
+    address: "",
+    phone: "",
+    file: ""
+  });
+
+  const fetchEmail = async () => {
+    const token = getToken();
+    const options = {
+      method: "POST",
+      url: `${process.env.REACT_APP_API_URL}/auth/signup/bumdes`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      data: {
+        email: akunData.email,
+        password: akunData.password
+      },
+    };
+
+    try {
+      const response = await fetch(options);
+      setAkunData({
+        email: response.data.email,
+        password: response.data.password
+      });
+    } catch (error) {
+      console.error("Terjadi kesalahan saat mengambil email:", error);
+    }
+  };
+
+  const handleSubmitProfile = async () => {
+    const token = getToken();
+    setIsLoading(true);
+    const options = {
+      method: "POST",
+      url: `${process.env.REACT_APP_API_URL}/user/bumdes/profil`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      data: {
+        id_bumdes_umkm: adminData.id_bumdes_umkm,
+        name: adminData.name,
+        address: adminData.address,
+        phone: adminData.phone,
+        file: adminData.file,
+        email: akunData.email,
+        password: akunData.password
+      },
+    };
+
+    try {
+      const response = await fetch(options);
+      if (response.success) {
+        setButtonContent("Simpan");
+      } else {
+        console.error("Gagal memperbarui profil");
+      }
+      setIsLoading(false);
+    } catch (error) {
+      console.error("Terjadi kesalahan saat memperbarui profil:", error);
+      setIsLoading(false);
+    }
+  };
+
+  const handleSubmitPassword = async () => {
+    const token = getToken();
+    setIsLoading(true);
+    const options = {
+      method: "POST",
+      url: `${process.env.REACT_APP_API_URL}/user/bumdes/password`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      data: {
+        email: akunData.email,
+        password: akunData.password
+      },
+    };
+
+    try {
+      const response = await fetch(options);
+      if (response.success) {
+        setButtonContent("Simpan");
+      } else {
+        console.error("Gagal memperbarui password");
+      }
+      setIsLoading(false);
+    } catch (error) {
+      console.error("Terjadi kesalahan saat memperbarui password:", error);
+      setIsLoading(false);
+    }
+  };
+
+  const fetchAdminData = async () => {
+    const token = getToken();
+    const options = {
+      method: "GET",
+      url: `${process.env.REACT_APP_API_URL}/user/bumdes`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+  
+    try {
+      const response = await fetch(options);
+      if (response.success) {
+        const adminData = response.data.find(
+          (admin) => admin.email === akunData.email
+        );
+        setAdminData(adminData);
+      }
+    } catch (error) {
+      console.error("Terjadi kesalahan saat mengambil data admin:", error);
+    }
+  };
+  
+  useEffect(() => {
+    fetchAdminData();
+  }, []);
+
+  useEffect(() => {
+    fetchAdminData();
+  }, []);
 
   return (
     <div className="bg-gray-300 min-h-screen">
@@ -61,6 +196,10 @@ const Profil = () => {
                         className="w-full border-2 border-gray-300 rounded-md px-4 py-2 mt-2 focus:outline-none focus:border-primary1"
                         type="text"
                         placeholder="Desa Sukapura"
+                        value={adminData.name}
+                        onChange={(e) =>
+                          setAdminData({ ...adminData, name: e.target.value })
+                        }
                       />
                     </div>
                     {/* alamat bumdes */}
@@ -75,6 +214,10 @@ const Profil = () => {
                         className="w-full border-2 border-gray-300 rounded-md px-4 py-2 mt-2 focus:outline-none focus:border-primary1"
                         type="text"
                         placeholder="Jalan Sukapura"
+                        value={adminData.address}
+                        onChange={(e) =>
+                          setAdminData({ ...adminData, address: e.target.value })
+                        }
                       />
                     </div>
                     {/* kontak bumdes */}
@@ -89,6 +232,10 @@ const Profil = () => {
                         className="w-full border-2 border-gray-300 rounded-md px-4 py-2 mt-2 focus:outline-none focus:border-primary1"
                         type="text"
                         placeholder="0822249823"
+                        value={adminData.phone}
+                        onChange={(e) =>
+                          setAdminData({ ...adminData, phone: e.target.value })
+                        }
                       />
                     </div>
                     {/* email */}
@@ -103,9 +250,17 @@ const Profil = () => {
                         className="w-full border-2 border-gray-300 rounded-md px-4 py-2 mt-2 focus:outline-none focus:border-primary1"
                         type="text"
                         placeholder="admin@gmail.com"
+                        value={akunData.email}
+                        onChange={(e) =>
+                          setAkunData({ ...akunData, email: e.target.value })
+                        }
                       />
                     </div>
-                    <ButtonSubmit label="Update Profile" />
+                    <ButtonSubmit
+                      label="Update Profile"
+                      onClick={handleSubmitProfile}
+                      isLoading={isLoading}
+                    />
                   </form>
                 </div>
               </div>
@@ -143,6 +298,10 @@ const Profil = () => {
                         className="w-full border-2 border-gray-300 rounded-md px-4 py-2 mt-2 focus:outline-none focus:border-primary1"
                         type="password"
                         placeholder="Password"
+                        value={akunData.password}
+                        onChange={(e) =>
+                          setAkunData({ ...akunData, password: e.target.value })
+                        }
                       />
                     </div>
                     {/* re-type password */}
@@ -157,9 +316,17 @@ const Profil = () => {
                         className="w-full border-2 border-gray-300 rounded-md px-4 py-2 mt-2 focus:outline-none focus:border-primary1"
                         type="password"
                         placeholder="Password"
+                        value={akunData.password}
+                        onChange={(e) =>
+                          setAkunData({ ...akunData, password: e.target.value })
+                        }
                       />
                     </div>
-                    <ButtonSubmit label="Update Password" />
+                    <ButtonSubmit
+                      label="Update Password"
+                      onClick={handleSubmitPassword}
+                      isLoading={isLoading}
+                    />
                   </form>
                 </div>
               </div>
