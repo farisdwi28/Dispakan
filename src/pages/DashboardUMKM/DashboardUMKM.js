@@ -7,7 +7,7 @@ import { images } from "../../constans";
 import Productchart from "../../components/GraphicChart/ProductChart";
 import Umkmchart from "../../components/GraphicChart/UmkmChart";
 import Blogchart from "../../components/GraphicChart/BlogChart";
-import Categorychart from "../../components/GraphicChart/CategoryChart";
+import BarChart from "../../components/GraphicChart/BarChart";
 
 const DashboardUMKM = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,6 +15,44 @@ const DashboardUMKM = () => {
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
+
+  const DummyData4 = [
+    {
+      id: 9,
+      title: "Yanto",
+      like: 90
+    },
+    {
+      id: 10,
+      title: "Wawan",
+      like: 85
+    },
+    {
+      id: 11,
+      title: "Bakso Aci Nila",
+      like: 80
+    },
+    {
+      id: 12,
+      title: "Bakso Aci Pindang",
+      like: 75
+    },
+    {
+      id: 13,
+      title: "Bakso Aci Gurame",
+      like: 70
+    },
+    {
+      id: 14,
+      title: "Bakso Aci Belut",
+      like: 75
+    },
+    {
+      id: 15,
+      title: "Bakso Aci Kodok",
+      like: 75
+    }
+  ];
 
   return (
     <div className="flex page-container bg-gray-300">
@@ -58,13 +96,13 @@ const DashboardUMKM = () => {
             </div>
           )}
         </div>
-        <div className="Title">
-          <h1 className="font-semibold text-primary1 mt-20 text-3xl">
+        <div className="Title mt-14">
+          <h1 className="font-semibold text-primary1 text-3xl">
             Analisa Statistik
           </h1>
         </div>
         {/* container 3 dashboard statistik */}
-        <div className="w-full h-[260px] bg-white rounded-lg drop-shadow-2xl flex mt-5">
+        <div className="w-full h-[260px] bg-white rounded-lg drop-shadow-2xl flex mt-2">
           {/* statistik 1 */}
           <div class="w-full h-[212px] bg-slate-300 rounded-lg border border border border border-pink-50 m-5 drop-shadow-xl">
             <img
@@ -147,11 +185,8 @@ const DashboardUMKM = () => {
             <div className="flex">
               <div className="items-left mb-4 mr-10">
                 <h2 className="text-xl font-semibold text-left">
-                  Kategori UMKM
+                  Analisa Sosial Media
                 </h2>
-                <p className="text-gray-500 text-sm text-left">
-                  Terhitung dari 24 Juni 2023
-                </p>
               </div>
               <a
                 href="#"
@@ -160,26 +195,77 @@ const DashboardUMKM = () => {
                 View Report
               </a>
             </div>
-            <Categorychart />
+            <BarChart />
           </div>
           {/* statistik link */}
           {/* statistik rank umkm */}
           <div className="w-full h-[450px] mt-10 p-8 bg-white rounded-lg drop-shadow-2xl flex flex-col justify-between items-center mb-4">
-            <div className="flex">
-              <div className="items-left mb-4 mr-10">
-                <h2 className="text-xl font-semibold text-left">
-                  Rank Like Terbanyak
-                </h2>
-                <p className="text-gray-500 text-sm text-left">
-                  Terhitung dari 24 Juni 2023
-                </p>
+            <div className="flex flex-col">
+              <div className="flex flex-row">
+                <div className="items-left mb-4 mr-10">
+                  <h2 className="text-xl font-semibold text-left">
+                    Rank Like Terbanyak
+                  </h2>
+                  <p className="text-gray-500 text-sm text-left">
+                    Terhitung dari 24 Juni 2023
+                  </p>
+                </div>
+                <a
+                  href="#"
+                  className="text-indigo-500 font-bold text-sm text-right"
+                >
+                  View Report
+                </a>
               </div>
-              <a
-                href="#"
-                className="text-indigo-500 font-bold text-sm text-right"
-              >
-                View Report
-              </a>
+              {/* rank gold-medal */}
+              <div className="flex flex-row justify-between items-center">
+                <div className="flex flex-row items-left gap-2">
+                  <img src={images.goldmedal} className="w-[27px] h-[27px]" />
+                  <p>Baso Aci Ikan Nila</p>
+                </div>
+                <div className="flex flex-row items-right gap-2 items-center">
+                  <img src={images.like} className="w-5 h-4" />
+                  <p>215</p>
+                </div>
+              </div>
+              {/* rank silver-medal */}
+              <div className="flex flex-row justify-between items-center mt-2">
+                <div className="flex flex-row items-left gap-2">
+                  <img src={images.silvermedal} className="w-[27px] h-[27px]" />
+                  <p>Baso Aci Ikan Nila</p>
+                </div>
+                <div className="flex flex-row items-right gap-2 items-center">
+                  <img src={images.like} className="w-5 h-4" />
+                  <p>210</p>
+                </div>
+              </div>
+              {/* rank bronze-medal */}
+              <div className="flex flex-row justify-between items-center mt-2">
+                <div className="flex flex-row items-left gap-2">
+                  <img src={images.bronzemedal} className="w-[27px] h-[27px]" />
+                  <p>Baso Aci Ikan Nila</p>
+                </div>
+                <div className="flex flex-row items-right gap-2 items-center">
+                  <img src={images.like} className="w-5 h-4" />
+                  <p>115</p>
+                </div>
+              </div>
+              {/* rank 4 - 8 */}
+              {DummyData4.slice(0, 7).map((data, index) => (
+                <div
+                  className="flex flex-row justify-between items-center mt-2"
+                  key={index}
+                >
+                  <div className="flex flex-row items-left gap-2">
+                    <p>{index + 4}.</p>
+                    <p>{data.title}</p>
+                  </div>
+                  <div className="flex flex-row items-right gap-2 items-center">
+                    <img src={images.like} className="w-5 h-4" />
+                    <p>{data.like}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
