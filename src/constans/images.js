@@ -44,6 +44,10 @@ import viewsIcon from "../assets/viewsIcon.png";
 import pinkline from "../assets/pinkline.svg";
 import blueline from "../assets/blueline.svg";
 import orangeline from "../assets/orangeline.svg";
+import goldmedal from "../assets/gold-medal.png";
+import silvermedal from "../assets/silver-medal.png";
+import bronzemedal from "../assets/bronze-medal.png";
+import like from "../assets/like.png";
 
 const images = {
   // icons
@@ -62,6 +66,10 @@ const images = {
   KT,
   Daun,
   Otomotif,
+  goldmedal,
+  silvermedal,
+  bronzemedal,
+  like,
   // images for carousel banner
   banner1,
   banner2,
