@@ -13,11 +13,11 @@ const PengaturanProfilUMKM = () => {
   };
 
   return (
-    <div className="flex page-container bg-gray-300 max-h-full">
+    <div className="flex flex-col md:flex-row min-h-screen bg-gray-300">
       <SidebarUMKM />
-      <div className="flex-grow flex flex-col justify-center mt-32 m-32">
+      <div className="flex-grow flex flex-col justify-center mt-20 mx-4 md:mx-32">
         {/* pengaturan profile */}
-        <div className="relative max-w-full overflow-hidden">
+        <div className="relative max-w-full overflow-hidden mb-4">
           <input
             type="checkbox"
             className="peer absolute top-0 insert-x-0 w-full h-20 opacity-0 z-10 cursor-pointer"

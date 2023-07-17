@@ -24,14 +24,14 @@ export default function ButtonInputNews(props) {
     const file = e.target.files[0];
     setFormValues({
       ...formValues,
-      filename: file.name,
+      file: file,
     });
   };
 
   const [formValues, setFormValues] = useState({
     title: "",
     posted_date: "",
-    filename: "",
+    file: "",
     description: "",
   });
 
@@ -53,7 +53,7 @@ export default function ButtonInputNews(props) {
     formData.append("title", formValues.title);
     formData.append("posted_date", formValues.posted_date);
     formData.append("description", formValues.description);
-    formData.append("filename", selectedFile);
+    formData.append("file", selectedFile);
 
     const options = {
       method: "POST",
@@ -126,7 +126,7 @@ export default function ButtonInputNews(props) {
                 type="date"
               />
             </div>
-            {/* filename */}
+            {/* file */}
             <div className="my-4 flex justify-between items-center">
               <label
                 htmlFor="name"
@@ -135,7 +135,7 @@ export default function ButtonInputNews(props) {
                 Cover Berita
               </label>
               <input
-                name="filename"
+                name="file"
                 type="file"
                 accept="image/*"
                 onChange={handleFileChange}
