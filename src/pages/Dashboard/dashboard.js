@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../../components/Sidebar";
-import { clearDataLogin, getUserData } from "../../utils/storage";
+import { clearDataLogin, getUserData, getToken } from "../../utils/storage";
+import fetch from "../../utils/fetch";
 import { images } from "../../constans";
 // import icon
 
@@ -14,12 +15,15 @@ import Categorychart from "../../components/GraphicChart/CategoryChart";
 const Dashboard = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
+  const [totalActiveAccounts, setTotalActiveAccounts] = useState(0);
 
   useEffect(() => {
     const userdata = getUserData();
     if (!userdata) {
       clearDataLogin();
       navigate("/login");
+    } else {
+      getData();
     }
   }, []);
 
@@ -31,6 +35,7 @@ const Dashboard = () => {
     clearDataLogin();
     navigate("/");
   };
+
 
   const DummyData4 = [
     {
@@ -70,8 +75,26 @@ const Dashboard = () => {
     }
   ];
 
+  const getData = async () => {
+    const token = getToken();
+    const options = {
+      method: "GET",
+      url: `${process.env.REACT_APP_API_URL}/user/umkm?status=active`, // Menambahkan query parameter untuk filter status
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    try {
+      const response = await fetch(options);
+      setTotalActiveAccounts(response.data.length); // Menggunakan panjang array data untuk mendapatkan total akun aktif
+    } catch (err) {
+      alert(JSON.stringify(err));
+    }
+  };
+
+
   return (
-    <div className="flex page-container">
+    <div className="flex">
       <Sidebar />
       <main className="flex-grow container mx-auto p-6">
         <div className="absolute right-32 inline-block text-left">
@@ -154,7 +177,7 @@ const Dashboard = () => {
               Total UMKM
             </p>
             <p className="w-[149.33px] left-28 top-16 absolute text-normal text-slate-500 text-[20px] font-bold">
-              46
+            {totalActiveAccounts || '-'}
             </p>
             <div
               style={{

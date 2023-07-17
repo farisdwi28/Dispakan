@@ -5,13 +5,11 @@ import FormBasic from "../../elements/FormBasic";
 import InputPassword from "../../elements/InputPassword";
 import fetch from "../../utils/fetch";
 import Loading from "../../elements/Spinner";
-import { useNavigate } from "react-router-dom";
-
 const FormAddMitra = () => {
   const [buttonContent, setButtonContent] = useState("Simpan");
   const [isLoading, setIsLoading] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
-  const navigate = useNavigate();
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const [umkmData, setUmkmData] = useState({
     name: "",
@@ -19,14 +17,19 @@ const FormAddMitra = () => {
     phone: "",
     email: "",
     password: "",
-    passwordConfirmation: ""
+    passwordConfirmation: "",
   });
-
   const addData = async (e) => {
     e.preventDefault();
 
     // Validate form fields
-    if (!umkmData.name || !umkmData.address || !umkmData.phone || !umkmData.email || !umkmData.password) {
+    if (
+      !umkmData.name ||
+      !umkmData.address ||
+      !umkmData.phone ||
+      !umkmData.email ||
+      !umkmData.password
+    ) {
       setAlertMessage("Please fill in all required fields");
       return;
     }
@@ -37,7 +40,9 @@ const FormAddMitra = () => {
     }
 
     if (!/^(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/.test(umkmData.password)) {
-      setAlertMessage("Password must be at least 8 characters long, contain at least one uppercase letter, and one special character (!, @, #, $, %, ^, &, *)");
+      setAlertMessage(
+        "Password must be at least 8 characters long, contain at least one uppercase letter, and one special character (!, @, #, $, %, ^, &, *)"
+      );
       return;
     }
 
@@ -47,21 +52,32 @@ const FormAddMitra = () => {
       method: "POST",
       url: `${process.env.REACT_APP_API_URL}/auth/signup/owner-umkm`,
       headers: {
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${token}`,
       },
       data: {
         name: umkmData.name,
         address: umkmData.address,
         phone: umkmData.phone,
         email: umkmData.email,
-        password: umkmData.password
-      }
+        password: umkmData.password,
+      },
     };
     const fetchResult = await fetch(options);
     if (fetchResult.success) {
       setButtonContent("Sukses Menyimpan!");
-      window.location.reload(true);
-      navigate("/UMKM"); 
+      setIsSuccess(true);
+      setTimeout(() => {
+        setButtonContent("Simpan");
+      }, 2000);
+      setUmkmData({
+        name: "",
+        address: "",
+        phone: "",
+        email: "",
+        password: "",
+        passwordConfirmation: "",
+      });
+      return;
     }
     setIsLoading(false);
   };
@@ -73,9 +89,21 @@ const FormAddMitra = () => {
           Tambah Mitra UMKM
         </h2>
         {alertMessage && (
-          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+          <div
+            className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+            role="alert"
+          >
             <strong className="font-bold">Error:</strong>
             <span className="block sm:inline">{alertMessage}</span>
+          </div>
+        )}
+        {isSuccess && (
+          <div
+            className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative"
+            role="alert"
+          >
+            <strong className="font-bold">Success:</strong>
+            <span className="block sm:inline">Data successfully saved!</span>
           </div>
         )}
         <form className="w-90">
@@ -84,6 +112,7 @@ const FormAddMitra = () => {
             label="Nama Pemilik"
             placeholder="Name"
             type="text"
+            name="name"
             onChangeValue={(value) => setUmkmData({ ...umkmData, name: value })}
           />
           {/* Alamat Mitra*/}
@@ -91,21 +120,30 @@ const FormAddMitra = () => {
             label="Alamat Mitra"
             placeholder="Address"
             type="text"
-            onChangeValue={(value) => setUmkmData({ ...umkmData, address: value })}
+            name="addres"
+            onChangeValue={(value) =>
+              setUmkmData({ ...umkmData, address: value })
+            }
           />
           {/* No Telepon */}
           <FormBasic
             label="No Telepon"
             placeholder="Phone"
             type="text"
-            onChangeValue={(value) => setUmkmData({ ...umkmData, phone: value })}
+            name="phone"
+            onChangeValue={(value) =>
+              setUmkmData({ ...umkmData, phone: value })
+            }
           />
           {/* Email */}
           <FormBasic
             label="Email"
             placeholder="Email"
             type="text"
-            onChangeValue={(value) => setUmkmData({ ...umkmData, email: value })}
+            name="email"
+            onChangeValue={(value) =>
+              setUmkmData({ ...umkmData, email: value })
+            }
           />
           {/* kata Sandi */}
           <div className="my-4 flex items-center">
@@ -118,6 +156,7 @@ const FormAddMitra = () => {
             <div className="w-full">
               <InputPassword
                 placeholder="Password"
+                name="password"
                 onChange={(event) =>
                   setUmkmData({ ...umkmData, password: event.target.value })
                 }
@@ -135,17 +174,21 @@ const FormAddMitra = () => {
             <div className="w-full">
               <InputPassword
                 placeholder="Konfirmasi Password"
+                name="passwordConfirmation"
                 onChange={(event) =>
                   setUmkmData({
                     ...umkmData,
-                    passwordConfirmation: event.target.value
+                    passwordConfirmation: event.target.value,
                   })
                 }
               />
             </div>
           </div>
           <div className="text-right ml-auto my-4">
-            <ButtonSubmit label={isLoading ? <Loading /> : buttonContent} onClick={addData} />
+            <ButtonSubmit
+              label={isLoading ? <Loading /> : buttonContent}
+              onClick={addData}
+            />
           </div>
         </form>
       </div>

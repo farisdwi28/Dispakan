@@ -10,7 +10,7 @@ import RegisterPage from "./pages/Register/RegisterPage";
 import Dashboard from "./pages/Dashboard/dashboard";
 import DashboardUMKM from "./pages/DashboardUMKM/DashboardUMKM";
 import AddUMKM from "./pages/Dashboard/TambahUMKM";
-import UMKM from "./pages/Dashboard/UMKM";
+import UMKM from "./pages/Dashboard/Mitra";
 import Produk from "./pages/Dashboard/DaftarProduk";
 import Berita from "./pages/Dashboard/KelolaBerita";
 import Profil from "./pages/Dashboard/PengaturanProfil";

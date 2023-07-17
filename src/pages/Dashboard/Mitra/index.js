@@ -3,7 +3,7 @@ import Sidebar from "../../../components/Sidebar";
 import { images } from "../../../constans";
 import InputSearch from "../../../components/InputSearch";
 import ButtonExcel from "../../../components/ButtonExel";
-import ButtonInput from "../../../components/ButtonInput";
+import ButtonInput from "../../../components/ButtonListMitra/ButtonInput";
 import TableUMKM from "../../../components/TableUMKM";
 
 const UMKM = () => {

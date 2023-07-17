@@ -14,7 +14,7 @@ import {
 } from "@material-tailwind/react";
 
 export default function ButtonInput(props) {
-  const { text, Header, body } = props;
+  const { text, Header } = props;
   const [size, setSize] = useState(null);
 
   const handleOpen = value => setSize(value);
