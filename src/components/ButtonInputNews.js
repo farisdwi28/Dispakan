@@ -5,7 +5,7 @@ import {
   Dialog,
   DialogHeader,
   DialogBody,
-  DialogFooter,
+  DialogFooter
 } from "@material-tailwind/react";
 import { getToken } from "../utils/storage";
 import fetch from "../utils/fetch";
@@ -18,13 +18,13 @@ export default function ButtonInputNews(props) {
   const { text, Header } = props;
   const [size, setSize] = useState(null);
 
-  const handleOpen = (value) => setSize(value);
+  const handleOpen = value => setSize(value);
 
-  const handleFileChange = (e) => {
+  const handleFileChange = e => {
     const file = e.target.files[0];
     setFormValues({
       ...formValues,
-      filename: file.name,
+      filename: file.name
     });
   };
 
@@ -32,19 +32,19 @@ export default function ButtonInputNews(props) {
     title: "",
     posted_date: "",
     filename: "",
-    description: "",
+    description: ""
   });
 
   console.log(formValues);
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     setFormValues({
       ...formValues,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
   };
 
-  const addData = async (e) => {
+  const addData = async e => {
     e.preventDefault();
     setIsLoading(true);
     const token = getToken();
@@ -59,9 +59,9 @@ export default function ButtonInputNews(props) {
       method: "POST",
       url: `${process.env.REACT_APP_API_URL}/news/upload`,
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`
       },
-      data: formData,
+      data: formData
     };
 
     try {
