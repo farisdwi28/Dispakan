@@ -4,7 +4,7 @@ import { Navigate } from "react-router-dom";
 const UMKMRoute = ({children}) => {
     const userdata = getUserData();
 
-    if (userdata.level !== "UMKM") {
+    if (!userdata || userdata.level !== "UMKM") {
     clearDataLogin();
     return <Navigate to="/login" />
   }

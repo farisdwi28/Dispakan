@@ -25,6 +25,7 @@ const TABLE_HEAD = [
 export default function TableNews() {
   const [isLoading, setIsLoading] = useState(false);
   const [tableRows, setTableRows] = useState([]);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const getData = async () => {
     const token = getToken();
@@ -48,6 +49,30 @@ export default function TableNews() {
   useEffect(() => {
     getData();
   }, []);
+
+  const deleteNews = async (id) => {
+    if (window.confirm("Apakah yakin ingin menghapus data berita ini?")) {
+      const token = getToken();
+      const options = {
+        method: "GET",
+        url: `${process.env.REACT_APP_API_URL}/news/delete/${id}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      try {
+        await fetch(options);
+        getData();
+        setIsSuccess(true);
+        setTimeout(() => {
+          setIsSuccess(false);
+        }, 2000);
+      } catch (err) {
+        alert("GAGAL DELETE: " + err.message);
+      }
+    }
+  };
 
   return (
     <Card className="h-full w-full">
@@ -76,7 +101,7 @@ export default function TableNews() {
             </thead>
             <tbody>
               {tableRows.map(
-                ({ id, filename, title, posted_date, status }, index) => {
+                ({ id, image, title, posted_date, status }, index) => {
                   const rowNumber = index + 1;
                   const isLast = index === tableRows.length - 1;
                   const classes = isLast
@@ -97,9 +122,7 @@ export default function TableNews() {
                       {/* title berita */}
                       <td className={classes}>
                         <img
-                          src={`${
-                            filename.startsWith("/") ? "" : "/"
-                          }${filename}`}
+                          src={image}
                           className="w-48 h-30 rounded-xl"
                         />
                       </td>
@@ -162,7 +185,11 @@ export default function TableNews() {
                             </IconButton>
                           </Tooltip>
                           <Tooltip content="Delete">
-                            <IconButton variant="text" color="blue-gray">
+                            <IconButton
+                              variant="text"
+                              color="blue-gray"
+                              onClick={() => deleteNews(id)}
+                            >
                               <TrashIcon className="h-4 w-4" />
                             </IconButton>
                           </Tooltip>
@@ -174,6 +201,12 @@ export default function TableNews() {
               )}
             </tbody>
           </table>
+        )}
+        {isSuccess && (
+          <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mt-4">
+            <strong className="font-bold">Success:</strong>
+            <span className="block sm:inline">Data successfully deleted!</span>
+          </div>
         )}
       </CardBody>
     </Card>

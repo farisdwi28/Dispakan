@@ -8,11 +8,11 @@ const CategoryChart = () => {
       chart: {
         type: "donut",
         toolbar: {
-          show: false
+          show: false,
         },
         sparkline: {
-          enabled: false
-        }
+          enabled: false,
+        },
       },
       labels: [
         "Makanan Minuman",
@@ -20,7 +20,7 @@ const CategoryChart = () => {
         "Fashion",
         "Kerajinan Tangan",
         "Tanaman",
-        "Otomotif"
+        "Otomotif",
       ],
       colors: [
         "#1e1b4b",
@@ -29,7 +29,7 @@ const CategoryChart = () => {
         "#4338ca",
         "#4f46e5",
         "#6366f1",
-        "#818cf8"
+        "#818cf8",
       ],
       legend: {
         position: "bottom",
@@ -37,22 +37,22 @@ const CategoryChart = () => {
           width: 10,
           height: 10,
           strokeWidth: 0,
-          strokeColor: "transparent"
+          strokeColor: "transparent",
         },
         itemMargin: {
           horizontal: 4,
-          vertical: 15
+          vertical: 15,
         },
-        offsetY: 15
+        offsetY: 15,
       },
       stroke: {
-        show: false
-      }
-    }
+        show: false,
+      },
+    },
   };
 
   return (
-    <div className="w-[350px] h-[450px]">
+    <div className="w-[350px] h-[450px] flex justify-center items-center">
       <Chart
         options={data.options}
         series={data.series}
