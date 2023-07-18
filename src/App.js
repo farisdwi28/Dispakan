@@ -28,6 +28,7 @@ import OtomotifCategory from "./pages/Category/OtomotifCategory";
 import PromoPage from "./pages/Category/PromoPage";
 import NewsPage from "./pages/Category/NewsPage";
 import ProductPage from "./pages/Category/ProductPage";
+import UsahaMitra from "./pages/Dashboard/UsahaMitra/index";
 
 // import component
 import UMKMRoute from "./components/UmkmRoute";
@@ -78,6 +79,14 @@ export default function App() {
           element={
             <BumdesRoute>
               <UMKM />
+            </BumdesRoute>
+          }
+        />
+        <Route
+          path="/UsahaMitra"
+          element={
+            <BumdesRoute>
+              <UsahaMitra />
             </BumdesRoute>
           }
         />
