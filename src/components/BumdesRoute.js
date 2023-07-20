@@ -4,9 +4,9 @@ import { Navigate } from "react-router-dom";
 const BumdesRoute = ({ children }) => {
   const userdata = getUserData();
 
-  if (!userdata || userdata.level !== "BUMDES" ) {
+  if (!userdata || userdata.level !== "BUMDES") {
     clearDataLogin();
-    return <Navigate to="/Login" />
+    return <Navigate to="/Login" />;
   }
 
   return children;

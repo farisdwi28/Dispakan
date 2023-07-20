@@ -4,15 +4,16 @@ import {
   Typography,
   List,
   ListItem,
-  ListItemPrefix,
+  ListItemPrefix
 } from "@material-tailwind/react";
 import {
   PresentationChartBarIcon,
   UserPlusIcon,
   UserGroupIcon,
+  BuildingStorefrontIcon,
   ShoppingBagIcon,
   GlobeAsiaAustraliaIcon,
-  Cog6ToothIcon,
+  Cog6ToothIcon
 } from "@heroicons/react/24/solid";
 import { NavLink } from "react-router-dom";
 
@@ -110,6 +111,19 @@ export default function Sidebar() {
                   <UserGroupIcon className="h-5 w-5" />
                 </ListItemPrefix>
                 Daftar Mitra
+              </ListItem>
+            </NavLink>
+            <NavLink
+              to="/UsahaMitra"
+              className={({ isActive }) =>
+                isActive ? "bg-primary1 text-white rounded-2xl" : ""
+              }
+            >
+              <ListItem className="hover:bg-primary1 rounded-2xl focus:bg-transparent">
+                <ListItemPrefix>
+                  <BuildingStorefrontIcon className="h-5 w-5" />
+                </ListItemPrefix>
+                Daftar Usaha Mitra
               </ListItem>
             </NavLink>
             <NavLink

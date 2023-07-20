@@ -1,17 +1,18 @@
-import React from 'react'
-import SidebarUMKM from '../../../components/SidebarUMKM'
+import React, { useState } from "react";
+import SidebarUMKM from "../../../components/SidebarUMKM";
+import FormAddProduct from "../../../components/DashboardUMKM/AddProductUMKM";
 
 const TambahProduk = () => {
   return (
-    <div className="flex page-container">
-      <SidebarUMKM />
-      <main className="flex-grow">
-        <div className="flex justify">
-          <p>TambahProduk</p>
-        </div>
-      </main>
+    <div className="bg-gray-300 min-h-screen">
+      <div className="flex page-container max-w-screen">
+        <SidebarUMKM />
+        <main className="flex-grow container mx-auto flex justify-center items-center">
+          <FormAddProduct />
+        </main>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default TambahProduk
+export default TambahProduk;
