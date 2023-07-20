@@ -39,7 +39,11 @@ export default function TableNews() {
     };
     try {
       const response = await fetch(options);
-      setTableRows(response.data);
+      if (Array.isArray(response.data)) {
+        setTableRows(response.data);
+      } else {
+        setTableRows([]);
+      }
     } catch (err) {
       alert(JSON.stringify(err));
     }
@@ -79,11 +83,15 @@ export default function TableNews() {
       <CardBody className="overflow-scroll">
         {isLoading ? (
           <Loading />
+        ) : tableRows.length === 0 ? (
+          <div className="text-center py-8 text-blue-gray-400">
+            Data kosong
+          </div>
         ) : (
           <table className="w-full table-auto text-left">
             <thead>
               <tr>
-                {TABLE_HEAD.map((head, index) => (
+                {TABLE_HEAD.map((head) => (
                   <th
                     key={head}
                     className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4"
@@ -101,7 +109,7 @@ export default function TableNews() {
             </thead>
             <tbody>
               {tableRows.map(
-                ({ id, image, title, posted_date, status }, index) => {
+                ({ id, url_image, title, posted_date, status }, index) => {
                   const rowNumber = index + 1;
                   const isLast = index === tableRows.length - 1;
                   const classes = isLast
@@ -109,46 +117,24 @@ export default function TableNews() {
                     : "p-4 border-b border-blue-gray-50";
                   return (
                     <tr key={index}>
-                      {/* nomor berita */}
                       <td className={classes}>
-                        <Typography
-                          variant="small"
-                          color="blue-gray"
-                          className="font-bold"
-                        >
-                          {rowNumber}
-                        </Typography>
+                        <span className="font-bold">{rowNumber}</span>
                       </td>
-                      {/* title berita */}
                       <td className={classes}>
-                        <img
-                          src={image}
-                          className="w-48 h-30 rounded-xl"
-                        />
+                        <img src={url_image} className="w-48 h-30 rounded-xl" />
                       </td>
-                      {/* judul berita */}
                       <td className={classes}>
-                        <Typography
-                          variant="small"
-                          color="blue-gray"
-                          className="font-normal leading-none opacity-100"
-                        >
+                        <span className="font-normal leading-none opacity-100">
                           {title}
-                        </Typography>
+                        </span>
                       </td>
-                      {/* tanggal berita */}
                       <td className={classes}>
-                        <Typography
-                          variant="small"
-                          color="blue-gray"
-                          className="font-normal leading-none opacity-100"
-                        >
+                        <span className="font-normal leading-none opacity-100">
                           {posted_date
                             ? format(new Date(posted_date), "dd MMM yyyy")
                             : "-"}
-                        </Typography>
+                        </span>
                       </td>
-                      {/* status berita */}
                       <td className={classes}>
                         <div className="w-max">
                           <Chip
@@ -171,7 +157,6 @@ export default function TableNews() {
                           />
                         </div>
                       </td>
-                      {/* action berita */}
                       <td className={classes}>
                         <div className="flex gap-2">
                           <Tooltip content="Edit ">
@@ -202,6 +187,7 @@ export default function TableNews() {
             </tbody>
           </table>
         )}
+
         {isSuccess && (
           <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mt-4">
             <strong className="font-bold">Success:</strong>
