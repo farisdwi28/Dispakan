@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import SidebarUMKM from "../../../components/SidebarUMKM";
-import { ChevronDownIcon } from "@heroicons/react/24/solid";
+import { ChevronDownIcon, CameraIcon } from "@heroicons/react/24/solid";
 import { Tooltip, Switch } from "@material-tailwind/react";
 import { images } from "../../../constans";
 import ButtonSubmit from "../../../components/ButtonSubmit";
@@ -10,6 +10,11 @@ const PengaturanProfilUMKM = () => {
 
   const handleDropdownToggle = () => {
     setIsOpen(!isOpen);
+  };
+
+  // const handle image upload
+  const handleFileChange = event => {
+    // Logika
   };
 
   return (
@@ -35,11 +40,25 @@ const PengaturanProfilUMKM = () => {
           {/* content */}
           <div className="bg-white overflow-hidden transition-all duration-500 max-h-0 peer-checked:max-h-screen">
             <div className="p-4 flex flex-col justify-center">
-              <div className="flex flex-col items-center">
-                <img
-                  src={images.banner1}
-                  className="rounded-full flex justify-center w-[114px] h-[114px] mt-10"
+              <div className="flex flex-col items-center relative">
+                <input
+                  type="file"
+                  id="uploadImage"
+                  className="hidden"
+                  accept="image/*"
+                  onChange={handleFileChange}
                 />
+                <label htmlFor="uploadImage" className="cursor-pointer">
+                  <div className="relative">
+                    <img
+                      src={images.banner1}
+                      className="rounded-full flex justify-center w-[114px] h-[114px] mt-10 hover:shadow-md transition duration-300"
+                    />
+                    <div className="absolute -top-2 flex items-center justify-center bg-white bg-opacity-20 rounded-full w-8 h-8 mt-2 shadow-md hover:bg-black-100 cursor-pointer w-[114px] h-[114px]">
+                      <CameraIcon className="h-8 w-8 text-white" />
+                    </div>
+                  </div>
+                </label>
                 <p className="mt-4 text-center text-sm text-gray-600">
                   Gambar yang diunggah harus berukuran lebar 500px dan panjang
                   500px

@@ -6,6 +6,7 @@ import { images } from "../../../constans";
 import ButtonSubmit from "../../../components/ButtonSubmit";
 import { getToken } from "../../../utils/storage";
 import fetch from "../../../utils/fetch";
+import { CameraIcon } from "@heroicons/react/24/solid";
 
 const Profil = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -34,12 +35,12 @@ const Profil = () => {
       method: "POST",
       url: `${process.env.REACT_APP_API_URL}/auth/signup/bumdes`,
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`
       },
       data: {
         email: akunData.email,
         password: akunData.password
-      },
+      }
     };
 
     try {
@@ -60,7 +61,7 @@ const Profil = () => {
       method: "POST",
       url: `${process.env.REACT_APP_API_URL}/user/bumdes/profil`,
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`
       },
       data: {
         id_bumdes_umkm: adminData.id_bumdes_umkm,
@@ -70,7 +71,7 @@ const Profil = () => {
         file: adminData.file,
         email: akunData.email,
         password: akunData.password
-      },
+      }
     };
 
     try {
@@ -94,12 +95,12 @@ const Profil = () => {
       method: "POST",
       url: `${process.env.REACT_APP_API_URL}/user/bumdes/password`,
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`
       },
       data: {
         email: akunData.email,
         password: akunData.password
-      },
+      }
     };
 
     try {
@@ -122,15 +123,15 @@ const Profil = () => {
       method: "GET",
       url: `${process.env.REACT_APP_API_URL}/user/bumdes`,
       headers: {
-        Authorization: `Bearer ${token}`,
-      },
+        Authorization: `Bearer ${token}`
+      }
     };
-  
+
     try {
       const response = await fetch(options);
       if (response.success) {
         const adminData = response.data.find(
-          (admin) => admin.email === akunData.email
+          admin => admin.email === akunData.email
         );
         setAdminData(adminData);
       }
@@ -138,7 +139,7 @@ const Profil = () => {
       console.error("Terjadi kesalahan saat mengambil data admin:", error);
     }
   };
-  
+
   useEffect(() => {
     fetchAdminData();
   }, []);
@@ -146,6 +147,11 @@ const Profil = () => {
   useEffect(() => {
     fetchAdminData();
   }, []);
+
+  // const handle image upload
+  const handleFileChange = event => {
+    // Logika
+  };
 
   return (
     <div className="bg-gray-300 min-h-screen">
@@ -171,11 +177,25 @@ const Profil = () => {
             {/* content */}
             <div className="bg-white overflow-hidden transition-all duration-500 max-h-0 peer-checked:max-h-screen">
               <div className="p-4 flex flex-col justify-center">
-                <div className="flex flex-col items-center">
-                  <img
-                    src={images.banner1}
-                    className="rounded-full flex justify-center w-[114px] h-[114px] mt-10"
+                <div className="flex flex-col items-center relative">
+                  <input
+                    type="file"
+                    id="uploadImage"
+                    className="hidden"
+                    accept="image/*"
+                    onChange={handleFileChange}
                   />
+                  <label htmlFor="uploadImage" className="cursor-pointer">
+                    <div className="relative">
+                      <img
+                        src={images.banner1}
+                        className="rounded-full flex justify-center w-[114px] h-[114px] mt-10 hover:shadow-md transition duration-300"
+                      />
+                      <div className="absolute -top-2 flex items-center justify-center bg-white bg-opacity-20 rounded-full w-8 h-8 mt-2 shadow-md hover:bg-black-100 cursor-pointer w-[114px] h-[114px]">
+                        <CameraIcon className="h-8 w-8 text-white" />
+                      </div>
+                    </div>
+                  </label>
                   <p className="mt-4 text-center text-sm text-gray-600">
                     Gambar yang diunggah harus berukuran lebar 500px dan panjang
                     500px
@@ -197,7 +217,7 @@ const Profil = () => {
                         type="text"
                         placeholder="Desa Sukapura"
                         value={adminData.name}
-                        onChange={(e) =>
+                        onChange={e =>
                           setAdminData({ ...adminData, name: e.target.value })
                         }
                       />
@@ -215,8 +235,11 @@ const Profil = () => {
                         type="text"
                         placeholder="Jalan Sukapura"
                         value={adminData.address}
-                        onChange={(e) =>
-                          setAdminData({ ...adminData, address: e.target.value })
+                        onChange={e =>
+                          setAdminData({
+                            ...adminData,
+                            address: e.target.value
+                          })
                         }
                       />
                     </div>
@@ -233,7 +256,7 @@ const Profil = () => {
                         type="text"
                         placeholder="0822249823"
                         value={adminData.phone}
-                        onChange={(e) =>
+                        onChange={e =>
                           setAdminData({ ...adminData, phone: e.target.value })
                         }
                       />
@@ -251,7 +274,7 @@ const Profil = () => {
                         type="text"
                         placeholder="admin@gmail.com"
                         value={akunData.email}
-                        onChange={(e) =>
+                        onChange={e =>
                           setAkunData({ ...akunData, email: e.target.value })
                         }
                       />
@@ -299,7 +322,7 @@ const Profil = () => {
                         type="password"
                         placeholder="Password"
                         value={akunData.password}
-                        onChange={(e) =>
+                        onChange={e =>
                           setAkunData({ ...akunData, password: e.target.value })
                         }
                       />
@@ -317,7 +340,7 @@ const Profil = () => {
                         type="password"
                         placeholder="Password"
                         value={akunData.password}
-                        onChange={(e) =>
+                        onChange={e =>
                           setAkunData({ ...akunData, password: e.target.value })
                         }
                       />
