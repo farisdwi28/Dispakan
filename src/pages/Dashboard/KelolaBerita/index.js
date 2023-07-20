@@ -4,7 +4,6 @@ import { images } from "../../../constans";
 import InputSearch from "../../../components/InputSearch";
 import ButtonInputNews from "../../../components/ButtonInputNews";
 import TableNews from "../../../components/TableNews";
-import FormAddMitra from "../../../components/Mitra/FormAddMitra";
 import { clearDataLogin } from "../../../utils/storage";
 import { useNavigate } from "react-router-dom";
 
@@ -74,7 +73,6 @@ const Berita = () => {
             <ButtonInputNews
               text="Buat Berita"
               Header="Buat Berita"
-              Body={<FormAddMitra />}
             />
             <div className="">{/* Show Entries */}</div>
           </div>

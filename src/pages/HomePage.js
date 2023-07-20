@@ -1,12 +1,12 @@
-import React from "react";
-
+import React, {useEffect} from "react";
 import MainLayout from "../components/MainLayout";
 import Carou from "../components/Carou";
 import ProductCard from "../components/ProductCard";
 import NewsCard from "../components/NewsCard";
-
 import images from "../constans/images";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { logPageView } from "../utils/analytics";
+
 
 // dummy card diskon
 const DummyData1 = [
@@ -169,9 +169,16 @@ const DummyData3 = [
 ];
 
 const HomePage = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    logPageView(); // Log the page view when the component mounts or when the location changes
+  }, [location]);
+
   const limitedData = DummyData1.slice(0, 4);
   const limitedData1 = DummyData2.slice(0, 4);
   const limitedData2 = DummyData3.slice(0, 4);
+
   return (
     <MainLayout>
       <section>

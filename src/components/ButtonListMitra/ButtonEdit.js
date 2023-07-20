@@ -9,7 +9,8 @@ import {
   Tooltip,
 } from "@material-tailwind/react";
 import FormBasic from "../../elements/FormBasic";
-import { getToken, getUserData } from "../../utils/storage";
+import { getToken } from "../../utils/storage";
+import { useHistory, useParams } from "react-router-dom";
 import { PencilIcon } from "@heroicons/react/24/solid";
 import Toggle from "../../elements/Switch";
 
@@ -26,9 +27,9 @@ export default function Edit() {
     status: true,
   });
 
-  const handleOpen = (umkmId) => {
+  const handleOpen = (id) => {
     setOpen(!open);
-    setSelectedUmkmId(umkmId);
+    setSelectedUmkmId(id);
   };
 
   const editData = async () => {
@@ -68,6 +69,8 @@ export default function Edit() {
     setIsLoading(false);
   };
 
+  const [dataFetched, setDataFetched] = useState(false);
+
   const fetchUmkmData = async () => {
     if (!selectedUmkmId) return;
 
@@ -90,7 +93,6 @@ export default function Edit() {
       if (response.ok) {
         const data = await response.json();
         if (data && data.data && data.data.length > 0) {
-          // Map API response data to the umkmData state with the correct property names
           const umkm = data.data[0];
           setUmkmData({
             id_owner_umkm: umkm.id,
@@ -99,6 +101,8 @@ export default function Edit() {
             phone: umkm.phone,
             status: umkm.status,
           });
+          setDataFetched(true); 
+          localStorage.setItem("selectedUmkmId", umkm.id);
         } else {
           console.error("No UMKM data found.");
         }
@@ -116,10 +120,8 @@ export default function Edit() {
     fetchUmkmData();
   }, [selectedUmkmId]);
 
-  // Update the umkmData state whenever the selectedUmkmId changes
   useEffect(() => {
-    // If selectedUmkmId is empty, reset umkmData to default values
-    if (!selectedUmkmId) {
+    if (!selectedUmkmId || !dataFetched) {
       setUmkmData({
         id_owner_umkm: "",
         name: "",
@@ -128,8 +130,7 @@ export default function Edit() {
         status: true,
       });
     }
-  }, [selectedUmkmId]);
-
+  }, [selectedUmkmId, dataFetched]);
   return (
     <Fragment>
       <Tooltip content="Edit">

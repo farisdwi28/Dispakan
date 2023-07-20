@@ -83,6 +83,8 @@ const DetailProduct = () => {
     setPreviewImage(src);
   };
 
+
+
   const limitedData2 = DummyData3.slice(0, 4);
 
   return (

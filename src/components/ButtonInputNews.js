@@ -5,64 +5,51 @@ import {
   Dialog,
   DialogHeader,
   DialogBody,
-  DialogFooter
+  DialogFooter,
 } from "@material-tailwind/react";
 import { getToken } from "../utils/storage";
 import fetch from "../utils/fetch";
 import Loading from "../elements/Spinner";
+import { useForm } from "react-hook-form"; // Import useForm hook
 
 export default function ButtonInputNews(props) {
   const [buttonContent, setButtonContent] = useState("Simpan");
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedFile] = useState(null);
-  const { text, Header } = props;
   const [size, setSize] = useState(null);
 
-  const handleOpen = value => setSize(value);
+  const handleOpen = (value) => setSize(value);
 
-  const handleFileChange = e => {
+  // Use the useForm hook
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setValue,
+  } = useForm();
+
+  const handleFileChange = (e) => {
     const file = e.target.files[0];
-    setFormValues({
-      ...formValues,
-      file: file,
-    });
+    setValue("file", file); // Use setValue to set the form value for "file"
   };
 
-  const [formValues, setFormValues] = useState({
-    title: "",
-    posted_date: "",
-    file: "",
-    description: "",
-
-  });
-
-  console.log(formValues);
-
-  const handleChange = e => {
-    setFormValues({
-      ...formValues,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const addData = async e => {
-    e.preventDefault();
+  const onSubmit = async (data) => {
     setIsLoading(true);
     const token = getToken();
 
     const formData = new FormData();
-    formData.append("title", formValues.title);
-    formData.append("posted_date", formValues.posted_date);
-    formData.append("description", formValues.description);
-    formData.append("file", selectedFile);
+    formData.append("title", data.title);
+    formData.append("posted_date", data.posted_date);
+    formData.append("description", data.description);
+    formData.append("file", data.file);
 
     const options = {
       method: "POST",
       url: `${process.env.REACT_APP_API_URL}/news/upload`,
       headers: {
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${token}`,
+        "Content-type": "multipart/form-data",
       },
-      data: formData
+      data: formData,
     };
 
     try {
@@ -88,14 +75,13 @@ export default function ButtonInputNews(props) {
           onClick={() => handleOpen("lg")}
         >
           <PlusIcon className="w-5" />
-          {text ? text : "Input"}
+          {props.text ? props.text : "Input"}
         </Button>
       </div>
       <Dialog open={size === "lg"} handler={handleOpen}>
-        <DialogHeader>{Header}</DialogHeader>
-        <DialogBody divider>
-          {/* form  seperti login dan button*/}
-          <form className="w-90">
+        <DialogHeader>{props.Header}</DialogHeader>
+        <form onSubmit={handleSubmit(onSubmit)}> {/* Move the form tag here */}
+          <DialogBody divider>
             {/* title */}
             <div className="my-4 flex justify-between items-center">
               <label
@@ -106,8 +92,7 @@ export default function ButtonInputNews(props) {
               </label>
               <input
                 name="title"
-                value={formValues.title}
-                onChange={handleChange}
+                {...register("title", { required: true })}
                 className="w-full text-black border-2 border-gray-300 rounded-md px-4 py-2 mt-2 focus:outline-none focus:border-primary1"
               />
             </div>
@@ -121,8 +106,7 @@ export default function ButtonInputNews(props) {
               </label>
               <input
                 name="posted_date"
-                value={formValues.posted_date}
-                onChange={handleChange}
+                {...register("posted_date", { required: true })}
                 className="w-full text-black border-2 border-gray-300 rounded-md px-4 py-2 mt-2 focus:outline-none focus:border-primary1"
                 type="date"
               />
@@ -151,31 +135,30 @@ export default function ButtonInputNews(props) {
                 </span>
                 <textarea
                   name="description"
-                  value={formValues.description}
-                  onChange={handleChange}
+                  {...register("description", { required: true })}
                   className="block w-full px-4 py-2 mt-2 border-2 border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-primary1 text-black"
                   rows="5"
                 ></textarea>
               </label>
             </div>
-          </form>
-        </DialogBody>
-        <DialogFooter>
-          <Button
-            variant="text"
-            color="red"
-            onClick={() => handleOpen(null)}
-            className="mr-1"
-          >
-            <span>Cancel</span>
-          </Button>
-          <Button
-            className="bg-primary1 text-white hover:shadow-lg focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none shadow-none hover:shadow-none"
-            onClick={addData}
-          >
-            {isLoading ? <Loading /> : buttonContent}
-          </Button>
-        </DialogFooter>
+          </DialogBody>
+          <DialogFooter>
+            <Button
+              variant="text"
+              color="red"
+              onClick={() => handleOpen(null)}
+              className="mr-1"
+            >
+              <span>Cancel</span>
+            </Button>
+            <Button
+              className="bg-primary1 text-white hover:shadow-lg focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none shadow-none hover:shadow-none"
+              type="submit" // Add type="submit" to trigger form submission
+            >
+              {isLoading ? <Loading /> : buttonContent}
+            </Button>
+          </DialogFooter>
+        </form>
       </Dialog>
     </Fragment>
   );
