@@ -40,7 +40,11 @@ export default function TableUMKM() {
     };
     try {
       const response = await fetch(options);
-      setTableRows(response.data);
+      if (Array.isArray(response.data)) {
+        setTableRows(response.data);
+      } else {
+        setTableRows([]);
+      }
     } catch (err) {
       alert(JSON.stringify(err));
     }
@@ -80,6 +84,8 @@ export default function TableUMKM() {
       <CardBody className="overflow-scroll">
         {isLoading ? (
           <Loading />
+        ) : tableRows.length === 0 ? (
+          <div className="text-center py-8 text-blue-gray-400">Data kosong</div>
         ) : (
           <table className="w-full table-auto text-left">
             <thead>
@@ -185,7 +191,9 @@ export default function TableUMKM() {
                               <EyeIcon className="h-4 w-4" />
                             </IconButton>
                           </Tooltip>
-                          <ButtonEdit />
+                          <ButtonEdit 
+                          umkmData = {tableRows[index]}
+                          />
                           <Tooltip content="Delete">
                             <IconButton
                               variant="text"
@@ -207,9 +215,7 @@ export default function TableUMKM() {
         {isSuccess && (
           <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mt-4">
             <strong className="font-bold">Success:</strong>
-            <span className="block sm:inline">
-              Data successfully deleted!
-            </span>
+            <span className="block sm:inline">Data successfully deleted!</span>
           </div>
         )}
       </CardBody>

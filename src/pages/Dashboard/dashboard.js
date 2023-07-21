@@ -46,7 +46,7 @@ const Dashboard = () => {
     } catch (err) {
       alert(JSON.stringify(err));
     }
-  };
+  };  
 
   const DummyData4 = [
     {

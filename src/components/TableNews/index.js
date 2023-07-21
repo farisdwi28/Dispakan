@@ -12,6 +12,7 @@ import { getToken } from "../../utils/storage";
 import fetch from "../../utils/fetch";
 import Loading from "../../elements/Spinner";
 import { format } from "date-fns";
+import EditNews from "../ButtonKelolaBerita/ButtonEditBerita";
 
 const TABLE_HEAD = [
   "No Berita",
@@ -164,11 +165,7 @@ export default function TableNews() {
                               <EyeIcon className="h-4 w-4" />
                             </IconButton>
                           </Tooltip>
-                          <Tooltip content="Edit ">
-                            <IconButton variant="text" color="blue-gray">
-                              <PencilIcon className="h-4 w-4" />
-                            </IconButton>
-                          </Tooltip>
+                          <EditNews />
                           <Tooltip content="Delete">
                             <IconButton
                               variant="text"
