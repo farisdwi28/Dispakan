@@ -1,9 +1,22 @@
+import React from "react";
 import { Switch } from "@material-tailwind/react";
- 
-export default function Toogle() {
+
+const Toggle = ({ label, value, onChange }) => {
   return (
-    <div className="flex w-max gap-4">
-      <Switch id="green" color="green" defaultChecked />
+    <div className="flex items-center py-2">
+      <p className="my-auto w-[200px] font-medium text-xl capitalize w-64 ">
+        {label}
+      </p>
+      <div>
+        <Switch
+          id="green"
+          color="green"
+          defaultChecked={value}
+          onChange={(e) => onChange(e.target.checked)}
+        />
+      </div>
     </div>
   );
-}
+};
+
+export default Toggle;

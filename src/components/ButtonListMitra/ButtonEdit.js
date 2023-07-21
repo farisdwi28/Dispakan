@@ -10,26 +10,24 @@ import {
 } from "@material-tailwind/react";
 import FormBasic from "../../elements/FormBasic";
 import { getToken } from "../../utils/storage";
-import { useHistory, useParams } from "react-router-dom";
 import { PencilIcon } from "@heroicons/react/24/solid";
 import Toggle from "../../elements/Switch";
+import fetch from "../../utils/fetch";
 
-export default function Edit() {
+export default function Edit(props) {
   const [open, setOpen] = useState(false);
-  const [selectedUmkmId, setSelectedUmkmId] = useState("");
   const [buttonContent, setButtonContent] = useState("Simpan");
   const [isLoading, setIsLoading] = useState(false);
   const [umkmData, setUmkmData] = useState({
-    id_owner_umkm: "",
-    name: "",
-    address: "",
-    phone: "",
-    status: true,
+    id_owner_umkm: props.umkmData.id,
+    name: props.umkmData.name,
+    address: props.umkmData.address,
+    phone: props.umkmData.phone,
+    status: props.umkmData.status,
   });
 
-  const handleOpen = (id) => {
+  const handleOpen = () => {
     setOpen(!open);
-    setSelectedUmkmId(id);
   };
 
   const editData = async () => {
@@ -37,108 +35,36 @@ export default function Edit() {
     const token = getToken();
     const options = {
       method: "POST",
-      url: `${process.env.REACT_APP_API_URL}/umkm/profile/${selectedUmkmId}`,
+      url: `${process.env.REACT_APP_API_URL}/user/umkm/profil`,
       headers: {
         Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json", // Tambahkan header Content-Type untuk POST request
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({
+      data: {
+        id_owner_umkm: umkmData.id_owner_umkm,
         name: umkmData.name,
         address: umkmData.address,
         phone: umkmData.phone,
         status: umkmData.status,
-      }),
-    };
-
-    try {
-      const response = await fetch(options.url, {
-        method: options.method,
-        headers: options.headers,
-        body: options.body,
-      });
-
-      if (response.ok) {
-        setButtonContent("Simpan");
-      } else {
-        console.error("Failed to edit UMKM data.");
-      }
-    } catch (error) {
-      console.error("Error editing UMKM data:", error);
-    }
-
-    setIsLoading(false);
-  };
-
-  const [dataFetched, setDataFetched] = useState(false);
-
-  const fetchUmkmData = async () => {
-    if (!selectedUmkmId) return;
-
-    setIsLoading(true);
-    const token = getToken();
-    const options = {
-      method: "GET",
-      url: `${process.env.REACT_APP_API_URL}/user/umkm/${selectedUmkmId}`,
-      headers: {
-        Authorization: `Bearer ${token}`,
       },
     };
 
-    try {
-      const response = await fetch(options.url, {
-        method: options.method,
-        headers: options.headers,
-      });
+    console.log(options);
 
-      if (response.ok) {
-        const data = await response.json();
-        if (data && data.data && data.data.length > 0) {
-          const umkm = data.data[0];
-          setUmkmData({
-            id_owner_umkm: umkm.id,
-            name: umkm.name,
-            address: umkm.address,
-            phone: umkm.phone,
-            status: umkm.status,
-          });
-          setDataFetched(true); 
-          localStorage.setItem("selectedUmkmId", umkm.id);
-        } else {
-          console.error("No UMKM data found.");
-        }
-      } else {
-        console.error("Failed to fetch UMKM data.");
-      }
-    } catch (error) {
-      console.error("Error fetching UMKM data:", error);
+    try {
+      await fetch(options);
+      window.location.reload(true);
+    } catch (err) {
+      alert(JSON.stringify(err));
     }
 
     setIsLoading(false);
   };
 
-  useEffect(() => {
-    fetchUmkmData();
-  }, [selectedUmkmId]);
-
-  useEffect(() => {
-    if (!selectedUmkmId || !dataFetched) {
-      setUmkmData({
-        id_owner_umkm: "",
-        name: "",
-        address: "",
-        phone: "",
-        status: true,
-      });
-    }
-  }, [selectedUmkmId, dataFetched]);
   return (
     <Fragment>
       <Tooltip content="Edit">
-        <IconButton
-          variant="text"
-          color="blue-gray"
-          onClick={() => handleOpen(selectedUmkmId)}
-        >
+        <IconButton variant="text" color="blue-gray" onClick={handleOpen}>
           <PencilIcon className="h-4 w-4" />
         </IconButton>
       </Tooltip>
@@ -178,7 +104,8 @@ export default function Edit() {
             }
           />
           <Toggle
-            checked={umkmData.status}
+            label="Status"
+            value={umkmData.status}
             onChange={(value) => setUmkmData({ ...umkmData, status: value })}
           />
         </DialogBody>
@@ -186,7 +113,7 @@ export default function Edit() {
           <Button
             variant="text"
             color="red"
-            onClick={() => handleOpen("")} // Reset selectedUmkmId to empty string to clear form on cancel
+            onClick={() => handleOpen("")}
             className="mr-1"
           >
             <span>Cancel</span>
