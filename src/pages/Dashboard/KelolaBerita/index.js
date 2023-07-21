@@ -4,7 +4,7 @@ import { images } from "../../../constans";
 import InputSearch from "../../../components/InputSearch";
 import ButtonInputNews from "../../../components/ButtonInputNews";
 import TableNews from "../../../components/TableNews";
-import { clearDataLogin } from "../../../utils/storage";
+import { clearDataLogin, getUserData } from "../../../utils/storage";
 import { useNavigate } from "react-router-dom";
 
 const Berita = () => {
@@ -41,7 +41,7 @@ const Berita = () => {
                     src={images.profil1}
                     alt="Profile"
                   />
-                  <span className="ml-2">Desa Sukapura</span>
+                  <span className="ml-2">{getUserData().name || "Desa Sukapura"}</span>
                   <svg
                     className={`w-4 h-4 ml-2 transition-transform ${
                       isOpen ? "transform rotate-180" : ""
