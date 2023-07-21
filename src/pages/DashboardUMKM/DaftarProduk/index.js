@@ -4,7 +4,7 @@ import { images } from "../../../constans";
 import InputSearch from "../../../components/InputSearch";
 import ButtonExcel from "../../../components/ButtonExel";
 import TableProductUMKM from "../../../components/DashboardUMKM/TableProduct";
-import { clearDataLogin } from "../../../utils/storage";
+import { clearDataLogin, getUserData } from "../../../utils/storage";
 import { useNavigate } from "react-router-dom";
 
 const DaftarProdukUMKM = () => {
@@ -41,7 +41,7 @@ const DaftarProdukUMKM = () => {
                     src={images.profil1}
                     alt="Profile"
                   />
-                  <span className="ml-2">Mak Pingah</span>
+                  <span className="ml-2">{getUserData().name || "-"}</span>
                   <svg
                     className={`w-4 h-4 ml-2 transition-transform ${
                       isOpen ? "transform rotate-180" : ""
