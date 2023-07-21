@@ -5,7 +5,7 @@ import Productchart from "../../components/GraphicChart/ProductChart";
 import { Button } from "@material-tailwind/react";
 import Blogchart from "../../components/GraphicChart/BlogChart";
 import BarChart from "../../components/GraphicChart/BarChart";
-import { clearDataLogin } from "../../utils/storage";
+import { clearDataLogin, getUserData } from "../../utils/storage";
 import { useNavigate } from "react-router-dom";
 
 const DashboardUMKM = () => {
@@ -78,7 +78,7 @@ const DashboardUMKM = () => {
                   src={images.profil1}
                   alt="Profile"
                 />
-                <span className="ml-2">Makpingah</span>
+                <span className="ml-2">{getUserData().name || "-"}</span>
                 <svg
                   className={`w-4 h-4 ml-2 transition-transform ${
                     isOpen ? "transform rotate-180" : ""

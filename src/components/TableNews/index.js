@@ -165,7 +165,9 @@ export default function TableNews() {
                               <EyeIcon className="h-4 w-4" />
                             </IconButton>
                           </Tooltip>
-                          <EditNews />
+                          <EditNews 
+                          dataNews = {tableRows[index]}
+                          />
                           <Tooltip content="Delete">
                             <IconButton
                               variant="text"

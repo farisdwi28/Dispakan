@@ -53,6 +53,7 @@ export default function Edit(props) {
 
     try {
       await fetch(options);
+      setButtonContent("Simpan")
       window.location.reload(true);
     } catch (err) {
       alert(JSON.stringify(err));

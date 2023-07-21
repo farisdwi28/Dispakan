@@ -10,7 +10,7 @@ import {
 import { getToken } from "../utils/storage";
 import fetch from "../utils/fetch";
 import Loading from "../elements/Spinner";
-import { useForm } from "react-hook-form"; // Import useForm hook
+import { useForm } from "react-hook-form"; 
 
 export default function ButtonInputNews(props) {
   const [buttonContent, setButtonContent] = useState("Simpan");
@@ -19,7 +19,7 @@ export default function ButtonInputNews(props) {
 
   const handleOpen = (value) => setSize(value);
 
-  // Use the useForm hook
+  
   const {
     register,
     handleSubmit,
@@ -29,7 +29,7 @@ export default function ButtonInputNews(props) {
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    setValue("file", file); // Use setValue to set the form value for "file"
+    setValue("file", file); 
   };
 
   const onSubmit = async (data) => {
@@ -53,12 +53,11 @@ export default function ButtonInputNews(props) {
     };
 
     try {
-      const response = await fetch(options);
-      if (response.success) {
-        if (window.confirm("Apakah data telah sesuai?")) {
-          setButtonContent("Sukses Menyimpan!");
-          window.location.reload(true);
-        }
+      await fetch(options);
+      if (window.confirm("Apakah data telah sesuai?")) {
+        setButtonContent("Sukses Menyimpan!");
+        window.location.reload(true);
+
       }
     } catch (err) {
       alert(JSON.stringify(err));
