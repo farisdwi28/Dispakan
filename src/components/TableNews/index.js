@@ -166,7 +166,7 @@ export default function TableNews() {
                             </IconButton>
                           </Tooltip>
                           <EditNews 
-                          dataNews = {tableRows[index]}
+                          prev = {tableRows[index]}
                           />
                           <Tooltip content="Delete">
                             <IconButton
