@@ -7,11 +7,13 @@ import {
   DialogBody,
   DialogFooter,
   IconButton,
+  Switch,
 } from "@material-tailwind/react";
 import { getToken } from "../../utils/storage";
 import fetch from "../../utils/fetch";
 import Loading from "../../elements/Spinner";
 import { useForm } from "react-hook-form";
+import Toggle from "../../elements/Switch";
 
 export default function EditNews(props) {
   const [buttonContent, setButtonContent] = useState("Simpan");
@@ -31,6 +33,7 @@ export default function EditNews(props) {
       title: props.prev.title,
       posted_date: new Date(new Date(props.prev.posted_date).toString()).toISOString().split('T')[0],
       description: props.prev.description,
+      status: props.prev.status
     }
   });
 
@@ -49,6 +52,7 @@ export default function EditNews(props) {
     formData.append("title", data.title);
     formData.append("posted_date", data.posted_date);
     formData.append("description", data.description);
+    formData.append("status", data.status);
     formData.append("file", data.file);
 
     const options = {
@@ -127,6 +131,19 @@ export default function EditNews(props) {
                 onChange={handleFileChange}
                 className="w-full file:bg-gradient-to-b file:from-primary1 file:to-amber-500 file:px-6 file:py-3 file:n-5 file:border-none file:rounded-2xl file:text-white file:cursor-pointer file:shadow-lg file:shadow-amber-500/50 text-black/80 rounded-2xl cursor-pointer"
               />
+            </div>
+            <div className="my-4 flex justify-left items-center">
+              <label
+                htmlFor="name"
+                className="block font-medium text-lg text-black mr-10 w-48"
+              >Aktif</label>
+              <Switch defaultChecked={props.prev.status} {...register("status")}/>
+              {/* <input
+                name="posted_date"
+                {...register("posted_date", { required: true })}
+                className="w-full text-black border-2 border-gray-300 rounded-md px-4 py-2 mt-2 focus:outline-none focus:border-primary1"
+                type="date"
+              /> */}
             </div>
             {/* Isi Berita */}
             <div className="mb-2">
