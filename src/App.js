@@ -16,6 +16,7 @@ import Berita from "./pages/Dashboard/KelolaBerita";
 import Profil from "./pages/Dashboard/PengaturanProfil";
 import Notifikasi from "./pages/Dashboard/Notifikasi";
 import DetailProduct from "./pages/DetailProduct";
+import DetailBerita from "./pages/DetailBerita";
 import TambahProduk from "./pages/DashboardUMKM/TambahProduk";
 import PengaturanProfilUMKM from "./pages/DashboardUMKM/PengaturanProfile";
 import DaftarProdukUMKM from "./pages/DashboardUMKM/DaftarProduk";
@@ -124,6 +125,7 @@ export default function App() {
           }
         />
         <Route path="/DetailProduct" element={<DetailProduct />} />
+        <Route path="/DetailBerita" element={<DetailBerita />} />
         <Route
           path="/TambahProdukUMKM"
           element={

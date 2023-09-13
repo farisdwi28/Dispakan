@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import MainLayout from "../components/MainLayout";
 import Carou from "../components/Carou";
 import ProductCard from "../components/ProductCard";
@@ -6,7 +6,6 @@ import NewsCard from "../components/NewsCard";
 import images from "../constans/images";
 import { Link, useLocation } from "react-router-dom";
 import { logPageView } from "../utils/analytics";
-
 
 // dummy card diskon
 const DummyData1 = [
@@ -18,7 +17,7 @@ const DummyData1 = [
     owner: "Ainun Cake",
     address: "Desa Sukapura",
     like: 20,
-    value: 5,
+    value: 5
   },
   {
     id: 2,
@@ -28,7 +27,7 @@ const DummyData1 = [
     owner: "Makpingah",
     address: "Desa Sukapura",
     like: 20,
-    value: 5,
+    value: 5
   },
   {
     id: 3,
@@ -38,7 +37,7 @@ const DummyData1 = [
     owner: "Boboko Sundase Snack",
     address: "Desa Sukapura",
     like: 20,
-    value: 2,
+    value: 2
   },
   {
     id: 4,
@@ -48,7 +47,7 @@ const DummyData1 = [
     owner: "Boboko Sundase Snack",
     address: "Desa Sukapura",
     like: 20,
-    value: 5,
+    value: 5
   },
   {
     id: 5,
@@ -58,8 +57,8 @@ const DummyData1 = [
     owner: "Boboko Sundase Snack",
     address: "Desa Sukapura",
     like: 20,
-    value: 5,
-  },
+    value: 5
+  }
 ];
 // datadummy card tidak diskon
 const DummyData2 = [
@@ -71,7 +70,7 @@ const DummyData2 = [
     owner: "Ainun Cake",
     address: "Desa Sukapura",
     like: 20,
-    value: 0,
+    value: 0
   },
   {
     id: 2,
@@ -81,7 +80,7 @@ const DummyData2 = [
     owner: "Makpingah",
     address: "Desa Sukapura",
     like: 20,
-    value: 0,
+    value: 0
   },
   {
     id: 3,
@@ -91,7 +90,7 @@ const DummyData2 = [
     owner: "Boboko Sundase Snack",
     address: "Desa Sukapura",
     like: 20,
-    value: 0,
+    value: 0
   },
   {
     id: 4,
@@ -101,7 +100,7 @@ const DummyData2 = [
     owner: "Boboko Sundase Snack",
     address: "Desa Sukapura",
     like: 20,
-    value: 0,
+    value: 0
   },
   {
     id: 5,
@@ -111,8 +110,8 @@ const DummyData2 = [
     owner: "Boboko Sundase Snack",
     address: "Desa Sukapura",
     like: 20,
-    value: 0,
-  },
+    value: 0
+  }
 ];
 //datadummy card UMKM All
 const DummyData3 = [
@@ -124,7 +123,7 @@ const DummyData3 = [
     owner: "Ainun Cake",
     address: "Desa Sukapura",
     like: 20,
-    value: 5,
+    value: 5
   },
   {
     id: 2,
@@ -134,7 +133,7 @@ const DummyData3 = [
     owner: "Makpingah",
     address: "Desa Sukapura",
     like: 20,
-    value: 0,
+    value: 0
   },
   {
     id: 3,
@@ -144,7 +143,7 @@ const DummyData3 = [
     owner: "Boboko Sundase Snack",
     address: "Desa Sukapura",
     like: 20,
-    value: 2,
+    value: 2
   },
   {
     id: 4,
@@ -154,7 +153,7 @@ const DummyData3 = [
     owner: "Boboko Sundase Snack",
     address: "Desa Sukapura",
     like: 20,
-    value: 0,
+    value: 0
   },
   {
     id: 5,
@@ -164,8 +163,8 @@ const DummyData3 = [
     owner: "Boboko Sundase Snack",
     address: "Desa Sukapura",
     like: 20,
-    value: 10,
-  },
+    value: 10
+  }
 ];
 
 const HomePage = () => {
@@ -252,7 +251,7 @@ const HomePage = () => {
           {/* Promo Sementara */}
           <Link to="/DetailProduct">
             <div className="flex flex-wrap gap-3 justify-between py-5 m-6">
-              {limitedData.map((data) => (
+              {limitedData.map(data => (
                 <ProductCard key={data.id} {...data} />
               ))}
             </div>
@@ -276,7 +275,7 @@ const HomePage = () => {
           {/* Produk Terlaris Sementara */}
           <Link to="/DetailProduct">
             <div className="flex flex-wrap gap-3 justify-between py-5 m-6">
-              {limitedData1.map((data) => (
+              {limitedData1.map(data => (
                 <ProductCard key={data.id} {...data} />
               ))}
             </div>
@@ -300,7 +299,7 @@ const HomePage = () => {
           {/* Produk UMKM Sementara */}
           <Link to="/DetailProduct">
             <div className="flex flex-wrap gap-3 justify-between py-5 m-6">
-              {limitedData2.map((data) => (
+              {limitedData2.map(data => (
                 <ProductCard key={data.id} {...data} />
               ))}
             </div>
@@ -323,11 +322,13 @@ const HomePage = () => {
           </div>
           {/* Berita Desa Sementara */}
           <div className="flex flex-wrap gap-3 justify-between py-5 m-6">
-            <NewsCard
-              img={images.news1}
-              title="Penilaian Evaluasi Perkemangan Desa/Lomba Desa Tingkat Kabupaten Bandung T.A 2022"
-              description="Desa Sekarpura"
-            />
+            <Link to="/DetailBerita">
+              <NewsCard
+                img={images.news1}
+                title="Penilaian Evaluasi Perkemangan Desa/Lomba Desa Tingkat Kabupaten Bandung T.A 2022"
+                description="Desa Sekarpura"
+              />
+            </Link>
             <NewsCard
               img={images.news2}
               title="Penilaian Evaluasi Perkemangan Desa/Lomba Desa Tingkat Kabupaten Bandung T.A 2022"
