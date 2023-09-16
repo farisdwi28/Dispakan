@@ -49,7 +49,7 @@ export default function FormLogin() {
   return (
     <div className="bg-white object-center rounded-3xl border-2 border-primary3-100 p-4 md:p-8 w-[350px] sm:w-[440px] sm:w-[530px] sm:w-[550px] sm:w-[640px]  md:w-full lg:w-full xl:w-full 2xl:w-full">
       <h2 className="text-3xl font-semibold text-center items-center text-primary1 mb-4">
-        Dispakan.
+        Abdimas.
       </h2>
       <h2 className="text-2xl font-semibold mb-2">Selamat datang kembali</h2>
       <p className="font-medium text-lg text-primary3 md:text-xl mb-6">

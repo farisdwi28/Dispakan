@@ -71,8 +71,8 @@ const Berita = () => {
           <div className="absolute flex gap-2 pt-4">
             <InputSearch placeholder="Cari Berita" width="10" />
             <ButtonInputNews
-              text="Buat Berita"
-              Header="Buat Berita"
+              text="Posting Berita Baru"
+              Header="Posting Berita Baru"
             />
             <div className="">{/* Show Entries */}</div>
           </div>

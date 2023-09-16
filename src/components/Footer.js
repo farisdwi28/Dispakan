@@ -9,7 +9,7 @@ const Footer = () => {
             <div class="mb-6 md:mb-0">
               <a href="#" class="flex items-center">
                 <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white text-[#D36B16]">
-                  Dispakan.
+                  Abdimas.
                 </span>
               </a>
               <p className="text-white mt-2 box-border w-64">

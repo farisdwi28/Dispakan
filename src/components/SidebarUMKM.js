@@ -67,7 +67,7 @@ export default function SidebarUMKM() {
         <Card className="h-full w-full p-4 shadow-xl shadow-blue-gray-900/5">
           <div className="mb-2 p-4">
             <Typography variant="h3" className="text-primary1 text-center">
-              Dispakan.
+              Abdimas.
             </Typography>
           </div>
           <List>

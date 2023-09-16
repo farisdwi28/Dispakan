@@ -42,8 +42,6 @@ export default function EditNews(props) {
     setValue("file", file);
   };
 
-  console.log(props.prev.file)
-
   const onSubmit = async (data) => {
     setIsLoading(true);
     const token = getToken();

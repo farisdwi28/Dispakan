@@ -3,7 +3,6 @@ import Sidebar from "../../../components/Sidebar";
 import { images } from "../../../constans";
 import InputSearch from "../../../components/InputSearch";
 import ButtonExcel from "../../../components/ButtonExel";
-import ButtonInput from "../../../components/ButtonListMitra/ButtonInput";
 import TableUMKM from "../../../components/TableUMKM";
 import { clearDataLogin, getUserData } from "../../../utils/storage";
 import { useNavigate } from "react-router-dom";
@@ -74,9 +73,6 @@ const UMKM = () => {
             </div>
             <div className="w-full md:w-auto">
               <ButtonExcel />
-            </div>
-            <div className="w-full md:w-auto">
-              <ButtonInput text="Tambah Usaha" Header="Tambah Usaha" />
             </div>
             <div className="w-full md:w-auto">{/* Show Entries */}</div>
           </div>

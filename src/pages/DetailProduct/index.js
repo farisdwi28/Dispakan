@@ -92,7 +92,7 @@ const DetailProduct = () => {
       <div className="container mx-auto ">
         {/* // Nav Detail Product */}
         <div className="py-5 flex flex-col gap-4 md:flex-row md:items-center">
-          <h1 className="text-lg font-semibold text-primary1">Dispakan.</h1>
+          <h1 className="text-lg font-semibold text-primary1">Abdimas.</h1>
           <SearchInput />
         </div>
         <div className="py-2">

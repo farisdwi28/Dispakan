@@ -5,7 +5,7 @@ export default function FormRegister() {
   return (
     <div className="bg-white object-center rounded-3xl border-2 border-primary3-100 px-8 py-8">
       <h2 className="text-3xl font-semibold text-center items-center text-primary1">
-        Dispakan.
+        Abdimas.
       </h2>
       <h2 className="text-2xl font-semibold">Selamat datang kembali</h2>
       <p>Daftar akun hanya diperuntukan BUMDES</p>

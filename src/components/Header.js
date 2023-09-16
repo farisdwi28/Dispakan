@@ -9,7 +9,7 @@ const Header = () => {
         <div class="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto p-3">
           <Link to="/" class="flex items-center">
             <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white text-[#D36B16]">
-              Dispakan.
+              Abdimas.
             </span>
           </Link>
           <div class="relative md:order-3 item-center">
