@@ -22,7 +22,6 @@ export default function EditNews(props) {
 
   const handleOpen = (value) => setSize(value);
 
-
   const {
     register,
     handleSubmit,

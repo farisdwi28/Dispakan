@@ -6,13 +6,18 @@ import {
   Chip,
   IconButton,
   Tooltip,
+  DialogBody,
+  DialogHeader,
 } from "@material-tailwind/react";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { getToken } from "../../utils/storage";
 import fetch from "../../utils/fetch";
 import Loading from "../../elements/Spinner";
 import { format } from "date-fns";
 import EditNews from "../ButtonKelolaBerita/ButtonEditBerita";
+import { Dialog } from "@headlessui/react";
+import DetailBerita from "../../pages/DetailBerita";
+import DetailNews from "../DetailBeritaModal";
 
 const TABLE_HEAD = [
   "No Berita",
@@ -27,6 +32,7 @@ export default function TableNews() {
   const [isLoading, setIsLoading] = useState(false);
   const [tableRows, setTableRows] = useState([]);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [isShowDetail, setShowDetail] = useState(false);
 
   const getData = async () => {
     const token = getToken();
@@ -148,28 +154,28 @@ export default function TableNews() {
                               status === true
                                 ? "Active"
                                 : status === false
-                                ? "Inactive"
-                                : "Inactive"
+                                  ? "Inactive"
+                                  : "Inactive"
                             }
                             color={
                               status === true
                                 ? "green"
                                 : status === false
-                                ? "amber"
-                                : "red"
+                                  ? "amber"
+                                  : "red"
                             }
                           />
                         </div>
                       </td>
                       <td className={classes}>
                         <div className="flex gap-2">
-                          <Tooltip content="Edit ">
+                          <Tooltip content="Detail">
                             <IconButton variant="text" color="blue-gray">
-                              <EyeIcon className="h-4 w-4" />
+                              <DetailNews data={tableRows[index]}></DetailNews>
                             </IconButton>
                           </Tooltip>
-                          <EditNews 
-                          prev = {tableRows[index]}
+                          <EditNews
+                            prev={tableRows[index]}
                           />
                           <Tooltip content="Delete">
                             <IconButton
