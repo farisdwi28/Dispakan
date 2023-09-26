@@ -62,6 +62,7 @@ const FormAddMitra = () => {
         phone: umkmData.phone,
         email: umkmData.email,
         password: umkmData.password,
+        active_on: 'sukapura'
       },
     };
     try {

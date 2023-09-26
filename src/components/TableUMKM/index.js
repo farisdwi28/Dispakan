@@ -34,6 +34,9 @@ export default function TableUMKM() {
     const options = {
       method: "GET",
       url: `${process.env.REACT_APP_API_URL}/user/umkm`,
+      params: {
+        active_on: "sukapura"
+      },
       headers: {
         Authorization: `Bearer ${token}`,
       },
