@@ -5,13 +5,14 @@ import {
   CardBody,
   Chip,
   IconButton,
-  Tooltip,
+  Tooltip
 } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import { getToken } from "../../utils/storage";
 import fetch from "../../utils/fetch";
 import Loading from "../../elements/Spinner";
 import ButtonEdit from "../ButtonListMitra/ButtonEdit";
+import DetailMitra from "../DetailMitraModal";
 
 const TABLE_HEAD = [
   "No",
@@ -20,13 +21,14 @@ const TABLE_HEAD = [
   "No Telp",
   "Email",
   "Status",
-  "Action",
+  "Action"
 ];
 
 export default function TableUMKM() {
   const [isLoading, setIsLoading] = useState(false);
   const [tableRows, setTableRows] = useState([]);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [isShowDetail, setShowDetail] = useState(false);
 
   const getData = async () => {
     const token = getToken();
@@ -38,8 +40,8 @@ export default function TableUMKM() {
         active_on: "sukapura"
       },
       headers: {
-        Authorization: `Bearer ${token}`,
-      },
+        Authorization: `Bearer ${token}`
+      }
     };
     try {
       const response = await fetch(options);
@@ -58,15 +60,15 @@ export default function TableUMKM() {
     getData();
   }, []);
 
-  const deleteUMKM = async (id) => {
+  const deleteUMKM = async id => {
     if (window.confirm("Apakah yakin ingin menghapus data mitra ini?")) {
       const token = getToken();
       const options = {
         method: "GET",
         url: `${process.env.REACT_APP_API_URL}/user/delete-umkm/${id}`,
         headers: {
-          Authorization: `Bearer ${token}`,
-        },
+          Authorization: `Bearer ${token}`
+        }
       };
 
       try {
@@ -93,7 +95,7 @@ export default function TableUMKM() {
           <table className="w-full table-auto text-left">
             <thead>
               <tr>
-                {TABLE_HEAD.map((head) => (
+                {TABLE_HEAD.map(head => (
                   <th
                     key={head}
                     className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4"
@@ -191,12 +193,12 @@ export default function TableUMKM() {
                         <div className="flex gap-2">
                           <Tooltip content="View ">
                             <IconButton variant="text" color="blue-gray">
-                              <EyeIcon className="h-4 w-4" />
+                              <DetailMitra
+                                data={tableRows[index]}
+                              ></DetailMitra>
                             </IconButton>
                           </Tooltip>
-                          <ButtonEdit 
-                          umkmData = {tableRows[index]}
-                          />
+                          <ButtonEdit umkmData={tableRows[index]} />
                           <Tooltip content="Delete">
                             <IconButton
                               variant="text"
