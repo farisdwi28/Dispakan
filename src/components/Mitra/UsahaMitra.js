@@ -7,7 +7,7 @@ import {
   CardBody,
   Chip,
   IconButton,
-  Tooltip,
+  Tooltip
 } from "@material-tailwind/react";
 import Loading from "../../elements/Spinner";
 import fetch from "../../utils/fetch";
@@ -20,7 +20,7 @@ const TABLE_HEAD = [
   "Aspek Usaha",
   "Kategori",
   "Status",
-  "Action",
+  "Action"
 ];
 
 export default function TableUsahaMitra() {
@@ -35,8 +35,8 @@ export default function TableUsahaMitra() {
       method: "GET",
       url: `${process.env.REACT_APP_API_URL}/store`,
       headers: {
-        Authorization: `Bearer ${token}`,
-      },
+        Authorization: `Bearer ${token}`
+      }
     };
     try {
       const response = await fetch(options);
@@ -55,15 +55,15 @@ export default function TableUsahaMitra() {
     getData();
   }, []);
 
-  const deleteUsaha = async (id) => {
+  const deleteUsaha = async id => {
     if (window.confirm("Apakah yakin ingin menghapus data berita ini?")) {
       const token = getToken();
       const options = {
         method: "GET",
         url: `${process.env.REACT_APP_API_URL}/store/delete/${id}`,
         headers: {
-          Authorization: `Bearer ${token}`,
-        },
+          Authorization: `Bearer ${token}`
+        }
       };
 
       try {
@@ -90,7 +90,7 @@ export default function TableUsahaMitra() {
           <table className="w-full table-auto text-left">
             <thead>
               <tr>
-                {TABLE_HEAD.map((head) => (
+                {TABLE_HEAD.map(head => (
                   <th
                     key={head}
                     className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4"

@@ -5,34 +5,33 @@ import {
   Dialog,
   DialogHeader,
   DialogBody,
-  DialogFooter,
+  DialogFooter
 } from "@material-tailwind/react";
 import { getToken } from "../utils/storage";
 import fetch from "../utils/fetch";
 import Loading from "../elements/Spinner";
-import { useForm } from "react-hook-form"; 
+import { useForm } from "react-hook-form";
 
 export default function ButtonInputNews(props) {
   const [buttonContent, setButtonContent] = useState("Simpan");
   const [isLoading, setIsLoading] = useState(false);
   const [size, setSize] = useState(null);
 
-  const handleOpen = (value) => setSize(value);
+  const handleOpen = value => setSize(value);
 
-  
   const {
     register,
     handleSubmit,
     formState: { errors },
-    setValue,
+    setValue
   } = useForm();
 
-  const handleFileChange = (e) => {
+  const handleFileChange = e => {
     const file = e.target.files[0];
-    setValue("file", file); 
+    setValue("file", file);
   };
 
-  const onSubmit = async (data) => {
+  const onSubmit = async data => {
     setIsLoading(true);
     const token = getToken();
 
@@ -48,9 +47,9 @@ export default function ButtonInputNews(props) {
       url: `${process.env.REACT_APP_API_URL}/news/upload`,
       headers: {
         Authorization: `Bearer ${token}`,
-        "Content-type": "multipart/form-data",
+        "Content-type": "multipart/form-data"
       },
-      data: formData,
+      data: formData
     };
 
     try {
@@ -58,7 +57,6 @@ export default function ButtonInputNews(props) {
       if (window.confirm("Apakah data telah sesuai?")) {
         setButtonContent("Sukses Menyimpan!");
         window.location.reload(true);
-
       }
     } catch (err) {
       alert(JSON.stringify(err));
@@ -80,7 +78,9 @@ export default function ButtonInputNews(props) {
       </div>
       <Dialog open={size === "lg"} handler={handleOpen}>
         <DialogHeader>{props.Header}</DialogHeader>
-        <form onSubmit={handleSubmit(onSubmit)}> {/* Move the form tag here */}
+        <form onSubmit={handleSubmit(onSubmit)}>
+          {" "}
+          {/* Move the form tag here */}
           <DialogBody divider>
             {/* title */}
             <div className="my-4 flex justify-between items-center">

@@ -5,7 +5,7 @@ import {
   CardBody,
   Chip,
   IconButton,
-  Tooltip,
+  Tooltip
 } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import { getToken } from "../../utils/storage";
@@ -21,13 +21,14 @@ const TABLE_HEAD = [
   "No Telp",
   "Email",
   "Status",
-  "Action",
+  "Action"
 ];
 
 export default function TableUMKM() {
   const [isLoading, setIsLoading] = useState(false);
   const [tableRows, setTableRows] = useState([]);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [isShowDetail, setShowDetail] = useState(false);
 
   const getData = async () => {
     const token = getToken();
@@ -39,8 +40,8 @@ export default function TableUMKM() {
         active_on: "sukapura"
       },
       headers: {
-        Authorization: `Bearer ${token}`,
-      },
+        Authorization: `Bearer ${token}`
+      }
     };
     try {
       const response = await fetch(options);
@@ -59,15 +60,15 @@ export default function TableUMKM() {
     getData();
   }, []);
 
-  const deleteUMKM = async (id) => {
+  const deleteUMKM = async id => {
     if (window.confirm("Apakah yakin ingin menghapus data mitra ini?")) {
       const token = getToken();
       const options = {
         method: "GET",
         url: `${process.env.REACT_APP_API_URL}/user/delete-umkm/${id}`,
         headers: {
-          Authorization: `Bearer ${token}`,
-        },
+          Authorization: `Bearer ${token}`
+        }
       };
 
       try {
@@ -94,7 +95,7 @@ export default function TableUMKM() {
           <table className="w-full table-auto text-left">
             <thead>
               <tr>
-                {TABLE_HEAD.map((head) => (
+                {TABLE_HEAD.map(head => (
                   <th
                     key={head}
                     className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4"
