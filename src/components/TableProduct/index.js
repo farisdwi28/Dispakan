@@ -8,6 +8,10 @@ import {
   Tooltip
 } from "@material-tailwind/react";
 import { images } from "../../constans";
+import { useEffect, useState } from "react";
+import fetch from "../../utils/fetch"
+import { getToken } from "../../utils/storage";
+
 
 const TABLE_HEAD = [
   "ID Produk",
@@ -17,53 +21,78 @@ const TABLE_HEAD = [
   "Deskripsi",
   "Kategori",
   "Sales",
-  "Link",
   "ID Store",
-  "Values",
+  "Status",
   "Action"
 ];
 
 //data dummy
+
 const TABLE_ROWS = [
   {
     Id_Product: 1,
     Image: images.product1,
-    Name_product: "Kue Kembang Jahe",
-    Price: 15000,
-    Description: "Produk Kue Olehan Lokal dengan bahan dasar Jahe",
-    Category: "Makanan Instant",
-    Sales: 12,
-    Link: "https://yanto.group.com",
+    name: "Kue Kembang Jahe",
+    price: 15000,
+    description: "Produk Kue Olehan Lokal dengan bahan dasar Jahe",
+    category: "Makanan Instant",
+    sales: 12,
+    url_image: "https://yanto.group.com",
     Values: 0,
     Id_Store: 1
   },
   {
     Id_Product: 2,
     Image: images.product2,
-    Name_product: "Kue Kembang Buah",
-    Price: 15000,
-    Description: "Produk Kue Olahan Lokal dengan kembang buah",
-    Category: "Makanan Instant",
-    Sales: 12,
-    Link: "https://yanto.group.com",
+    name: "Kue Kembang Buah",
+    price: 15000,
+    description: "Produk Kue Olahan Lokal dengan kembang buah",
+    category: "Makanan Instant",
+    sales: 12,
+    url_image: "https://yanto.group.com",
     Values: 1,
     Id_Store: 1
   },
   {
     Id_Product: 3,
     Image: images.product3,
-    Name_product: "Boboko Snack",
-    Price: 15000,
-    Description: "Bakso Aci Tulang Rangu",
-    Category: "Makanan Instant",
-    Sales: 12,
-    Link: "https://yanto.group.com",
+    name: "Boboko Snack",
+    price: 15000,
+    description: "Bakso Aci Tulang Rangu",
+    category: "Makanan Instant",
+    sales: 12,
+    url_image: "https://yanto.group.com",
     Values: 1,
     Id_Store: 1
   }
 ];
 
+
 export default function TableProdct() {
+
+  const [tableData, setTableData] = useState(TABLE_ROWS);
+
+  const getData = async () => {
+    try {
+      const token = getToken();
+      const options = {
+        method: "GET",
+        url: `${process.env.REACT_APP_API_URL}/product`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        }
+      };
+      const data = await fetch(options);
+      setTableData(data.data);
+    } catch (err) {
+      alert(err)
+    }
+  }
+
+  useEffect(() => {
+    getData();
+  }, [])
+
   return (
     <Card className="h-full w-full">
       <CardBody className="overflow-scroll">
@@ -87,19 +116,18 @@ export default function TableProdct() {
             </tr>
           </thead>
           <tbody>
-            {TABLE_ROWS.map(
+            {tableData.map(
               (
                 {
-                  Id_Product,
-                  Image,
-                  Name_product,
-                  Price,
-                  Description,
-                  Category,
-                  Sales,
-                  Link,
-                  Values,
-                  Id_Store
+                  id,
+                  url_image,
+                  name,
+                  price,
+                  description,
+                  category,
+                  sale,
+                  status,
+                  store
                 },
                 index
               ) => {
@@ -109,18 +137,18 @@ export default function TableProdct() {
                   : "p-4 border-b border-blue-gray-50";
 
                 return (
-                  <tr key={Id_Product}>
+                  <tr key={id}>
                     <td className={classes}>
                       <Typography
                         variant="small"
                         color="blue-gray"
                         className="font-bold"
                       >
-                        {Id_Product}
+                        {id}
                       </Typography>
                     </td>
                     <td className={classes}>
-                      <img src={Image} className="w-25 h-25 rounded-xl" />
+                      <img src={url_image[0]} className="w-25 h-25 rounded-xl" />
                     </td>
                     <td className={classes}>
                       <Typography
@@ -128,16 +156,7 @@ export default function TableProdct() {
                         color="blue-gray"
                         className="font-normal"
                       >
-                        {Name_product}
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal"
-                      >
-                        {Price}
+                        {name}
                       </Typography>
                     </td>
                     <td className={classes}>
@@ -146,7 +165,7 @@ export default function TableProdct() {
                         color="blue-gray"
                         className="font-normal"
                       >
-                        {Description}
+                        {price}
                       </Typography>
                     </td>
                     <td className={classes}>
@@ -155,7 +174,7 @@ export default function TableProdct() {
                         color="blue-gray"
                         className="font-normal"
                       >
-                        {Category}
+                        {description}
                       </Typography>
                     </td>
                     <td className={classes}>
@@ -164,7 +183,7 @@ export default function TableProdct() {
                         color="blue-gray"
                         className="font-normal"
                       >
-                        {Sales}
+                        {category}
                       </Typography>
                     </td>
                     <td className={classes}>
@@ -173,7 +192,7 @@ export default function TableProdct() {
                         color="blue-gray"
                         className="font-normal"
                       >
-                        {Link}
+                        {sale}
                       </Typography>
                     </td>
                     <td className={classes}>
@@ -182,7 +201,7 @@ export default function TableProdct() {
                         color="blue-gray"
                         className="font-normal"
                       >
-                        {Id_Store}
+                        {store && store.id}
                       </Typography>
                     </td>
                     <td className={classes}>
@@ -191,18 +210,18 @@ export default function TableProdct() {
                           size="sm"
                           variant="ghost"
                           value={
-                            Values === 1
+                            status === 1
                               ? "Active"
-                              : Values === 0
-                              ? "Inactive"
-                              : "Inactive"
+                              : status === 0
+                                ? "Inactive"
+                                : "Inactive"
                           }
                           color={
-                            Values === 1
+                            status === 1
                               ? "green"
-                              : Values === 0
-                              ? "amber"
-                              : "red"
+                              : status === 0
+                                ? "amber"
+                                : "red"
                           }
                         />
                       </div>
