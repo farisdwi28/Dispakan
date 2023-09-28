@@ -4,18 +4,16 @@ import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import { Tooltip } from "@material-tailwind/react";
 import { images } from "../../../constans";
 import ButtonSubmit from "../../../components/ButtonSubmit";
-import { getToken } from "../../../utils/storage";
+import { getToken, getUserData } from "../../../utils/storage";
 import fetch from "../../../utils/fetch";
 import { CameraIcon } from "@heroicons/react/24/solid";
 
 const Profil = () => {
   const [isOpen, setIsOpen] = useState(true);
-  const [isLoading, setIsLoading] = useState(false);
-  const [buttonContent, setButtonContent] = useState("Simpan");
-  const [akunData, setAkunData] = useState({
-    email: "",
-    password: ""
-  });
+  const [loadingProfil, setLoadingProfil] = useState(false);
+  const [loadingPassword, setLoadingPassword] = useState(false);
+  const [passwordButtonContent, setPasswordButon] = useState("Update Password");
+  const [akunData, setAkunData] = useState({});
 
   const handleDropdownToggle = () => {
     setIsOpen(!isOpen);
@@ -29,99 +27,102 @@ const Profil = () => {
     file: ""
   });
 
-  const fetchEmail = async () => {
-    const token = getToken();
-    const options = {
-      method: "POST",
-      url: `${process.env.REACT_APP_API_URL}/auth/signup/bumdes`,
-      headers: {
-        Authorization: `Bearer ${token}`
-      },
-      data: {
-        email: akunData.email,
-        password: akunData.password
-      }
-    };
+  // const fetchEmail = async () => {
+  //   const token = getToken();
+  //   const userData = getUserData();
+  //   const options = {
+  //     method: "GET",
+  //     url: `${process.env.REACT_APP_API_URL}/user/detail/${userData.id}`,
+  //     headers: {
+  //       Authorization: `Bearer ${token}`
+  //     }
+  //   };
 
-    try {
-      const response = await fetch(options);
-      setAkunData({
-        email: response.data.email,
-        password: response.data.password
-      });
-    } catch (error) {
-      console.error("Terjadi kesalahan saat mengambil email:", error);
-    }
-  };
+  //   try {
+  //     const response = await fetch(options);
+  //     setAkunData(response.data);
+  //   } catch (error) {
+  //     console.error("Terjadi kesalahan saat mengambil email:", error);
+  //   }
+  // };
 
-  const handleSubmitProfile = async () => {
+  const handleSubmitProfile = async (e) => {
+    e.preventDefault();
     const token = getToken();
-    setIsLoading(true);
+    setLoadingProfil(true);
+
+    const data = new FormData();
+    data.append('id_bumdes_umkm', adminData.id);
+    data.append('name', adminData.name);
+    data.append('address', adminData.address);
+    data.append('phone', adminData.phone);
+    if (adminData.file) data.append('file', adminData.file, adminData.file.name);
+    data.append('email', adminData.email);
+    data.append('password', adminData.password);
+
     const options = {
       method: "POST",
       url: `${process.env.REACT_APP_API_URL}/user/bumdes/profil`,
       headers: {
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${token}`,
+        'Content-Type': "multipart/form-data"
       },
-      data: {
-        id_bumdes_umkm: adminData.id_bumdes_umkm,
-        name: adminData.name,
-        address: adminData.address,
-        phone: adminData.phone,
-        file: adminData.file,
-        email: akunData.email,
-        password: akunData.password
-      }
+      data: data
     };
 
     try {
       const response = await fetch(options);
-      if (response.success) {
-        setButtonContent("Simpan");
+      console.log("response update profil", {response})
+      if (response.error === false) {
+        // setPasswordButon("Simpan");
+        window.location.reload();
       } else {
         console.error("Gagal memperbarui profil");
       }
-      setIsLoading(false);
+      setLoadingProfil(false);
+      fetchAdminData();
     } catch (error) {
       console.error("Terjadi kesalahan saat memperbarui profil:", error);
-      setIsLoading(false);
+      setLoadingProfil(false);
     }
   };
 
-  const handleSubmitPassword = async () => {
+  const handleSubmitPassword = async (e) => {
+    e.preventDefault();
     const token = getToken();
-    setIsLoading(true);
+    setLoadingPassword(true);
     const options = {
       method: "POST",
-      url: `${process.env.REACT_APP_API_URL}/user/bumdes/password`,
+      url: `${process.env.REACT_APP_API_URL}/user/update/password/${adminData.id}`,
       headers: {
         Authorization: `Bearer ${token}`
       },
       data: {
-        email: akunData.email,
-        password: akunData.password
+        old_password: akunData.old_password,
+        new_password: akunData.new_password
       }
     };
 
     try {
       const response = await fetch(options);
-      if (response.success) {
-        setButtonContent("Simpan");
+      if (response.alerts.code == '400') {
+        setPasswordButon(response.alerts.message);
       } else {
-        console.error("Gagal memperbarui password");
+        setPasswordButon("Berhasil Update Password");
       }
-      setIsLoading(false);
+      setLoadingPassword(false);
     } catch (error) {
       console.error("Terjadi kesalahan saat memperbarui password:", error);
-      setIsLoading(false);
+      setLoadingPassword(false);
     }
   };
 
   const fetchAdminData = async () => {
     const token = getToken();
+    const userData = getUserData();
     const options = {
       method: "GET",
-      url: `${process.env.REACT_APP_API_URL}/user/bumdes`,
+      url: `${process.env.REACT_APP_API_URL}/user/detail/${userData.id}`,
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -129,12 +130,7 @@ const Profil = () => {
 
     try {
       const response = await fetch(options);
-      if (response.success) {
-        const adminData = response.data.find(
-          admin => admin.email === akunData.email
-        );
-        setAdminData(adminData);
-      }
+      setAdminData(response.data);
     } catch (error) {
       console.error("Terjadi kesalahan saat mengambil data admin:", error);
     }
@@ -144,13 +140,9 @@ const Profil = () => {
     fetchAdminData();
   }, []);
 
-  useEffect(() => {
-    fetchAdminData();
-  }, []);
-
   // const handle image upload
   const handleFileChange = event => {
-    // Logika
+    setAdminData({ ...adminData, ...{ file: event.target.files[0] } })
   };
 
   return (
@@ -188,7 +180,7 @@ const Profil = () => {
                   <label htmlFor="uploadImage" className="cursor-pointer">
                     <div className="relative">
                       <img
-                        src={images.banner1}
+                        src={adminData.url_image}
                         className="rounded-full flex justify-center w-[114px] h-[114px] mt-10 hover:shadow-md transition duration-300"
                       />
                       <div className="absolute -top-2 flex items-center justify-center bg-white bg-opacity-20 rounded-full w-8 h-8 mt-2 shadow-md hover:bg-black-100 cursor-pointer w-[114px] h-[114px]">
@@ -262,7 +254,7 @@ const Profil = () => {
                       />
                     </div>
                     {/* email */}
-                    <div className="mb-4">
+                    {/* <div className="mb-4">
                       <label
                         class="block text-gray-700 font-medium text-lg mb-2"
                         for="email"
@@ -278,11 +270,11 @@ const Profil = () => {
                           setAkunData({ ...akunData, email: e.target.value })
                         }
                       />
-                    </div>
+                    </div> */}
                     <ButtonSubmit
                       label="Update Profile"
                       onClick={handleSubmitProfile}
-                      isLoading={isLoading}
+                      isLoading={loadingProfil}
                     />
                   </form>
                 </div>
@@ -314,16 +306,14 @@ const Profil = () => {
                       <label
                         class="block text-gray-700 font-medium text-lg mb-2"
                         for="password"
-                      >
-                        Password
-                      </label>
+                      >Password Lama</label>
                       <input
                         className="w-full border-2 border-gray-300 rounded-md px-4 py-2 mt-2 focus:outline-none focus:border-primary1"
                         type="password"
-                        placeholder="Password"
-                        value={akunData.password}
+                        placeholder="Password lama anda..."
+                        value={akunData.old_password}
                         onChange={e =>
-                          setAkunData({ ...akunData, password: e.target.value })
+                          setAkunData({ ...akunData, old_password: e.target.value })
                         }
                       />
                     </div>
@@ -332,23 +322,22 @@ const Profil = () => {
                       <label
                         class="block text-gray-700 font-medium text-lg mb-2"
                         for="password"
-                      >
-                        Retype Password
-                      </label>
+                      >Password Baru</label>
                       <input
                         className="w-full border-2 border-gray-300 rounded-md px-4 py-2 mt-2 focus:outline-none focus:border-primary1"
                         type="password"
-                        placeholder="Password"
-                        value={akunData.password}
+                        placeholder="Password baru anda..."
+                        value={akunData.new_password}
                         onChange={e =>
-                          setAkunData({ ...akunData, password: e.target.value })
+                          setAkunData({ ...akunData, new_password: e.target.value })
                         }
                       />
                     </div>
                     <ButtonSubmit
-                      label="Update Password"
+                      label={passwordButtonContent}
                       onClick={handleSubmitPassword}
-                      isLoading={isLoading}
+                      isLoading={loadingPassword}
+                      type="button"
                     />
                   </form>
                 </div>
