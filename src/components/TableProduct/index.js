@@ -209,19 +209,9 @@ export default function TableProdct() {
                     </td>
                     <td className={classes}>
                       <div className="flex gap-2">
-                        <Tooltip content="Edit ">
+                        <Tooltip content="View">
                           <IconButton variant="text" color="blue-gray">
                             <EyeIcon className="h-4 w-4" />
-                          </IconButton>
-                        </Tooltip>
-                        <Tooltip content="Edit ">
-                          <IconButton variant="text" color="blue-gray">
-                            <PencilIcon className="h-4 w-4" />
-                          </IconButton>
-                        </Tooltip>
-                        <Tooltip content="Delete">
-                          <IconButton variant="text" color="blue-gray">
-                            <TrashIcon className="h-4 w-4" />
                           </IconButton>
                         </Tooltip>
                       </div>

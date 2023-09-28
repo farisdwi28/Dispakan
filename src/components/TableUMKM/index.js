@@ -12,6 +12,7 @@ import { getToken } from "../../utils/storage";
 import fetch from "../../utils/fetch";
 import Loading from "../../elements/Spinner";
 import ButtonEdit from "../ButtonListMitra/ButtonEdit";
+import Detail from "../ButtonListMitra/Detail";
 
 const TABLE_HEAD = [
   "No",
@@ -189,11 +190,9 @@ export default function TableUMKM() {
                       </td>
                       <td className={classes}>
                         <div className="flex gap-2">
-                          <Tooltip content="View ">
-                            <IconButton variant="text" color="blue-gray">
-                              <EyeIcon className="h-4 w-4" />
-                            </IconButton>
-                          </Tooltip>
+                          <Detail
+                          umkmData = {tableRows[index]}
+                          />
                           <ButtonEdit 
                           umkmData = {tableRows[index]}
                           />
