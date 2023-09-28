@@ -7,7 +7,7 @@ import {
   IconButton,
   Tooltip,
   DialogBody,
-  DialogHeader,
+  DialogHeader
 } from "@material-tailwind/react";
 import { Fragment, useEffect, useState } from "react";
 import { getToken } from "../../utils/storage";
@@ -25,7 +25,7 @@ const TABLE_HEAD = [
   "Judul Berita",
   "Tanggal Berita",
   "Status",
-  "Action",
+  "Action"
 ];
 
 export default function TableNews() {
@@ -41,11 +41,11 @@ export default function TableNews() {
       method: "GET",
       url: `${process.env.REACT_APP_API_URL}/news`,
       params: {
-        active_on: 'sukapura'
+        active_on: "sukapura"
       },
       headers: {
-        Authorization: `Bearer ${token}`,
-      },
+        Authorization: `Bearer ${token}`
+      }
     };
     try {
       const response = await fetch(options);
@@ -64,15 +64,15 @@ export default function TableNews() {
     getData();
   }, []);
 
-  const deleteNews = async (id) => {
+  const deleteNews = async id => {
     if (window.confirm("Apakah yakin ingin menghapus data berita ini?")) {
       const token = getToken();
       const options = {
         method: "GET",
         url: `${process.env.REACT_APP_API_URL}/news/delete/${id}`,
         headers: {
-          Authorization: `Bearer ${token}`,
-        },
+          Authorization: `Bearer ${token}`
+        }
       };
 
       try {
@@ -94,14 +94,12 @@ export default function TableNews() {
         {isLoading ? (
           <Loading />
         ) : tableRows.length === 0 ? (
-          <div className="text-center py-8 text-blue-gray-400">
-            Data kosong
-          </div>
+          <div className="text-center py-8 text-blue-gray-400">Data kosong</div>
         ) : (
           <table className="w-full table-auto text-left">
             <thead>
               <tr>
-                {TABLE_HEAD.map((head) => (
+                {TABLE_HEAD.map(head => (
                   <th
                     key={head}
                     className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4"
@@ -154,15 +152,15 @@ export default function TableNews() {
                               status === true
                                 ? "Active"
                                 : status === false
-                                  ? "Inactive"
-                                  : "Inactive"
+                                ? "Inactive"
+                                : "Inactive"
                             }
                             color={
                               status === true
                                 ? "green"
                                 : status === false
-                                  ? "amber"
-                                  : "red"
+                                ? "amber"
+                                : "red"
                             }
                           />
                         </div>
@@ -174,9 +172,7 @@ export default function TableNews() {
                               <DetailNews data={tableRows[index]}></DetailNews>
                             </IconButton>
                           </Tooltip>
-                          <EditNews
-                            prev={tableRows[index]}
-                          />
+                          <EditNews prev={tableRows[index]} />
                           <Tooltip content="Delete">
                             <IconButton
                               variant="text"

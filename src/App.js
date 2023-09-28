@@ -30,6 +30,8 @@ import PromoPage from "./pages/Category/PromoPage";
 import NewsPage from "./pages/Category/NewsPage";
 import ProductPage from "./pages/Category/ProductPage";
 import UsahaMitra from "./pages/Dashboard/UsahaMitra/index";
+// page login umkm
+import LoginPageUMKM from "./pages/DashboardUMKM/LoginPakeUMKM";
 
 // import component
 import UMKMRoute from "./components/UmkmRoute";

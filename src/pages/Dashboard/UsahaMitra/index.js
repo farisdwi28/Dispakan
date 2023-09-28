@@ -37,7 +37,9 @@ const UsahaMitra = () => {
                   src={images.profil1}
                   alt="Profile"
                 />
-                <span className="ml-2">{getUserData().name || "Desa Sukapura"}</span>
+                <span className="ml-2">
+                  {getUserData().name || "Desa Sukapura"}
+                </span>
                 <svg
                   className={`w-4 h-4 ml-2 transition-transform ${
                     isOpen ? "transform rotate-180" : ""
