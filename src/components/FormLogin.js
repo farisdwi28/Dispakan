@@ -38,7 +38,7 @@ export default function FormLogin() {
         navigate("/Dashboard");
       } else if (level === "UMKM") {
         setButtonContent("Selamat Datang!");
-        navigate("/DashboardUMKM");
+        navigate("/UMKMSelectStore");
       }
     } catch (error) {
       setLoginMessage("Email or password is incorrect.");

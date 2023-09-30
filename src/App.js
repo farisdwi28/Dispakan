@@ -36,6 +36,7 @@ import LoginPageUMKM from "./pages/DashboardUMKM/LoginPakeUMKM";
 // import component
 import UMKMRoute from "./components/UmkmRoute";
 import BumdesRoute from "./components/BumdesRoute";
+import UMKMSelectStore from "./pages/Login/UMKMSelectStore";
 
 export default function App() {
   return (
@@ -59,6 +60,14 @@ export default function App() {
             <BumdesRoute>
               <Dashboard />
             </BumdesRoute>
+          }
+        />
+        <Route
+          path="/UMKMSelectStore"
+          element={
+            <UMKMRoute>
+              <UMKMSelectStore />
+            </UMKMRoute>
           }
         />
         <Route
