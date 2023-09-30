@@ -1,5 +1,5 @@
 import { Fragment, useState } from "react";
-import { PlusIcon, PencilIcon } from "@heroicons/react/24/outline";
+import {  EyeIcon } from "@heroicons/react/24/solid";
 import {
   Button,
   Dialog,
@@ -30,7 +30,7 @@ export default function DetailNews({ data }) {
         color="blue-gray"
         onClick={() => handleOpen("lg")}
       >
-        <PencilIcon className="h-4 w-4" />
+        <EyeIcon className="h-4 w-4" />
       </IconButton>
       <Dialog open={size === "lg"} handler={handleOpen} size="lg">
         <DialogHeader>

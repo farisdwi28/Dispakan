@@ -1,17 +1,14 @@
-import { PencilIcon, TrashIcon, EyeIcon } from "@heroicons/react/24/solid";
 import {
   Card,
   Typography,
   CardBody,
   Chip,
-  IconButton,
-  Tooltip
 } from "@material-tailwind/react";
 import { images } from "../../constans";
 import { useEffect, useState } from "react";
-import fetch from "../../utils/fetch"
+import fetch from "../../utils/fetch";
 import { getToken } from "../../utils/storage";
-
+import DetailProduct from "../Product/DetailProduct";
 
 const TABLE_HEAD = [
   "ID Produk",
@@ -23,10 +20,8 @@ const TABLE_HEAD = [
   "Sales",
   "ID Store",
   "Status",
-  "Action"
+  "Action",
 ];
-
-//data dummy
 
 const TABLE_ROWS = [
   {
@@ -39,7 +34,7 @@ const TABLE_ROWS = [
     sales: 12,
     url_image: "https://yanto.group.com",
     Values: 0,
-    Id_Store: 1
+    Id_Store: 1,
   },
   {
     Id_Product: 2,
@@ -51,7 +46,7 @@ const TABLE_ROWS = [
     sales: 12,
     url_image: "https://yanto.group.com",
     Values: 1,
-    Id_Store: 1
+    Id_Store: 1,
   },
   {
     Id_Product: 3,
@@ -63,13 +58,11 @@ const TABLE_ROWS = [
     sales: 12,
     url_image: "https://yanto.group.com",
     Values: 1,
-    Id_Store: 1
-  }
+    Id_Store: 1,
+  },
 ];
 
-
 export default function TableProdct() {
-
   const [tableData, setTableData] = useState(TABLE_ROWS);
 
   const getData = async () => {
@@ -80,18 +73,18 @@ export default function TableProdct() {
         url: `${process.env.REACT_APP_API_URL}/product`,
         headers: {
           Authorization: `Bearer ${token}`,
-        }
+        },
       };
       const data = await fetch(options);
       setTableData(data.data);
     } catch (err) {
-      alert(err)
+      alert(err);
     }
-  }
+  };
 
   useEffect(() => {
     getData();
-  }, [])
+  }, []);
 
   return (
     <Card className="h-full w-full">
@@ -99,7 +92,7 @@ export default function TableProdct() {
         <table className="w-full table-auto text-left">
           <thead>
             <tr>
-              {TABLE_HEAD.map(head => (
+              {TABLE_HEAD.map((head) => (
                 <th
                   key={head}
                   className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4"
@@ -127,7 +120,7 @@ export default function TableProdct() {
                   category,
                   sale,
                   status,
-                  store
+                  store,
                 },
                 index
               ) => {
@@ -148,7 +141,10 @@ export default function TableProdct() {
                       </Typography>
                     </td>
                     <td className={classes}>
-                      <img src={url_image[0]} className="w-25 h-25 rounded-xl" />
+                      <img
+                        src={url_image[0]}
+                        className="w-25 h-25 rounded-xl"
+                      />
                     </td>
                     <td className={classes}>
                       <Typography
@@ -213,26 +209,22 @@ export default function TableProdct() {
                             status === 1
                               ? "Active"
                               : status === 0
-                                ? "Inactive"
-                                : "Inactive"
+                              ? "Inactive"
+                              : "Inactive"
                           }
                           color={
                             status === 1
                               ? "green"
                               : status === 0
-                                ? "amber"
-                                : "red"
+                              ? "amber"
+                              : "red"
                           }
                         />
                       </div>
                     </td>
                     <td className={classes}>
                       <div className="flex gap-2">
-                        <Tooltip content="View">
-                          <IconButton variant="text" color="blue-gray">
-                            <EyeIcon className="h-4 w-4" />
-                          </IconButton>
-                        </Tooltip>
+                        <DetailProduct data={tableData[index]}></DetailProduct>
                       </div>
                     </td>
                   </tr>

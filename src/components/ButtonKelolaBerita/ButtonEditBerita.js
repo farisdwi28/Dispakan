@@ -1,5 +1,5 @@
 import { Fragment, useState } from "react";
-import { PlusIcon, PencilIcon } from "@heroicons/react/24/outline";
+import { PencilIcon } from "@heroicons/react/24/solid";
 import {
   Button,
   Dialog,
@@ -135,12 +135,6 @@ export default function EditNews(props) {
                 className="block font-medium text-lg text-black mr-10 w-48"
               >Aktif</label>
               <Switch defaultChecked={props.prev.status} {...register("status")}/>
-              {/* <input
-                name="posted_date"
-                {...register("posted_date", { required: true })}
-                className="w-full text-black border-2 border-gray-300 rounded-md px-4 py-2 mt-2 focus:outline-none focus:border-primary1"
-                type="date"
-              /> */}
             </div>
             {/* Isi Berita */}
             <div className="mb-2">
@@ -168,7 +162,7 @@ export default function EditNews(props) {
             </Button>
             <Button
               className="bg-primary1 text-white hover:shadow-lg focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none shadow-none hover:shadow-none"
-              type="submit" // Add type="submit" to trigger form submission
+              type="submit"
             >
               {isLoading ? <Loading /> : buttonContent}
             </Button>
