@@ -23,8 +23,9 @@ export default function FormLogin() {
       const response = await axios.post(
         `${process.env.REACT_APP_API_URL}/auth/signin`,
         {
-          username: username,
-          password: password
+          email: username,
+          password: password,
+          active_on: 'sukapura'
         }
       );
 
