@@ -1,121 +1,43 @@
-import { useState } from "react"
-import { getUserData, setStoreUMKM } from "../../utils/storage"
-import { Navigate } from "react-router-dom";
+import { useEffect, useState } from "react"
+import { getToken, getUserData, setStoreUMKM } from "../../utils/storage"
+import fetch from "../../utils/fetch";
 
 export default function UMKMSelectStore() {
 
-  const [store, setStore] = useState()
+  const [store, setStore] = useState([]);
+  const [loading, setIsLoading] = useState(false);
   const userData = getUserData();
 
-  const dummy = [{
-    "media_ordered": null,
-    "media_contact": null,
-    "katagori_umkm": null,
-    "id": "f3961919-aaeb-4903-b29c-3d82a15dbcfc",
-    "name": "sukabirus umkm",
-    "address": "",
-    "phone": "",
-    "mediaOrdered": null,
-    "mediaContact": null,
-    "omset": "",
-    "filename": null,
-    "image": null,
-    "katagoriSaved": null,
-    "aspek": "",
-    "mediaId": "3660a9d4-616c-472e-9d28-a6ba4e0ce354",
-    "active_on": "sukabirus",
-    "status": false,
-    "createdAt": "2023-09-17T01:16:19.992Z",
-    "updatedAt": "2023-09-17T01:16:19.992Z",
-    "url_image": "https://storage.googleapis.com/dispakan-bucket-general/umkm/sukabirus/3660a9d4-616c-472e-9d28-a6ba4e0ce354.png"
-  }, {
-    "media_ordered": null,
-    "media_contact": null,
-    "katagori_umkm": null,
-    "id": "f3961919-aaeb-4903-b29c-3d82a15dbcfc",
-    "name": "sukabirus umkm",
-    "address": "",
-    "phone": "",
-    "mediaOrdered": null,
-    "mediaContact": null,
-    "omset": "",
-    "filename": null,
-    "image": null,
-    "katagoriSaved": null,
-    "aspek": "",
-    "mediaId": "3660a9d4-616c-472e-9d28-a6ba4e0ce354",
-    "active_on": "sukabirus",
-    "status": false,
-    "createdAt": "2023-09-17T01:16:19.992Z",
-    "updatedAt": "2023-09-17T01:16:19.992Z",
-    "url_image": "https://storage.googleapis.com/dispakan-bucket-general/umkm/sukabirus/3660a9d4-616c-472e-9d28-a6ba4e0ce354.png"
-  },
-  {
-    "media_ordered": null,
-    "media_contact": null,
-    "katagori_umkm": null,
-    "id": "f3961919-aaeb-4903-b29c-3d82a15dbcfc",
-    "name": "sukabirus umkm",
-    "address": "",
-    "phone": "",
-    "mediaOrdered": null,
-    "mediaContact": null,
-    "omset": "",
-    "filename": null,
-    "image": null,
-    "katagoriSaved": null,
-    "aspek": "",
-    "mediaId": "3660a9d4-616c-472e-9d28-a6ba4e0ce354",
-    "active_on": "sukabirus",
-    "status": false,
-    "createdAt": "2023-09-17T01:16:19.992Z",
-    "updatedAt": "2023-09-17T01:16:19.992Z",
-    "url_image": "https://storage.googleapis.com/dispakan-bucket-general/umkm/sukabirus/3660a9d4-616c-472e-9d28-a6ba4e0ce354.png"
-  },
-  {
-    "media_ordered": null,
-    "media_contact": null,
-    "katagori_umkm": null,
-    "id": "22880c36-a398-47f5-87a8-7eaff72ab61f",
-    "name": "Pawon Lamajang 76",
-    "address": "",
-    "phone": "",
-    "mediaOrdered": null,
-    "mediaContact": null,
-    "omset": "",
-    "filename": null,
-    "image": null,
-    "katagoriSaved": null,
-    "aspek": "",
-    "mediaId": null,
-    "active_on": "lengkong",
-    "status": false,
-    "createdAt": "2023-09-17T04:28:16.626Z",
-    "updatedAt": "2023-09-17T04:28:16.626Z",
-    "url_image": "https://storage.googleapis.com/dispakan-bucket-general/umkm/lengkong/null.png"
-  },
-  {
-    "media_ordered": null,
-    "media_contact": null,
-    "katagori_umkm": null,
-    "id": "22880c36-a398-47f5-87a8-7eaff72ab61f",
-    "name": "Pawon Lamajang 76",
-    "address": "",
-    "phone": "",
-    "mediaOrdered": null,
-    "mediaContact": null,
-    "omset": "",
-    "filename": null,
-    "image": null,
-    "katagoriSaved": null,
-    "aspek": "",
-    "mediaId": null,
-    "active_on": "lengkong",
-    "status": false,
-    "createdAt": "2023-09-17T04:28:16.626Z",
-    "updatedAt": "2023-09-17T04:28:16.626Z",
-    "url_image": "https://storage.googleapis.com/dispakan-bucket-general/umkm/lengkong/null.png"
-  }]
+  const getData = async () => {
+    const token = getToken();
+    setIsLoading(true);
+    const options = {
+      method: "GET",
+      url: `${process.env.REACT_APP_API_URL}/store`,
+      params: {
+        id_umkm: userData.id
+      },
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    };
+    try {
+      const response = await fetch(options);
+      if (Array.isArray(response.data)) {
+        setStore(response.data);
+      } else {
+        setStore([]);
+      }
+    } catch (err) {
+      alert(JSON.stringify(err));
+    }
+    setIsLoading(false);
+  };
+
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   return (
     <div className="overflow-auto max-h-screen grid justify-items-center max-w-full">
@@ -127,8 +49,8 @@ export default function UMKMSelectStore() {
           Selamat Datang Kembali, {userData.name}
         </h1>
         <div className="w-full overflow-scroll">
-          <div className="flex flex-row justify-center overflow-x-scroll py-7 min-w-screen w-max space-x-3">
-            {dummy.map((store, i) => {
+          <div className="flex flex-row justify-center overflow-x-scroll py-7 min-w-screen w-max space-x-3 mx-auto">
+            {store.map((store, i) => {
               const userStore = store.id;
               const setStore = () => {
                 setStoreUMKM(userStore);

@@ -58,7 +58,7 @@ export default function FormLogin() {
       </p>
       <div className="mt-4 md:mt-8">
         <div>
-          <label className="text-base text-lg font-medium px-2 mb-1">
+          <label className="text-base font-medium px-2 mb-1">
             Email atau username
           </label>
           <InputBasic
