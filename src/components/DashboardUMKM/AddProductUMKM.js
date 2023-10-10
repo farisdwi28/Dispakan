@@ -29,6 +29,7 @@ const FormAddProduct = () => {
     const file = event.target.files[0];
     setSelectedFile(file);
   };
+
   return (
     <div className="container mx-auto">
       <div className="m-20">

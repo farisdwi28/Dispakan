@@ -1,11 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import MainLayout from "../components/MainLayout";
 import Carou from "../components/Carou";
 import ProductCard from "../components/ProductCard";
 import NewsCard from "../components/NewsCard";
 import images from "../constans/images";
-import { Link, useLocation } from "react-router-dom";
+import { Link, json, useLocation, useSearchParams } from "react-router-dom";
 import { logPageView } from "../utils/analytics";
+import { getToken, getUserData } from "../utils/storage";
+import fetch from "../utils/fetch";
 
 // dummy card diskon
 const DummyData1 = [
@@ -167,16 +169,75 @@ const DummyData3 = [
   }
 ];
 
+const limitedData = DummyData1.slice(0, 4);
+const limitedData1 = DummyData2.slice(0, 4);
+const limitedData2 = DummyData3.slice(0, 4);
+
+
 const HomePage = () => {
   const location = useLocation();
+  const [isLoading, setIsLoading] = useState(false);
+  const [menarik, setMenarik] = useState(limitedData);
+  const [terlaris, setTerlaris] = useState(limitedData);
+
+  const getTerlaris = async () => {
+    const token = getToken();
+    setIsLoading(true);
+    const options = {
+      method: "GET",
+      url: `${process.env.REACT_APP_API_URL}/landing-page/product`,
+      params: {
+        active_on: 'sukapura',
+        sort_by: JSON.stringify({ best_seller: true })
+
+      },
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    };
+    try {
+      const response = await fetch(options);
+      if (Array.isArray(response.data)) {
+        setTerlaris(response.data);
+      }
+    } catch (err) {
+      alert(JSON.stringify(err));
+    }
+    setIsLoading(false);
+  };
+
+  const getTerdiskon = async () => {
+    const token = getToken();
+    setIsLoading(true);
+    const options = {
+      method: "GET",
+      url: `${process.env.REACT_APP_API_URL}/landing-page/product`,
+      params: {
+        active_on: 'sukapura',
+        sort_by: JSON.stringify({ best_sale: true })
+
+      },
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    };
+    try {
+      const response = await fetch(options);
+      if (Array.isArray(response.data)) {
+        setMenarik(response.data);
+      }
+    } catch (err) {
+      alert(JSON.stringify(err));
+    }
+    setIsLoading(false);
+  };
+
 
   useEffect(() => {
+    getTerlaris();
+    getTerdiskon();
     logPageView(); // Log the page view when the component mounts or when the location changes
   }, [location]);
-
-  const limitedData = DummyData1.slice(0, 4);
-  const limitedData1 = DummyData2.slice(0, 4);
-  const limitedData2 = DummyData3.slice(0, 4);
 
   return (
     <MainLayout>
@@ -250,8 +311,8 @@ const HomePage = () => {
           </div>
           {/* Promo Sementara */}
           <Link to="/DetailProduct">
-            <div className="flex flex-wrap gap-3 justify-between py-5 m-6">
-              {limitedData.map(data => (
+            <div className="flex flex-wrap gap-3 justify-start py-5 m-6">
+              {menarik.map(data => (
                 <ProductCard key={data.id} {...data} />
               ))}
             </div>
@@ -274,8 +335,8 @@ const HomePage = () => {
           </div>
           {/* Produk Terlaris Sementara */}
           <Link to="/DetailProduct">
-            <div className="flex flex-wrap gap-3 justify-between py-5 m-6">
-              {limitedData1.map(data => (
+            <div className="flex flex-wrap gap-3 jusify-start py-5 m-6">
+              {terlaris.map(data => (
                 <ProductCard key={data.id} {...data} />
               ))}
             </div>

@@ -23,7 +23,7 @@ const TABLE_HEAD = [
   "Action"
 ];
 
-export default function TableUsahaMitra() {
+export default function TableUsahaMitra({ id_mitra }) {
   const [isLoading, setIsLoading] = useState(false);
   const [tableRows, setTableRows] = useState([]);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -34,6 +34,9 @@ export default function TableUsahaMitra() {
     const options = {
       method: "GET",
       url: `${process.env.REACT_APP_API_URL}/store`,
+      params: {
+        id_mitra: id_mitra
+      },
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -182,15 +185,15 @@ export default function TableUsahaMitra() {
                               status === 1
                                 ? "Active"
                                 : status === 0
-                                ? "Inactive"
-                                : "Inactive"
+                                  ? "Inactive"
+                                  : "Inactive"
                             }
                             color={
                               status === 1
                                 ? "green"
                                 : status === 0
-                                ? "amber"
-                                : "red"
+                                  ? "amber"
+                                  : "red"
                             }
                           />
                         </div>

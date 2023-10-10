@@ -91,7 +91,7 @@ export default function Detail(props) {
         </DialogBody>
         <DialogBody divider>
         <FormDetail text="Tambah Usaha/Toko"/>
-        <TableUsahaMitra/>
+        <TableUsahaMitra id_mitra={props.umkmData.id}/>
         </DialogBody>
       </Dialog>
     </Fragment>
