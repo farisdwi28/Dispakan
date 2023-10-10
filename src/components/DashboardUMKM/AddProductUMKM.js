@@ -1,8 +1,46 @@
 import React, { useState } from "react";
 import ButtonSubmit from "../ButtonSubmit";
+import { getToken } from "../../utils/storage";
+import fetch from "../../utils/fetch";
 
 const FormAddProduct = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedDescription, setSelectedDescription] = useState("");
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [data, setData] = useState({
+    active_on: "sukapura",
+    id_umkm: localStorage.getItem("umkm_store")
+  });
+
+  const handlesubmit = async () => {
+    const form = new FormData()
+    for (const k of Object.keys(data)) {
+      form.append(k, data[k]);
+    }
+    form.append("files", selectedFile);
+    const token = getToken();
+
+    const options = {
+      method: "POST",
+      url: `${process.env.REACT_APP_API_URL}/product/upload`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-type": "multipart/form-data"
+      },
+      data: form
+    };
+
+    try {
+      if (window.confirm("Apakah data telah sesuai?")) {
+        await fetch(options);
+        window.location.reload(true);
+      }
+    } catch (err) {
+      alert(JSON.stringify(err));
+    }
+
+    // setIsLoading(false);
+  }
 
   const categories = [
     "Makanan & Minuman",
@@ -13,18 +51,15 @@ const FormAddProduct = () => {
   ];
 
   const handleCategoryChange = event => {
-    setSelectedCategory(event.target.value);
+    setData({ ...data, category: event.target.value });
   };
-
-  const [selectedDescription, setSelectedDescription] = useState("");
 
   const descriptioncategories = ["Varian Rasa", "Tipe", "Seri", "Jenis Bahan"];
 
   const handleDescriptionChange = event => {
-    setSelectedDescription(event.target.value);
+    setSelectedDescription({ ...data, others_description: event.target.value });
   };
 
-  const [selectedFile, setSelectedFile] = useState(null);
   const handleFileChange = event => {
     const file = event.target.files[0];
     setSelectedFile(file);
@@ -38,7 +73,7 @@ const FormAddProduct = () => {
         </h2>
         <div className="bg-white p-6 md:p-8 border shadow-2xl rounded-xl">
           {/* form */}
-          <form className="w-full">
+          <form className="w-full" onSubmit={(e) => e.preventDefault()}>
             {/* nama product */}
             <div className="mb-2">
               <label className="block text-black font-medium text-lg mb-2">
@@ -50,13 +85,12 @@ const FormAddProduct = () => {
               <input
                 type="text"
                 class="peer ... w-full  border-2 border-gray-300 rounded-md px-4 py-2 mt-2 focus:outline-none focus:border-primary1"
+                onChange={(e) => setData({ ...data, name: e.target.value })}
               />
               <p class="mt-2 invisible peer-invalid:visible text-red-600 text-sm">
                 Please masukan judul produk.
               </p>
-              {/* https://tailwindcss.com/docs/hover-focus-and-other-states?email=&password=Bosco */}
             </div>
-            {/* foto product */}
             <div className="mb-2">
               <label className="block text-black font-medium text-lg mb-2">
                 Foto Produk
@@ -65,7 +99,6 @@ const FormAddProduct = () => {
                 Format foto .jpg .jpeg .png dan minimal ukuran 300 x 300px
                 (maks. 10 foto)
               </p>
-              {/* kotak input file gambar */}
               <input
                 type="file"
                 accept=".jpg, .jpeg, .png"
@@ -87,8 +120,9 @@ const FormAddProduct = () => {
                 Sertakan harga yang sesuai dengan produk
               </p>
               <input
-                type="text"
+                type="number"
                 class="peer ... w-full  border-2 border-gray-300 rounded-md px-4 py-2 mt-2 focus:outline-none focus:border-primary1"
+                onChange={(e) => { setData({ ...data, price: parseInt(e.target.value) }) }}
               />
               <p class="mt-2 invisible peer-invalid:visible text-red-600 text-sm">
                 Please masukan harga produk.
@@ -106,6 +140,7 @@ const FormAddProduct = () => {
               <textarea
                 className="peer ... w-full  border-2 border-gray-300 rounded-md px-4 py-2 mt-2 focus:outline-none focus:border-primary1"
                 rows="4"
+                onChange={(e) => { setData({ ...data, description: e.target.value }) }}
               />
               <p class="mt-2 invisible peer-invalid:visible text-red-600 text-sm">
                 Please deskripsi yang sesuai dengan produk.
@@ -162,7 +197,7 @@ const FormAddProduct = () => {
                 ))}
               </select>
             </div>
-            <ButtonSubmit label="Simpan" />
+            <ButtonSubmit label="Simpan" onClick={handlesubmit} />
           </form>
         </div>
       </div>

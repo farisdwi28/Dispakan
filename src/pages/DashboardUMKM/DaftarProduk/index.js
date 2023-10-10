@@ -28,7 +28,7 @@ const DaftarProdukUMKM = () => {
           <div className="Title">
             <div className="flex justify-between items-center h-auto mt-10">
               <h1 className="font-semibold text-primary1 text-3xl">
-                Daftar Produk Mak Pingah
+                Daftar Produk {JSON.parse(localStorage.getItem("store_data")).name}
               </h1>
               <div className="relative inline-block text-left">
                 <button
@@ -38,14 +38,13 @@ const DaftarProdukUMKM = () => {
                 >
                   <img
                     className="w-8 h-8 rounded-full"
-                    src={images.profil1}
-                    alt="Profile"
+                    src={JSON.parse(localStorage.getItem("store_data")).url_image || images.profil1}
+                    alt="-"
                   />
-                  <span className="ml-2">{getUserData().name || "-"}</span>
+                  <span className="ml-2">{JSON.parse(localStorage.getItem("store_data")).name || "-"}</span>
                   <svg
-                    className={`w-4 h-4 ml-2 transition-transform ${
-                      isOpen ? "transform rotate-180" : ""
-                    }`}
+                    className={`w-4 h-4 ml-2 transition-transform ${isOpen ? "transform rotate-180" : ""
+                      }`}
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
                     fill="currentColor"

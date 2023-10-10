@@ -54,6 +54,7 @@ export default function UMKMSelectStore() {
               const userStore = store.id;
               const setStore = () => {
                 setStoreUMKM(userStore);
+                localStorage.setItem("store_data", JSON.stringify(store));
                 window.location = "/DashboardUMKM"
               }
               return (

@@ -8,6 +8,9 @@ import {
   Tooltip
 } from "@material-tailwind/react";
 import { images } from "../../constans";
+import { useEffect, useState } from "react";
+import { getToken } from "../../utils/storage";
+import fetch from "../../utils/fetch";
 
 const TABLE_HEAD = [
   "ID Produk",
@@ -23,9 +26,9 @@ const TABLE_HEAD = [
 
 const TABLE_ROWS = [
   {
-    id_product: 1,
-    Image: images.product2,
-    name_product: "Bakso Aci Nila",
+    id: 1,
+    images: images.product2,
+    name: "Bakso Aci Nila",
     price: 15000,
     description: "Wes ngonolah pokok enak wes",
     id_store: 1,
@@ -33,9 +36,9 @@ const TABLE_ROWS = [
     status: 1
   },
   {
-    id_product: 2,
-    Image: images.product2,
-    name_product: "Bakso Aci Nila",
+    id: 2,
+    images: images.product2,
+    name: "Bakso Aci Nila",
     price: 15000,
     description: "Wes ngonolah pokok enak wes",
     id_store: 1,
@@ -43,9 +46,9 @@ const TABLE_ROWS = [
     status: 1
   },
   {
-    id_product: 3,
-    Image: images.product3,
-    name_product: "Bakso Aci Nila",
+    id: 3,
+    images: images.product3,
+    name: "Bakso Aci Nila",
     price: 15000,
     description: "Wes ngonolah pokok enak wes",
     id_store: 1,
@@ -55,6 +58,42 @@ const TABLE_ROWS = [
 ];
 
 export default function TableProductUMKM() {
+  const [data, setData] = useState(TABLE_ROWS);
+
+  const getData = async () => {
+    const token = getToken();
+    // setIsLoading(true);
+    const options = {
+      method: "GET",
+      url: `${process.env.REACT_APP_API_URL}/landing-page/product`,
+      params: {
+        active_on: "sukapura"
+      },
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    };
+    try {
+      const response = await fetch(options);
+      if (Array.isArray(response.data)) {
+        let processedData = structuredClone(response.data);
+        processedData = processedData.filter((data) => data.store.id === localStorage.getItem("umkm_store"))
+        for (let i = 0; i < processedData.length; i++) {
+          processedData[i].id_store = processedData[i].store.id
+        }
+        setData(processedData);
+      } else {
+        setData([]);
+      }
+    } catch (err) {
+      alert(JSON.stringify(err));
+    }
+    // setIsLoading(false);
+  };
+
+  useEffect(() => {
+    getData()
+  }, [])
   return (
     <Card className="h-full w-full">
       <CardBody className="overflow-scroll">
@@ -78,12 +117,12 @@ export default function TableProductUMKM() {
             </tr>
           </thead>
           <tbody>
-            {TABLE_ROWS.map(
+            {data.map(
               (
                 {
-                  id_product,
-                  Image,
-                  name_product,
+                  id,
+                  images,
+                  name,
                   price,
                   description,
                   id_store,
@@ -98,21 +137,21 @@ export default function TableProductUMKM() {
                   : "p-4 border-b border-blue-gray-50";
 
                 return (
-                  <tr key={id_product}>
+                  <tr key={id}>
                     <td className={classes}>
                       <Typography
                         variant="small"
                         color="blue-gray"
                         className="font-bold"
                       >
-                        {id_product}
+                        {id}
                       </Typography>
                     </td>
                     <td className={classes}>
                       <img
-                        src={Image}
+                        src={images && images[0]}
                         className="w-20 h-20 rounded-xl"
-                        alt="Product Image"
+                        alt="Product images"
                       />
                     </td>
                     <td className={classes}>
@@ -121,7 +160,7 @@ export default function TableProductUMKM() {
                         color="blue-gray"
                         className="font-normal"
                       >
-                        {name_product}
+                        {name}
                       </Typography>
                     </td>
                     <td className={classes}>
@@ -169,15 +208,15 @@ export default function TableProductUMKM() {
                             status === 1
                               ? "Active"
                               : status === 0
-                              ? "Inactive"
-                              : "Inactive"
+                                ? "Inactive"
+                                : "Inactive"
                           }
                           color={
                             status === 1
                               ? "green"
                               : status === 0
-                              ? "amber"
-                              : "red"
+                                ? "amber"
+                                : "red"
                           }
                         />
                       </div>
