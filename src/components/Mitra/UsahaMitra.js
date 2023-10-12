@@ -11,6 +11,8 @@ import {
 } from "@material-tailwind/react";
 import Loading from "../../elements/Spinner";
 import fetch from "../../utils/fetch";
+import Detail from "../../components/ButtonListMitra/Detail";
+import Detail1 from "../ButtonListMitra/Detail1";
 
 const TABLE_HEAD = [
   "ID Usaha",
@@ -24,6 +26,7 @@ const TABLE_HEAD = [
 ];
 
 export default function TableUsahaMitra({ id_mitra }) {
+  
   const [isLoading, setIsLoading] = useState(false);
   const [tableRows, setTableRows] = useState([]);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -200,11 +203,9 @@ export default function TableUsahaMitra({ id_mitra }) {
                       </td>
                       <td className={classes}>
                         <div className="flex gap-2">
-                          <Tooltip content="Edit ">
-                            <IconButton variant="text" color="blue-gray">
-                              <EyeIcon className="h-4 w-4" />
-                            </IconButton>
-                          </Tooltip>
+                        <Detail1
+                          umkmData = {tableRows[index]}
+                          />
                           <Tooltip content="Edit ">
                             <IconButton variant="text" color="blue-gray">
                               <PencilIcon className="h-4 w-4" />
