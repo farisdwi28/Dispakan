@@ -81,7 +81,7 @@ export default function EditNews(props) {
         <PencilIcon className="h-4 w-4" />
       </IconButton>
       <Dialog open={size === "lg"} handler={handleOpen}>
-        <DialogHeader>{props.Header}</DialogHeader>
+        <DialogHeader>Edit Berita</DialogHeader>
         <form onSubmit={handleSubmit(onSubmit)}> {/* Move the form tag here */}
           <DialogBody divider>
             {/* title */}
