@@ -35,14 +35,17 @@ const Dashboard = () => {
     const token = getToken();
     const options = {
       method: "GET",
-      url: `${process.env.REACT_APP_API_URL}/user/umkm?status=active`, // Menambahkan query parameter untuk filter status
+      url: `${process.env.REACT_APP_API_URL}/user/umkm?status=active`, 
+      params : {
+        active_on : "sukabirus"
+      },
       headers: {
         Authorization: `Bearer ${token}`,
       },
     };
     try {
       const response = await fetch(options);
-      setTotalActiveAccounts(response.data.length); // Menggunakan panjang array data untuk mendapatkan total akun aktif
+      setTotalActiveAccounts(response.data.length); 
     } catch (err) {
       alert(JSON.stringify(err));
     }

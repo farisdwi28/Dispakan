@@ -15,6 +15,9 @@ const UmkmChart = () => {
     const options = {
       method: "GET",
       url: `${process.env.REACT_APP_API_URL}/user/umkm`,
+      params : {
+        active_on : "sukabirus"
+      },
       headers: {
         Authorization: `Bearer ${token}`,
       },
