@@ -5,8 +5,8 @@ import {
   DialogHeader,
   DialogBody,
   IconButton,
-  Typography,
 } from "@material-tailwind/react";
+import DetailView from "../../elements/DetailView";
 
 export default function DetailNews({ data }) {
   const [size, setSize] = useState(null);
@@ -26,10 +26,10 @@ export default function DetailNews({ data }) {
         </DialogHeader>
         <DialogBody>
           {/* img nya */}
-          <Typography className="font-normal max-w-4xl">Nama Produk  :  {data.name}</Typography>
-          <Typography className="font-normal max-w-4xl">Harga  :  {data.price}</Typography>
-          <Typography className="font-normal max-w-4xl">Deskripsi  :  {data.description}</Typography>
-          <Typography className="font-normal max-w-4xl">Kategori  :  {data.category}</Typography>
+          <DetailView label="Nama Produk" value={data.name} />
+          <DetailView label="Harga" value={data.price} />
+          <DetailView label="Deskripsi" value={data.description} />
+          <DetailView label="Kategori" value={data.category} />
         </DialogBody>
       </Dialog>
     </Fragment>

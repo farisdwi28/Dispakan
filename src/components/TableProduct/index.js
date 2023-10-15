@@ -5,7 +5,7 @@ import fetch from "../../utils/fetch";
 import DetailProduct from "../Product/DetailProduct";
 
 const TABLE_HEAD = [
-  "ID Produk",
+  "No",
   "Gambar Produk",
   "Nama Produk",
   "Harga",
@@ -19,6 +19,7 @@ const TABLE_HEAD = [
 
 export default function TableProduct() {
   const [tableData, setTableData] = useState([]);
+  console.log(tableData);
 
   const getData = async () => {
     try {
@@ -34,11 +35,10 @@ export default function TableProduct() {
         },
       };
       const response = await fetch(options);
-
       if (response && response.data && Array.isArray(response.data)) {
         setTableData(response.data);
       } else {
-        console.error("Data from the API is not an array.");
+        setTableData([]);
       }
     } catch (err) {
       console.error(err);
@@ -74,28 +74,35 @@ export default function TableProduct() {
             </thead>
             <tbody>
               {tableData.map(
-                ({
-                  id,
-                  url_image,
-                  name,
-                  price,
-                  description,
-                  category,
-                  sale,
-                  status,
-                  store,
-                }) => {
-                  const classes = "p-4 border-b border-blue-gray-50";
+                (
+                  {
+                    id,
+                    url_image,
+                    name,
+                    price,
+                    description,
+                    category,
+                    sale,
+                    status,
+                    store,
+                  },
+                  index
+                ) => {
+                  const rowNumber = index + 1;
+                  const isLast = index === tableData.length - 1;
+                  const classes = isLast
+                    ? "p-4"
+                    : "p-4 border-b border-blue-gray-50";
 
                   return (
-                    <tr key={id}>
+                    <tr key={index}>
                       <td className={classes}>
                         <Typography
                           variant="small"
                           color="blue-gray"
                           className="font-bold"
                         >
-                          {id}
+                          {rowNumber}
                         </Typography>
                       </td>
                       <td className={classes}>
@@ -187,7 +194,7 @@ export default function TableProduct() {
                       </td>
                       <td className={classes}>
                         <div className="flex gap-2">
-                          <DetailProduct data={tableData} />
+                          <DetailProduct data={tableData[index]} />
                         </div>
                       </td>
                     </tr>
