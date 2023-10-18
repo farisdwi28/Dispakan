@@ -24,8 +24,7 @@ const Berita = () => {
     <div className="bg-gray-300 min-h-screen">
       <div className="flex page-container min-w-screen">
         <Sidebar />
-        <main className="flex-grow container mx-auto">
-          <div className="Title">
+        <main className="flex-grow container mx-auto p-6">
             <div className="flex justify-between items-center h-auto mt-10">
               <h1 className="font-semibold text-primary1 text-3xl">
                 Berita UMKM Desa Sukapura
@@ -67,16 +66,20 @@ const Berita = () => {
                 )}
               </div>
             </div>
-          </div>
+          {/* table berita */}
           <div className="absolute flex gap-2 pt-4">
-            <InputSearch placeholder="Cari Berita" width="10" />
-            <ButtonInputNews
+            <div className="w-full md:w-auto">
+              <InputSearch placeholder="Cari Berita" width="10" />
+            </div>
+            <div className="w-full md:w-auto">
+              <ButtonInputNews
               text="Posting Berita Baru"
               Header="Posting Berita Baru"
             />
+            </div>
             <div className="">{/* Show Entries */}</div>
           </div>
-          <div className="py-20 w-[80rem] overscroll-x-auto">
+          <div className="py-20 max-w-screen overscroll-x-auto">
             <TableNews />
           </div>
         </main>

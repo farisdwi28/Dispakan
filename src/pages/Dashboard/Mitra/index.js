@@ -24,7 +24,6 @@ const UMKM = () => {
       <div className="flex page-container min-w-screen">
         <Sidebar />
         <main className="flex-grow container mx-auto p-6">
-          <div className="Title">
             <div className="flex justify-between items-center h-auto mt-10">
               <h1 className="font-semibold text-primary1 text-3xl">
                 Daftar UMKM Desa Sukapura
@@ -68,7 +67,7 @@ const UMKM = () => {
                 )}
               </div>
             </div>
-          </div>
+          {/* table */}
           <div className="flex flex-wrap gap-2 pt-4">
             <div className="w-full md:w-auto">
               <InputSearch placeholder="Cari UMKM" width="10" />
