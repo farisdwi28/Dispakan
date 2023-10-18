@@ -4,24 +4,27 @@ import { images } from "../../../constans";
 import InputSearch from "../../../components/InputSearch";
 import ButtonExcel from "../../../components/ButtonExel";
 import TableUsahaMitra from "../../../components/Mitra/UsahaMitra";
-import { getUserData } from "../../../utils/storage";
+import { clearDataLogin, getUserData } from "../../../utils/storage";
+import { useNavigate } from "react-router-dom";
 
 const UsahaMitra = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate()
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
 
   const handleLogout = () => {
-    // your code
+    clearDataLogin();
+    navigate("/")
   };
 
   return (
     <div className="bg-gray-300 min-h-screen">
       <div className="flex page-container min-w-screen">
         <Sidebar />
-        <main className="flex-grow container mx-auto">
+        <main className="flex-grow container mx-auto p-6">
           <div className="flex justify-between items-center h-auto mt-10">
             <h1 className="font-semibold text-primary1 text-3xl">
               Daftar Mitra Desa Sukapura
@@ -66,12 +69,16 @@ const UsahaMitra = () => {
             </div>
           </div>
           {/* table */}
-          <div className="absolute flex gap-2 pt-4">
-            <InputSearch placeholder="Cari Produk" width="10" />
-            <ButtonExcel />
-            <div className="">{/* Show Entries */}</div>
+          <div className="flex flex-wrap gap-2 pt-4">
+            <div className="w-full md:w-auto">
+              <InputSearch placeholder="Cari Produk" width="10" />
+            </div>
+            <div className="w-full md:w-auto">
+              <ButtonExcel />
+            </div>
+              <div className="">{/* Show Entries */}</div>
           </div>
-          <div className="py-20 w-[80rem] overscroll-x-auto">
+          <div className="py-8 max-w-screen overscroll-x-auto">
             <TableUsahaMitra />
           </div>
         </main>
