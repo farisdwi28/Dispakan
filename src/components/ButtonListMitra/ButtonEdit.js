@@ -25,6 +25,7 @@ export default function Edit(props) {
     phone: props.umkmData.phone,
     status: props.umkmData.status,
   });
+  console.log(umkmData)
 
   const handleOpen = () => {
     setOpen(!open);
@@ -61,6 +62,38 @@ export default function Edit(props) {
 
     setIsLoading(false);
   };
+
+  const editStatus = async (id) => {
+    setIsLoading(true);
+    const token = getToken();
+    const statusValue = umkmData.status;
+    const options = {
+      method: "POST",
+      url: `${process.env.REACT_APP_API_URL}/user/update/status/${id}`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      data: {
+        status: statusValue,
+      },
+    };
+
+      try {
+        await fetch(options);
+        setButtonContent("Simpan");
+        window.location.reload(true);
+      } catch (err) {
+        alert(JSON.stringify(err));
+      }
+
+      setIsLoading(false);
+    };
+
+  const handleClick = () => {
+    editData()
+    editStatus(umkmData.id_owner_umkm);
+  }
 
   return (
     <Fragment>
@@ -122,7 +155,7 @@ export default function Edit(props) {
           <Button
             variant="gradient"
             color="green"
-            onClick={editData}
+            onClick={handleClick}
             disabled={isLoading}
           >
             <span>{isLoading ? "Loading..." : buttonContent}</span>

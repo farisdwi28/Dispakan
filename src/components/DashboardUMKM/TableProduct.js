@@ -70,7 +70,8 @@ export default function TableProductUMKM() {
         active_on: "sukapura"
       },
       headers: {
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${token}`,
+        "X-API-KEY" : "admin2023",
       }
     };
     try {

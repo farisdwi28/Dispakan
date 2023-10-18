@@ -170,7 +170,6 @@ const DummyData3 = [
 ];
 
 const limitedData = DummyData1.slice(0, 4);
-const limitedData1 = DummyData2.slice(0, 4);
 const limitedData2 = DummyData3.slice(0, 4);
 
 
@@ -187,12 +186,13 @@ const HomePage = () => {
       method: "GET",
       url: `${process.env.REACT_APP_API_URL}/landing-page/product`,
       params: {
-        active_on: 'sukapura',
+        active_on: 'sukabirus',
         sort_by: JSON.stringify({ best_seller: true })
 
       },
       headers: {
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${token}`,
+        "X-API-KEY" : "admin2023",
       }
     };
     try {
@@ -213,12 +213,13 @@ const HomePage = () => {
       method: "GET",
       url: `${process.env.REACT_APP_API_URL}/landing-page/product`,
       params: {
-        active_on: 'sukapura',
+        active_on: 'sukabirus',
         sort_by: JSON.stringify({ best_sale: true })
 
       },
       headers: {
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${token}`,
+        "X-API-KEY" : "admin2023",
       }
     };
     try {
@@ -236,7 +237,7 @@ const HomePage = () => {
   useEffect(() => {
     getTerlaris();
     getTerdiskon();
-    logPageView(); // Log the page view when the component mounts or when the location changes
+    logPageView(); 
   }, [location]);
 
   return (

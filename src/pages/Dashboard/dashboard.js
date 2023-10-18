@@ -17,9 +17,11 @@ const Dashboard = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const [totalActiveAccounts, setTotalActiveAccounts] = useState(0);
+  const [totalActiveProduct, setTotalProduct] = useState(0);
 
   useEffect(() => {
-      getData();
+      getUMKM();
+      getProduct();
   }, []);
 
   const toggleDropdown = () => {
@@ -31,13 +33,14 @@ const Dashboard = () => {
     navigate("/");
   };
 
-  const getData = async () => {
+  const getUMKM = async () => {
     const token = getToken();
     const options = {
       method: "GET",
-      url: `${process.env.REACT_APP_API_URL}/user/umkm?status=active`, 
-      params : {
-        active_on : "sukabirus"
+      url: `${process.env.REACT_APP_API_URL}/user/umkm`,
+      params: {
+        active_on: "sukabirus",
+        status: true,
       },
       headers: {
         Authorization: `Bearer ${token}`,
@@ -45,11 +48,34 @@ const Dashboard = () => {
     };
     try {
       const response = await fetch(options);
-      setTotalActiveAccounts(response.data.length); 
+      setTotalActiveAccounts(response.data.length);
     } catch (err) {
       alert(JSON.stringify(err));
     }
-  };  
+  };
+  
+  const getProduct = async () => {
+    const token = getToken();
+    const options = {
+      method: "GET",
+      url: `${process.env.REACT_APP_API_URL}/product`,
+      params: {
+        active_on: "sukabirus",
+        status: true,
+      },
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    try {
+      const response = await fetch(options);
+      setTotalProduct(response.data.length);
+    } catch (err) {
+      alert(JSON.stringify(err));
+    }
+  };
+  
+
 
   const DummyData4 = [
     {
@@ -149,11 +175,8 @@ const Dashboard = () => {
                 Total Produk
               </p>
               <p className="text-2xl text-center font-bold text-slate-500 mb-4">
-                215
+                {totalActiveProduct || "-"}
               </p>
-              <div className="overflow-hidden">
-                <Productchart />
-              </div>
             </div>
             {/* statistik 2 */}
             <div className="bg-white rounded-lg p-6 md:p-8 drop-shadow-xl md:relative">
@@ -167,9 +190,6 @@ const Dashboard = () => {
               <p className="text-2xl text-center font-bold text-slate-500 mb-4">
                 {totalActiveAccounts || "-"}
               </p>
-              <div className="overflow-hidden">
-                <Umkmchart />
-              </div>
             </div>
             {/* statistik 3 */}
             <div className="bg-white rounded-lg p-6 md:p-8 drop-shadow-xl md:relative">
@@ -183,9 +203,6 @@ const Dashboard = () => {
               <p className="text-2xl text-center font-bold text-slate-500 mb-4">
                 62
               </p>
-              <div className="overflow-hidden">
-                <Blogchart />
-              </div>
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">

@@ -74,11 +74,11 @@ const DashboardUMKM = () => {
                 onClick={toggleDropdown}
               >
                 <img
-                  className="w-8 h-8 rounded-full"
-                  src={images.profil1}
-                  alt="Profile"
-                />
-                <span className="ml-2">{getUserData().name || "-"}</span>
+                    className="w-8 h-8 rounded-full"
+                    src={JSON.parse(localStorage.getItem("store_data")).url_image || images.profil1}
+                    alt="-"
+                  />
+                  <span className="ml-2">{JSON.parse(localStorage.getItem("store_data")).name || "-"}</span>
                 <svg
                   className={`w-4 h-4 ml-2 transition-transform ${
                     isOpen ? "transform rotate-180" : ""
@@ -119,13 +119,8 @@ const DashboardUMKM = () => {
             <p className="text-2xl text-center font-bold text-slate-500 mb-4">
               215
             </p>
-            <div className="overflow-hidden">
-              <Productchart />
-            </div>
           </div>
           {/* statistik 2 */}
-          {/* Skip statistik 2, as it's not mentioned in the original code */}
-          {/* statistik 3 */}
           <div className="bg-white rounded-lg p-6 md:p-8 drop-shadow-xl md:relative">
             <img
               src={images.viewsIcon}
@@ -137,9 +132,6 @@ const DashboardUMKM = () => {
             <p className="text-2xl text-center font-bold text-slate-500 mb-4">
               62
             </p>
-            <div className="overflow-hidden">
-              <Blogchart />
-            </div>
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">

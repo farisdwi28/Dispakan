@@ -4,17 +4,21 @@ import { images } from "../../../constans";
 import InputSearch from "../../../components/InputSearch";
 import ButtonExcel from "../../../components/ButtonExel";
 import TableUsahaMitra from "../../../components/Mitra/UsahaMitra";
-import { getUserData } from "../../../utils/storage";
+import { clearDataLogin,getUserData } from "../../../utils/storage";
+import { useNavigate } from "react-router-dom";
+
 
 const UsahaMitra = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
 
   const handleLogout = () => {
-    // your code
+    clearDataLogin();
+    navigate("/");
   };
 
   return (
