@@ -21,7 +21,7 @@ export default function DetailNews({ data }) {
       <Dialog open={size === "lg"} handler={handleOpen} size='lg'>
         <DialogHeader>
           <div>
-            <h1>Detail Berita</h1>
+            <h1>Detail Produk</h1>
           </div>
         </DialogHeader>
         <DialogBody>
