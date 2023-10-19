@@ -25,36 +25,6 @@ const TABLE_HEAD = [
 ];
 
 const TABLE_ROWS = [
-  {
-    id: 1,
-    images: images.product2,
-    name: "Bakso Aci Nila",
-    price: 15000,
-    description: "Wes ngonolah pokok enak wes",
-    id_store: 1,
-    category: "makanan",
-    status: 1
-  },
-  {
-    id: 2,
-    images: images.product2,
-    name: "Bakso Aci Nila",
-    price: 15000,
-    description: "Wes ngonolah pokok enak wes",
-    id_store: 1,
-    category: "makanan",
-    status: 1
-  },
-  {
-    id: 3,
-    images: images.product3,
-    name: "Bakso Aci Nila",
-    price: 15000,
-    description: "Wes ngonolah pokok enak wes",
-    id_store: 1,
-    category: "makanan",
-    status: 1
-  }
 ];
 
 export default function TableProductUMKM() {

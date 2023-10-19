@@ -6,22 +6,23 @@ import fetch from "../../utils/fetch";
 import { images } from "../../constans";
 import { Button } from "@material-tailwind/react";
 // import icon
-
-// import graphic chart
-import Productchart from "../../components/GraphicChart/ProductChart";
-import Umkmchart from "../../components/GraphicChart/UmkmChart";
-import Blogchart from "../../components/GraphicChart/BlogChart";
 import Categorychart from "../../components/GraphicChart/CategoryChart";
 
 const Dashboard = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
-  const [totalActiveAccounts, setTotalActiveAccounts] = useState(0);
   const [totalActiveProduct, setTotalProduct] = useState(0);
-
+  const [totalAll, setTotalAll] = useState({
+    data_bar_chart: {
+      countedUmkm: 0,
+      countedUsers: 0,
+      countedVisited: 0,
+    },
+  });
+  
   useEffect(() => {
-      getUMKM();
-      getProduct();
+    getProduct();
+    getAll();
   }, []);
 
   const toggleDropdown = () => {
@@ -31,27 +32,6 @@ const Dashboard = () => {
   const handleLogout = () => {
     clearDataLogin();
     navigate("/");
-  };
-
-  const getUMKM = async () => {
-    const token = getToken();
-    const options = {
-      method: "GET",
-      url: `${process.env.REACT_APP_API_URL}/user/umkm`,
-      params: {
-        active_on: "sukabirus",
-        status: true,
-      },
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-    try {
-      const response = await fetch(options);
-      setTotalActiveAccounts(response.data.length);
-    } catch (err) {
-      alert(JSON.stringify(err));
-    }
   };
   
   const getProduct = async () => {
@@ -75,8 +55,30 @@ const Dashboard = () => {
     }
   };
   
-
-
+  const getAll = async () => {
+    const token = getToken();
+    const options = {
+      method: "GET",
+      url: `${process.env.REACT_APP_API_URL}/landing-page/bumdes/dashboard?active_on=sukabirus`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    };
+    try {
+      const response = await fetch(options);
+      if (response.data && response.data.data_bar_chart) {
+        setTotalAll(response.data.data_bar_chart);
+      } else {
+        setTotalAll({
+          countedUmkm: 1,
+          countedUsers: 0,
+          countedVisited: 2,
+        });
+      }
+    } catch (err) {
+      alert(JSON.stringify(err));
+    }
+  }
   const DummyData4 = [
     {
       id: 9,
@@ -188,7 +190,7 @@ const Dashboard = () => {
                 Total UMKM
               </p>
               <p className="text-2xl text-center font-bold text-slate-500 mb-4">
-                {totalActiveAccounts || "-"}
+                {totalAll.countedUmkm || "-"}
               </p>
             </div>
             {/* statistik 3 */}
@@ -201,7 +203,7 @@ const Dashboard = () => {
                 Total Blog
               </p>
               <p className="text-2xl text-center font-bold text-slate-500 mb-4">
-                62
+                {totalAll.countedVisited || "-"}
               </p>
             </div>
           </div>

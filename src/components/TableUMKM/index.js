@@ -28,7 +28,6 @@ export default function TableUMKM() {
   const [isLoading, setIsLoading] = useState(false);
   const [tableRows, setTableRows] = useState([]);
   const [isSuccess, setIsSuccess] = useState(false);
-  const [isShowDetail, setShowDetail] = useState(false);
 
   const getData = async () => {
     const token = getToken();
