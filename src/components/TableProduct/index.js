@@ -77,7 +77,7 @@ export default function TableProduct() {
                 (
                   {
                     id,
-                    url_image,
+                    images,
                     name,
                     price,
                     description,
@@ -106,9 +106,10 @@ export default function TableProduct() {
                         </Typography>
                       </td>
                       <td className={classes}>
-                        {url_image && url_image[0] ? (
+                        {console.log("HAI: "+images)}
+                        {images && images[0] ? (
                           <img
-                            src={url_image[0]}
+                            src={images[0]}
                             alt={name}
                             className="w-25 h-25 rounded-xl"
                           />

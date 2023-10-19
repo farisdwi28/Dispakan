@@ -66,19 +66,23 @@ const Dashboard = () => {
     };
     try {
       const response = await fetch(options);
-      if (response.data && response.data.data_bar_chart) {
-        setTotalAll(response.data.data_bar_chart);
+      console.log(JSON.stringify(response))
+      if (response) {
+        setTotalAll(response);
       } else {
         setTotalAll({
-          countedUmkm: 1,
-          countedUsers: 0,
-          countedVisited: 2,
+          data_bar_chart: {
+            countedUmkm: 0,
+            countedUsers: 0,
+            countedVisited: 0,
+          },
         });
       }
     } catch (err) {
       alert(JSON.stringify(err));
     }
   }
+
   const DummyData4 = [
     {
       id: 9,
@@ -138,7 +142,7 @@ const Dashboard = () => {
                     src={images.profil1}
                     alt="Profile"
                   />
-                  <span className="ml-2">{getUserData().name || "Desa Sukapura"}</span>
+                  <span className="ml-2">{getUserData().name || "Desa sukabirus"}</span>
                   <svg
                     className={`w-4 h-4 ml-2 transition-transform ${
                       isOpen ? "transform rotate-180" : ""
@@ -190,7 +194,7 @@ const Dashboard = () => {
                 Total UMKM
               </p>
               <p className="text-2xl text-center font-bold text-slate-500 mb-4">
-                {totalAll.countedUmkm || "-"}
+                {totalAll.data_bar_chart.countedUmkm}
               </p>
             </div>
             {/* statistik 3 */}
@@ -203,7 +207,7 @@ const Dashboard = () => {
                 Total Blog
               </p>
               <p className="text-2xl text-center font-bold text-slate-500 mb-4">
-                {totalAll.countedVisited || "-"}
+                {totalAll.data_bar_chart.countedVisited}
               </p>
             </div>
           </div>

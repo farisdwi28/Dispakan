@@ -78,7 +78,7 @@ const PengaturanProfilUMKM = () => {
                     <input
                       className="w-full  border-2 border-gray-300 rounded-md px-4 py-2 mt-2 focus:outline-none focus:border-primary1"
                       type="text"
-                      placeholder="Desa Sukapura"
+                      placeholder="Desa sukabirus"
                     />
                   </div>
                   {/* alamat bumdes */}
@@ -92,7 +92,7 @@ const PengaturanProfilUMKM = () => {
                     <input
                       className="w-full  border-2 border-gray-300 rounded-md px-4 py-2 mt-2 focus:outline-none focus:border-primary1"
                       type="text"
-                      placeholder="Jalan Sukapura"
+                      placeholder="Jalan sukabirus"
                     />
                   </div>
                   {/* kontak bumdes */}

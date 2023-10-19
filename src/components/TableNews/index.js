@@ -41,7 +41,7 @@ export default function TableNews() {
       method: "GET",
       url: `${process.env.REACT_APP_API_URL}/news`,
       params: {
-        active_on: "sukapura"
+        active_on: "sukabirus"
       },
       headers: {
         Authorization: `Bearer ${token}`

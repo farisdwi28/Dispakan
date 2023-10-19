@@ -40,7 +40,7 @@ export default function ButtonInputNews(props) {
     formData.append("posted_date", data.posted_date);
     formData.append("description", data.description);
     formData.append("file", data.file);
-    formData.append("active_on", "sukapura");
+    formData.append("active_on", "sukabirus");
 
     const options = {
       method: "POST",

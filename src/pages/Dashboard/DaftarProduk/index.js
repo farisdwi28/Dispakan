@@ -27,7 +27,7 @@ const Produk = () => {
         <main className="flex-grow container mx-auto p-6">
             <div className="flex justify-between items-center h-auto mt-10">
               <h1 className="font-semibold text-primary1 text-3xl">
-                Daftar Produk UMKM Desa Sukapura
+                Daftar Produk UMKM Desa sukabirus
               </h1>
               <div className="relative inline-block text-left">
                 <button
@@ -40,7 +40,7 @@ const Produk = () => {
                     src={images.profil1}
                     alt="Profile"
                   />
-                  <span className="ml-2">{getUserData().name || "Desa Sukapura"}</span>
+                  <span className="ml-2">{getUserData().name || "Desa sukabirus"}</span>
                   <svg
                     className={`w-4 h-4 ml-2 transition-transform ${
                       isOpen ? "transform rotate-180" : ""

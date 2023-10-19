@@ -17,7 +17,7 @@ const DummyData1 = [
     title: "Kue Kembang Jahe",
     price: 23000,
     owner: "Ainun Cake",
-    address: "Desa Sukapura",
+    address: "Desa sukabirus",
     like: 20,
     value: 5
   },
@@ -27,7 +27,7 @@ const DummyData1 = [
     title: "Kue Kembang Buah",
     price: 23000,
     owner: "Makpingah",
-    address: "Desa Sukapura",
+    address: "Desa sukabirus",
     like: 20,
     value: 5
   },
@@ -37,7 +37,7 @@ const DummyData1 = [
     title: "Boboko Snack",
     price: 17500,
     owner: "Boboko Sundase Snack",
-    address: "Desa Sukapura",
+    address: "Desa sukabirus",
     like: 20,
     value: 2
   },
@@ -47,7 +47,7 @@ const DummyData1 = [
     title: "Boboko Snack",
     price: 27500,
     owner: "Boboko Sundase Snack",
-    address: "Desa Sukapura",
+    address: "Desa sukabirus",
     like: 20,
     value: 5
   },
@@ -57,7 +57,7 @@ const DummyData1 = [
     title: "Boboko",
     price: 27500,
     owner: "Boboko Sundase Snack",
-    address: "Desa Sukapura",
+    address: "Desa sukabirus",
     like: 20,
     value: 5
   }
@@ -70,7 +70,7 @@ const DummyData2 = [
     title: "Kue Kembang Jahe",
     price: 23000,
     owner: "Ainun Cake",
-    address: "Desa Sukapura",
+    address: "Desa sukabirus",
     like: 20,
     value: 0
   },
@@ -80,7 +80,7 @@ const DummyData2 = [
     title: "Kue Kembang Buah",
     price: 23000,
     owner: "Makpingah",
-    address: "Desa Sukapura",
+    address: "Desa sukabirus",
     like: 20,
     value: 0
   },
@@ -90,7 +90,7 @@ const DummyData2 = [
     title: "Boboko Snack",
     price: 17500,
     owner: "Boboko Sundase Snack",
-    address: "Desa Sukapura",
+    address: "Desa sukabirus",
     like: 20,
     value: 0
   },
@@ -100,7 +100,7 @@ const DummyData2 = [
     title: "Boboko Snack",
     price: 27500,
     owner: "Boboko Sundase Snack",
-    address: "Desa Sukapura",
+    address: "Desa sukabirus",
     like: 20,
     value: 0
   },
@@ -110,7 +110,7 @@ const DummyData2 = [
     title: "Boboko",
     price: 27500,
     owner: "Boboko Sundase Snack",
-    address: "Desa Sukapura",
+    address: "Desa sukabirus",
     like: 20,
     value: 0
   }
@@ -123,7 +123,7 @@ const DummyData3 = [
     title: "Kue Kembang Jahe",
     price: 23000,
     owner: "Ainun Cake",
-    address: "Desa Sukapura",
+    address: "Desa sukabirus",
     like: 20,
     value: 5
   },
@@ -133,7 +133,7 @@ const DummyData3 = [
     title: "Kue Kembang Buah",
     price: 23000,
     owner: "Makpingah",
-    address: "Desa Sukapura",
+    address: "Desa sukabirus",
     like: 20,
     value: 0
   },
@@ -143,7 +143,7 @@ const DummyData3 = [
     title: "Boboko Snack",
     price: 17500,
     owner: "Boboko Sundase Snack",
-    address: "Desa Sukapura",
+    address: "Desa sukabirus",
     like: 20,
     value: 2
   },
@@ -153,7 +153,7 @@ const DummyData3 = [
     title: "Boboko Snack",
     price: 27500,
     owner: "Boboko Sundase Snack",
-    address: "Desa Sukapura",
+    address: "Desa sukabirus",
     like: 20,
     value: 0
   },
@@ -163,7 +163,7 @@ const DummyData3 = [
     title: "Boboko",
     price: 27500,
     owner: "Boboko Sundase Snack",
-    address: "Desa Sukapura",
+    address: "Desa sukabirus",
     like: 20,
     value: 10
   }

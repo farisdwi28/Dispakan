@@ -8,7 +8,7 @@ const FormAddProduct = () => {
   const [selectedDescription, setSelectedDescription] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
   const [data, setData] = useState({
-    active_on: "sukapura",
+    active_on: "sukabirus",
     id_umkm: localStorage.getItem("umkm_store")
   });
 

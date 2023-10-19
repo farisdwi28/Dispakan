@@ -37,7 +37,7 @@ export default function TableProductUMKM() {
       method: "GET",
       url: `${process.env.REACT_APP_API_URL}/landing-page/product`,
       params: {
-        active_on: "sukapura"
+        active_on: "sukabirus"
       },
       headers: {
         Authorization: `Bearer ${token}`,

@@ -13,7 +13,7 @@ const Footer = () => {
                 </span>
               </a>
               <p className="text-white mt-2 box-border w-64">
-                Jl. Sukapaura No.54, Sukapura, Kec. Dayeuhkolot, Bandung, Jawa
+                Jl. Sukapaura No.54, sukabirus, Kec. Dayeuhkolot, Bandung, Jawa
                 Barat 40267
               </p>
               <p className="text-white mt-2">
