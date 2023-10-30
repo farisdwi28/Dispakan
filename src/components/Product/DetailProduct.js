@@ -25,7 +25,7 @@ export default function DetailNews({ data }) {
           </div>
         </DialogHeader>
         <DialogBody>
-          {/* img nya */}
+          <img src={data.iamges}/>
           <DetailView label="Nama Produk" value={data.name} />
           <DetailView label="Harga" value={data.price} />
           <DetailView label="Deskripsi" value={data.description} />

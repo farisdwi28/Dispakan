@@ -106,7 +106,6 @@ export default function TableProduct() {
                         </Typography>
                       </td>
                       <td className={classes}>
-                        {console.log("HAI: "+images)}
                         {images && images[0] ? (
                           <img
                             src={images[0]}

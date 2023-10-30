@@ -14,9 +14,8 @@ const Dashboard = () => {
   const [totalActiveProduct, setTotalProduct] = useState(0);
   const [totalAll, setTotalAll] = useState({
     data_bar_chart: {
-      countedUmkm: 0,
-      countedUsers: 0,
-      countedVisited: 0,
+      countedUmkm: "-",
+      countedVisited: "-",
     },
   });
   
@@ -72,9 +71,8 @@ const Dashboard = () => {
       } else {
         setTotalAll({
           data_bar_chart: {
-            countedUmkm: 0,
-            countedUsers: 0,
-            countedVisited: 0,
+            countedUmkm: "-",
+            countedVisited: "-",
           },
         });
       }

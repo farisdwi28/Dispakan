@@ -1,16 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SidebarUMKM from "../../components/SidebarUMKM";
 import { images } from "../../constans";
-import Productchart from "../../components/GraphicChart/ProductChart";
 import { Button } from "@material-tailwind/react";
-import Blogchart from "../../components/GraphicChart/BlogChart";
 import BarChart from "../../components/GraphicChart/BarChart";
-import { clearDataLogin, getUserData } from "../../utils/storage";
+import { clearDataLogin, getUserData, getToken } from "../../utils/storage";
 import { useNavigate } from "react-router-dom";
+import fetch from "../../utils/fetch";
 
 const DashboardUMKM = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
+  const [totalAll, setTotalAll] = useState({
+    data_bar_chart: {
+      countedProduct: "-",
+      countedViewedStore: "-",
+    },
+  });
+
+  useEffect(() => {
+    getAll(); 
+  })
 
   const handleLogout = () => {
     clearDataLogin();
@@ -20,6 +29,33 @@ const DashboardUMKM = () => {
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
+
+  const getAll = async () => {
+    const token = getToken();
+    const options = {
+      method: "GET",
+      url: `${process.env.REACT_APP_API_URL}/landing-page/umkm/dashboard?active_on=sukabirus`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    };
+    try {
+      const response = await fetch(options);
+      console.log(JSON.stringify(response))
+      if (response) {
+        setTotalAll(response);
+      } else {
+        setTotalAll({
+          data_bar_chart: {
+            countedProduct: "-",
+            countedViewedStore: "-",
+          },
+        });
+      }
+    } catch (err) {
+      alert(JSON.stringify(err));
+    }
+  }
 
   const DummyData4 = [
     {
@@ -58,6 +94,7 @@ const DashboardUMKM = () => {
       like: 75,
     },
   ];
+  
   return (
     <div className="flex flex-col md:flex-row min-h-screen bg-gray-300">
       <SidebarUMKM />
@@ -117,7 +154,7 @@ const DashboardUMKM = () => {
               Total Produk
             </p>
             <p className="text-2xl text-center font-bold text-slate-500 mb-4">
-              215
+             {totalAll.data_bar_chart.countedProduct}
             </p>
           </div>
           {/* statistik 2 */}
@@ -130,7 +167,7 @@ const DashboardUMKM = () => {
               Total Pengunjung
             </p>
             <p className="text-2xl text-center font-bold text-slate-500 mb-4">
-              62
+            {totalAll.data_bar_chart.countedViewedStore}
             </p>
           </div>
         </div>
