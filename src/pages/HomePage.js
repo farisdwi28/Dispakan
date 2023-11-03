@@ -187,8 +187,9 @@ const HomePage = () => {
       url: `${process.env.REACT_APP_API_URL}/landing-page/product`,
       params: {
         active_on: 'sukabirus',
-        sort_by: JSON.stringify({ best_seller: true })
-
+        sort_by: JSON.stringify({ best_seller: true }),
+        search: '',
+        catagory: ''
       },
       headers: {
         Authorization: `Bearer ${token}`,
@@ -214,8 +215,9 @@ const HomePage = () => {
       url: `${process.env.REACT_APP_API_URL}/landing-page/product`,
       params: {
         active_on: 'sukabirus',
-        sort_by: JSON.stringify({ best_sale: true })
-
+        sort_by: JSON.stringify({ best_sale: true }),
+        search: '',
+        catagory: ''
       },
       headers: {
         Authorization: `Bearer ${token}`,

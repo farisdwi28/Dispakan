@@ -15,7 +15,8 @@ export default function UMKMSelectStore() {
       method: "GET",
       url: `${process.env.REACT_APP_API_URL}/store`,
       params: {
-        id_umkm: userData.id
+        id_umkm: userData.id,
+        active_on: 'sukabirus'
       },
       headers: {
         Authorization: `Bearer ${token}`

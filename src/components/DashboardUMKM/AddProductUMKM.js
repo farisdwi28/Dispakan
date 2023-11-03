@@ -18,6 +18,7 @@ const FormAddProduct = () => {
       form.append(k, data[k]);
     }
     form.append("files", selectedFile);
+    form.append("sale", 0);
     const token = getToken();
 
     const options = {
